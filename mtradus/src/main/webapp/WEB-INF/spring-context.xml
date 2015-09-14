@@ -11,39 +11,39 @@
 	<mvc:annotation-driven />
 
 	<!-- Classpath scanning of @Component, @Service, etc annotated class -->
-	<context:component-scan base-package="com.ask.mtradus" />
+	<context:component-scan base-package="com.ask" />
 
 	<bean id="dataSource"
 		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
 		<property name="driverClassName" value="com.mysql.jdbc.Driver" />
 		<property name="url" value="jdbc:mysql://localhost:3306/ask" />
 		<property name="username" value="root" />
-		<property name="password" value="" />
+		<property name="password" value="admin" />
 	</bean>
 	<bean id="sessionFactory"
 		class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
 		<property name="dataSource" ref="dataSource" />
 		<property name="annotatedClasses">
 			<list>
-				<value>com.ask.mtradus.dbpojo.Area</value>
-				<value>com.ask.mtradus.dbpojo.BillPaidStatus</value>
-				<value>com.ask.mtradus.dbpojo.Country</value>
-				<value>com.ask.mtradus.dbpojo.District</value>
-				<value>com.ask.mtradus.dbpojo.ShopBillDetails</value>
-				<value>com.ask.mtradus.dbpojo.ShopProductMap</value>
-				<value>com.ask.mtradus.dbpojo.Shops</value>
-				<value>com.ask.mtradus.dbpojo.States</value>
-				<value>com.ask.mtradus.dbpojo.User</value>
-				<value>com.ask.mtradus.dbpojo.UserType</value>
-				<value>com.ask.mtradus.dbpojo.VendorDetails</value>
-				<value>com.ask.mtradus.dbpojo.VendorProductDetails</value>
-				<value>com.ask.mtradus.dbpojo.VendorProductItemDetails</value>
-				<value>com.ask.mtradus.dbpojo.PurchaseHistory</value>
-				<value>com.ask.mtradus.dbpojo.StockMaintanence</value>
-				<value>com.ask.mtradus.dbpojo.Discount</value>
-				<value>com.ask.mtradus.dbpojo.VendorBillDetails</value>
-				<value>com.ask.mtradus.dbpojo.Miscellenous</value>
-				<value>com.ask.mtradus.dbpojo.BillPaidHistory</value>
+				<value>com.ask.dbpojo.Area</value>
+				<value>com.ask.dbpojo.BillPaidStatus</value>
+				<value>com.ask.dbpojo.Country</value>
+				<value>com.ask.dbpojo.District</value>
+				<value>com.ask.dbpojo.ShopBillDetails</value>
+				<value>com.ask.dbpojo.ShopProductMap</value>
+				<value>com.ask.dbpojo.Shops</value>
+				<value>com.ask.dbpojo.States</value>
+				<value>com.ask.dbpojo.User</value>
+				<value>com.ask.dbpojo.UserType</value>
+				<value>com.ask.dbpojo.VendorDetails</value>
+				<value>com.ask.dbpojo.VendorProductDetails</value>
+				<value>com.ask.dbpojo.VendorProductItemDetails</value>
+				<value>com.ask.dbpojo.PurchaseHistory</value>
+				<value>com.ask.dbpojo.StockMaintanence</value>
+				<value>com.ask.dbpojo.Discount</value>
+				<value>com.ask.dbpojo.VendorBillDetails</value>
+				<value>com.ask.dbpojo.Miscellenous</value>
+				<value>com.ask.dbpojo.BillPaidHistory</value>
 			</list>
 		</property>
 		<property name="hibernateProperties">
@@ -55,11 +55,17 @@
 			</props>
 		</property>
 	</bean>
-	<bean id="messageSource" class="org.springframework.context.support.ResourceBundleMessageSource">
-	  <property name="basenames">
-	   <list>
-	    <value>message</value>
-	   </list>
-	  </property>
- 	</bean>
+	<bean id="hibernateTemplate" class="org.springframework.orm.hibernate3.HibernateTemplate">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+	<bean id="messageSource"
+		class="org.springframework.context.support.ResourceBundleMessageSource">
+		<property name="basenames">
+			<list>
+				<value>message</value>
+			</list>
+		</property>
+	</bean>
 </beans>
