@@ -9,6 +9,8 @@ import java.util.Date;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -29,53 +31,53 @@ public class User implements Serializable {
 	private static final long serialVersionUID = -6308226098632190416L;
 
 	@Id
-	int userId;
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	private int userId;
 
 	@Column(name = "USER_NAME", nullable = false)
-	String userName;
+	private String userName;
 
 	@Column(name = "USER_PASSWORD", nullable = false)
-	String password;
+	private String password;
 
 	@Column(name = "DOB", nullable = false)
-	Date dateOfBirth;
+	private Date dateOfBirth;
 
 	@Column(name = "USER_EMAIL_ADDRESS", nullable = false)
-	String emailAddress;
+	private String emailAddress;
 
 	@Column(name = "USER_PHONE_NUMBER", nullable = false)
-	String phoneNumber;
+	private String phoneNumber;
 
-	@Column(name = "USER_COUNTRY")
-	String country;
+	@Column(name = "ADDRESS_ID")
+	private Address address;
 
-	@Column(name = "USER_STATE")
-	String state;
-
-	@Column(name = "USER_DISTRICT")
-	String district;
-
-	@Column(name = "USER_ADDRESS")
-	String Address;
-
-	
 	@Temporal(TemporalType.DATE)
 	@Column(name = "USER_CREATED_ON", nullable = false)
-	Date createdOn;
+	private Date createdOn;
 
 	@Temporal(TemporalType.DATE)
 	@Column(name = "LAST_UPDATED_ON", nullable = false)
-	Date updatedOn;
+	private Date updatedOn;
 
 	@Column(name = "CREATED_BY")
-	String createdBy;
+	private String createdBy;
 
 	@ManyToOne(cascade = CascadeType.DETACH)
 	@JoinColumn(name = "USER_TYPE_ID")
-	UserType type;
+	private UserType type;
 	
 	@Column(name="SUPERVISOR_ID")
-	int superVisorID;
+	private int superVisorID;
+	
+	@Column(name="attempts")
+	private int attempts;
+	
+	@Column(name="status")
+	private String status;
+	
+	@Column(name="image")
+	private byte[] image;
 
 	public int getUserId() {
 		return userId;
@@ -125,39 +127,13 @@ public class User implements Serializable {
 		this.phoneNumber = phoneNumber;
 	}
 
-	public String getCountry() {
-		return country;
+	public Address getAddress() {
+		return address;
 	}
 
-	public void setCountry(String country) {
-		this.country = country;
+	public void setAddress(Address address) {
+		this.address = address;
 	}
-
-	public String getState() {
-		return state;
-	}
-
-	public void setState(String state) {
-		this.state = state;
-	}
-
-	public String getDistrict() {
-		return district;
-	}
-
-	public void setDistrict(String district) {
-		this.district = district;
-	}
-
-	public String getAddress() {
-		return Address;
-	}
-
-	public void setAddress(String address) {
-		Address = address;
-	}
-
-	
 
 	public Date getCreatedOn() {
 		return createdOn;
@@ -199,5 +175,28 @@ public class User implements Serializable {
 		this.superVisorID = superVisorID;
 	}
 
+	public int getAttempts() {
+		return attempts;
+	}
+
+	public void setAttempts(int attempts) {
+		this.attempts = attempts;
+	}
+
+	public String getStatus() {
+		return status;
+	}
+
+	public void setStatus(String status) {
+		this.status = status;
+	}
+
+	public byte[] getImage() {
+		return image;
+	}
+
+	public void setImage(byte[] image) {
+		this.image = image;
+	}
 	
 }
