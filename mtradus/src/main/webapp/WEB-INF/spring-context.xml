@@ -55,11 +55,21 @@
 			</props>
 		</property>
 	</bean>
-	<bean id="hibernateTemplate" class="org.springframework.orm.hibernate3.HibernateTemplate">
+	<bean id="hibernateTemplate" class="org.springframework.orm.hibernate4.HibernateTemplate">
 		<property name="sessionFactory">
 			<ref bean="sessionFactory" />
 		</property>
 	</bean>
+	
+	 <bean id="txManager"
+        class="org.springframework.orm.hibernate4.HibernateTransactionManager">
+        <property name="sessionFactory">
+            <ref bean="sessionFactory" />
+        </property>
+    </bean>
+   
+    <tx:annotation-driven transaction-manager="txManager"/>
+    
 	<bean id="messageSource"
 		class="org.springframework.context.support.ResourceBundleMessageSource">
 		<property name="basenames">

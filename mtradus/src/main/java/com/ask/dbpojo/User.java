@@ -23,7 +23,7 @@ import javax.persistence.TemporalType;
  * 
  */
 @Entity
-@Table(name = "USER")
+@Table(name = "USERS")
 public class User implements Serializable {
 	/**
 	 * 
@@ -66,18 +66,18 @@ public class User implements Serializable {
 	@ManyToOne(cascade = CascadeType.DETACH)
 	@JoinColumn(name = "USER_TYPE_ID")
 	private UserType type;
-	
-	@Column(name="SUPERVISOR_ID")
+
+	@Column(name = "SUPERVISOR_ID")
 	private int superVisorID;
-	
-	@Column(name="attempts")
+
+	@Column(name = "attempts")
 	private int attempts;
-	
-	@Column(name="status")
+
+	@Column(name = "status")
 	private String status;
-	
-	@Column(name="image")
-	private byte[] image;
+
+	@Column(name = "image")
+	private String imagePath;
 
 	public int getUserId() {
 		return userId;
@@ -191,12 +191,13 @@ public class User implements Serializable {
 		this.status = status;
 	}
 
-	public byte[] getImage() {
-		return image;
+	public String getImagePath() {
+		return imagePath;
 	}
 
-	public void setImage(byte[] image) {
-		this.image = image;
+	public void setImagePath(String imagePath) {
+		this.imagePath = imagePath;
 	}
+
 	
 }

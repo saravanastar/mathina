@@ -6,6 +6,7 @@ package com.ask.actions;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -66,7 +67,7 @@ public class UserController {
 
 	@RequestMapping(value = "/register", method = RequestMethod.POST)
 	@ResponseBody
-	public boolean registerUser(@RequestBody User user) {
+	public boolean registerUser(@Valid @RequestBody User user) {
 		
 		boolean isUserAdded = userService.addUser(user);
 		return isUserAdded;
