@@ -23,16 +23,18 @@ import com.ask.util.UserConstants;
 public class UserService {
 	
 	@Autowired
-	UserDAOImpl userDao;
+	UserDAO userDao;
 
+	
+	
 	public UserDAO getUserDao() {
 		return userDao;
 	}
 
-	public void setUserDao(UserDAOImpl userDao) {
+	public void setUserDao(UserDAO userDao) {
 		this.userDao = userDao;
 	}
-	
+
 	@Transactional
 	public boolean addDefaultData(){
 		return userDao.addDefaultData();

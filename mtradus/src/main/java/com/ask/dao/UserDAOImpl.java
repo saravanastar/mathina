@@ -8,8 +8,8 @@ import java.util.Date;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.orm.hibernate3.HibernateTemplate;
-import org.springframework.stereotype.Component;
+import org.springframework.orm.hibernate4.HibernateTemplate;
+import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.ask.dbpojo.Area;
@@ -30,7 +30,7 @@ import com.ask.pojo.UserPojo;
  * @author 298651
  *
  */
-@Component
+@Repository
 public class UserDAOImpl implements UserDAO {
 
 	@Autowired
