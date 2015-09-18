@@ -67,7 +67,7 @@ public class UserController {
 
 	@RequestMapping(value = "/register", method = RequestMethod.POST)
 	@ResponseBody
-	public boolean registerUser(@Valid @RequestBody User user) {
+	public boolean registerUser(@Valid @RequestBody UserPojo user) {
 		
 		boolean isUserAdded = userService.addUser(user);
 		return isUserAdded;

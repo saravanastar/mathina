@@ -5,6 +5,7 @@ package com.ask.dao;
 
 import java.util.List;
 
+import org.hibernate.Query;
 import org.hibernate.Session;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.orm.hibernate4.HibernateTemplate;
@@ -18,6 +19,7 @@ import com.ask.dbpojo.PurchaseHistory;
 import com.ask.dbpojo.ShopBillDetails;
 import com.ask.dbpojo.Shops;
 import com.ask.dbpojo.States;
+import com.ask.dbpojo.User;
 import com.ask.dbpojo.VendorDetails;
 import com.ask.dbpojo.VendorProductDetails;
 import com.ask.dbpojo.VendorProductItemDetails;
@@ -114,7 +116,21 @@ public class DataDAOImpl implements DataDAO {
 		session.close();
 		return areaList;
 	}
-
+	
+	/**
+	 * 
+	 * @param areaName
+	 * @return
+	 */
+	public Area getAreaByName(String areaName) {
+		Session session = hibernateTmeplate.getSessionFactory().openSession();
+		Query query = session.createQuery("from Area where areaName = :areaName");
+		query.setParameter("areaName", areaName);
+		Area area = (Area) query.uniqueResult();
+		session.close();
+		return area;
+		
+	}
 	/**
 	 * 
 	 * @param id

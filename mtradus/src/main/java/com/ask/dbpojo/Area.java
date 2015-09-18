@@ -27,7 +27,7 @@ public class Area implements Serializable {
 	@Id
 	int areaId;
 
-	@ManyToOne(fetch = FetchType.LAZY)	
+	@ManyToOne(fetch = FetchType.EAGER)
 	District district;
 
 	@Column(name = "AREA_NAME")

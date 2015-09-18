@@ -8,10 +8,10 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.ask.dao.UserDAO;
-import com.ask.dao.UserDAOImpl;
 import com.ask.dbpojo.User;
 import com.ask.exception.BusinessException;
 import com.ask.pojo.UserPojo;
+import com.ask.process.UserDataProcess;
 import com.ask.util.UserConstants;
 
 /**
@@ -21,12 +21,21 @@ import com.ask.util.UserConstants;
 
 @Service
 public class UserService {
-	
+
 	@Autowired
 	UserDAO userDao;
 
-	
-	
+	@Autowired
+	UserDataProcess userDataProcess;
+
+	public UserDataProcess getUserDataProcess() {
+		return userDataProcess;
+	}
+
+	public void setUserDataProcess(UserDataProcess userDataProcess) {
+		this.userDataProcess = userDataProcess;
+	}
+
 	public UserDAO getUserDao() {
 		return userDao;
 	}
@@ -36,24 +45,25 @@ public class UserService {
 	}
 
 	@Transactional
-	public boolean addDefaultData(){
+	public boolean addDefaultData() {
 		return userDao.addDefaultData();
 	}
-	
-	public User getUser(UserPojo pojo){
+
+	public User getUser(UserPojo pojo) {
 		return userDao.getUserData(pojo);
 	}
-	
+
 	/**
 	 * 
-	 * @param user
+	 * @param userPojo
 	 * @return
 	 */
-	public boolean addUser(User user) {
+	public boolean addUser(UserPojo userPojo) {
 		boolean isUserAdded = false;
-		if(userDao.getUserDataByName(user.getUserName()) == null) {
+		if (userDao.getUserDataByName(userPojo.getUserName()) != null) {
 			throw new BusinessException(UserConstants.USER_NOT_FOUND);
 		}
+		User user = userDataProcess.copyObject(userPojo, null);
 		isUserAdded = userDao.addUser(user);
 		return isUserAdded;
 	}

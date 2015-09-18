@@ -195,7 +195,11 @@ public class UserDAOImpl implements UserDAO {
 		return true;
 
 	}
-
+	
+	/**
+	 * get the user data based on username and password.
+	 * @param pojo
+	 */
 	public User getUserData(UserPojo pojo) {
 		Session session = template.getSessionFactory().openSession();
 		Query query = session.createQuery("from User where userName = :id and password=:password");
@@ -209,7 +213,11 @@ public class UserDAOImpl implements UserDAO {
 		session.close();
 		return user;
 	}
-
+	
+	/**
+	 * return the User data by username.
+	 * @param userName
+	 */
 	public User getUserDataByName(String userName) {
 		Session session = template.getSessionFactory().openSession();
 		Query query = session.createQuery("from User where userName = :id");
@@ -218,7 +226,11 @@ public class UserDAOImpl implements UserDAO {
 		session.close();
 		return user;
 	}
-
+	
+	/**
+	 * Registering the new user.
+	 * @param user
+	 */
 	@Transactional
 	public boolean addUser(User user) {
 		boolean isUserAdded = false;
@@ -232,5 +244,13 @@ public class UserDAOImpl implements UserDAO {
 		// TODO Auto-generated method stub
 		return isUserAdded;
 	}
-
+	
+	public UserType getUserType(String userType) {
+		Session session = template.getSessionFactory().openSession();
+		Query query = session.createQuery("from UserType where name=:userType");
+		query.setString("userType", userType);
+		UserType userTypeObj = (UserType)query.uniqueResult();
+		return userTypeObj;
+		
+	}
 }

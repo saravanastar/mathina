@@ -56,10 +56,10 @@ public class CommonObjectMethods {
 	 * @param session
 	 * @return
 	 */
+	@SuppressWarnings("unchecked")
 	public static StockMaintanence getstock(String itemId, Session session) {
 
 		boolean flag = false;
-		@SuppressWarnings("unchecked")
 		List<Object> stockMaintanenceList = (List<Object>) session
 				.createQuery(
 						"select stock.id,stock.quantity,stock.discountStatus,discount1.id,discount1.discountPer,discount1.discountCount from Discount discount1,StockMaintanence stock,VendorProductItemDetails item1 where item1.itemId = "
