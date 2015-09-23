@@ -88,8 +88,5 @@ public class VendorDetailsPojo implements Serializable{
 	public void setItemName(String itemName) {
 		this.itemName = itemName;
 	}
-	
-	
-	
 
 }

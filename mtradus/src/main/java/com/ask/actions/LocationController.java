@@ -146,9 +146,9 @@ public class LocationController {
 	
 	@RequestMapping(value = "/address/{addressId}", method = RequestMethod.GET)
 	@ResponseBody
-	public District getAddressById(@PathVariable int addressId) {
-		District district = (District) addressService.getAddressDetails(addressId, UrlDetailsContants.DISTRICT);
-		return district;
+	public Address getAddressById(@PathVariable int addressId) {
+		Address address = (Address) addressService.getAddressDetails(addressId, UrlDetailsContants.ADDRESS);
+		return address;
 	}
 
 	@RequestMapping(value = "/address", method = RequestMethod.POST)

@@ -8,6 +8,8 @@ import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
@@ -27,16 +29,19 @@ public class VendorDetails implements Serializable{
 	private static final long serialVersionUID = 7447539658702815472L;
 
 	@Id
-//	@GeneratedValue
-//	@Column(name = "VENDOR_ID")
-	int vendorId;
+	@GeneratedValue(strategy =  GenerationType.AUTO)
+	@Column(name = "VENDOR_ID")
+	private int vendorId;
 
 	@Column(name = "VENDOR_NAME")
-	String vendorName;
+	private String vendorName;
 
+	@Column(name = "VENDOR_STATUS")
+	private boolean status;
+	
 	@Temporal(TemporalType.DATE)
 	@Column(name = "CREATED_ON", nullable = false)
-	Date createdOn;
+	private Date createdOn;
 
 	public int getVendorId() {
 		return vendorId;

@@ -3,6 +3,8 @@
  */
 package com.ask.service;
 
+import java.util.Date;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -200,6 +202,8 @@ public class AddressService {
 
 	public void addAddressDetails(Address address) {
 		// TODO Auto-generated method stub
+		address.setCreatedOn(new Date());
+		address.setUpdatedOn(new Date());
 		addressDAO.addAddressDetails(address);
 		
 	}

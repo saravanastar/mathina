@@ -32,7 +32,7 @@ public class Address implements Serializable, RootPojo {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int id;
 
-	@Column(name = "district_id", nullable = false)
+	
 	@ManyToOne
 	private District district;
 

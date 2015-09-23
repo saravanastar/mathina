@@ -6,10 +6,8 @@ package com.ask.process;
 import java.util.Date;
 
 import org.springframework.beans.BeanUtils;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import com.ask.dao.DataDAO;
 import com.ask.dbpojo.Address;
 import com.ask.dbpojo.User;
 import com.ask.pojo.UserPojo;
@@ -22,17 +20,7 @@ import com.ask.util.CommonObjectMethods;
 @Component
 public class UserDataProcess {
 	
-	@Autowired
-	DataDAO dataDAO;
-	
-	
-	public DataDAO getDataDAO() {
-		return dataDAO;
-	}
 
-	public void setDataDAO(DataDAO dataDAO) {
-		this.dataDAO = dataDAO;
-	}
 
 	/**
 	 * Copies request payload to the db object.
