@@ -7,8 +7,9 @@ import java.io.Serializable;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
@@ -18,23 +19,26 @@ import javax.persistence.Table;
  */
 
 @Entity
-@Table(name="STATES")
-public class States implements Serializable{
-	
+@Table(name = "STATES")
+public class States implements Serializable, RootPojo {
+
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = -483233842776501482L;
 
 	@Id
-	int stateID;
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	private int stateID;
 
 	@ManyToOne
-	@JoinColumn(name = "COUNTRY_ID")
-	Country country;
+	private Country country;
 
 	@Column(name = "STATE_NAME")
-	String stateName;
+	private String stateName;
+
+	@Column(name = "STATE_CODE")
+	private String stateCode;
 
 	public int getStateID() {
 		return stateID;
@@ -60,6 +64,4 @@ public class States implements Serializable{
 		this.stateName = stateName;
 	}
 
-	
-	
 }

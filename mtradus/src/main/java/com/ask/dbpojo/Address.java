@@ -22,7 +22,7 @@ import javax.persistence.TemporalType;
  */
 @Entity
 @Table(name = "ADDRESS")
-public class Address implements Serializable {
+public class Address implements Serializable, RootPojo {
 
 	/**
 	 * 
@@ -32,9 +32,12 @@ public class Address implements Serializable {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int id;
 
-	@Column(name = "area_id", nullable = false)
+	@Column(name = "district_id", nullable = false)
 	@ManyToOne
-	private Area area;
+	private District district;
+
+	@Column(name = "AREA_NAME")
+	private String areaName;
 
 	@Column(name = "ADDRESS1")
 	private String addressLine1;
@@ -53,6 +56,16 @@ public class Address implements Serializable {
 	@Column(name = "CREATED_BY")
 	private String createdBy;
 
+	private String link;
+
+	public String getLink() {
+		return link;
+	}
+
+	public void setLink(String link) {
+		this.link = link;
+	}
+
 	public int getId() {
 		return id;
 	}
@@ -61,12 +74,20 @@ public class Address implements Serializable {
 		this.id = id;
 	}
 
-	public Area getArea() {
-		return area;
+	public District getDistrict() {
+		return district;
 	}
 
-	public void setArea(Area area) {
-		this.area = area;
+	public void setDistrict(District district) {
+		this.district = district;
+	}
+
+	public String getAreaName() {
+		return areaName;
+	}
+
+	public void setAreaName(String areaName) {
+		this.areaName = areaName;
 	}
 
 	public String getAddressLine1() {

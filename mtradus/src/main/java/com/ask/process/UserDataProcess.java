@@ -64,7 +64,7 @@ public class UserDataProcess {
 		Address address = new Address();
 		address.setAddressLine1(src.getAddress().getAddressLine1());
 		address.setAddressLine2(src.getAddress().getAddressLinee2());
-		address.setArea(dataDAO.getAreaByName(src.getAddress().getArea()));
+//		address.setArea(dataDAO.getAreaByName(src.getAddress().getArea()));
 		return address;
 	}
 	

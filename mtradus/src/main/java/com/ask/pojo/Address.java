@@ -15,6 +15,8 @@ public class Address implements Serializable {
 	 * 
 	 */
 	private static final long serialVersionUID = 7139529345208608087L;
+	
+	private int addressId;
 
 	private String addressLine1;
 	
@@ -27,6 +29,15 @@ public class Address implements Serializable {
 	private String state;
 	
 	private String country;
+
+	
+	public int getAddressId() {
+		return addressId;
+	}
+
+	public void setAddressId(int addressId) {
+		this.addressId = addressId;
+	}
 
 	public String getAddressLine1() {
 		return addressLine1;

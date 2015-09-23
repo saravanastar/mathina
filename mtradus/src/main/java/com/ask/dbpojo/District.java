@@ -7,6 +7,8 @@ import java.io.Serializable;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
@@ -24,6 +26,7 @@ public class District implements Serializable{
 	private static final long serialVersionUID = 5612744760453923578L;
 
 	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	int districtID;
 
 	@ManyToOne
@@ -31,6 +34,17 @@ public class District implements Serializable{
 
 	@Column(name = "DISTRICT_NAME")
 	String districtName;
+	
+	@Column(name= "DISTRICT_CODE")
+	private String districtCode;
+
+	public String getDistrictCode() {
+		return districtCode;
+	}
+
+	public void setDistrictCode(String districtCode) {
+		this.districtCode = districtCode;
+	}
 
 	public int getDistrictID() {
 		return districtID;
