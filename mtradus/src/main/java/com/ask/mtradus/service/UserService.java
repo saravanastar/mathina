@@ -44,11 +44,6 @@ public class UserService {
 		this.userDao = userDao;
 	}
 
-	@Transactional
-	public boolean addDefaultData() {
-		return userDao.addDefaultData();
-	}
-
 	public User getUser(UserPojo pojo) {
 		return userDao.getUserData(pojo);
 	}

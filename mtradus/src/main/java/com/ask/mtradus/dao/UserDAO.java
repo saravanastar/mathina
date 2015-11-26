@@ -13,8 +13,6 @@ import com.ask.mtradus.pojo.UserPojo;
 
 public interface UserDAO {
 	
-	public boolean addDefaultData();
-
 	public User getUserData(UserPojo pojo);
 
 	public User getUserDataByName(String userName);

@@ -25,26 +25,34 @@
 		<property name="dataSource" ref="dataSource" />
 		<property name="annotatedClasses">
 			<list>
-				<value>com.ask.dbpojo.Address</value>
-				<value>com.ask.dbpojo.Area</value>
-				<value>com.ask.dbpojo.BillPaidStatus</value>
-				<value>com.ask.dbpojo.Country</value>
-				<value>com.ask.dbpojo.District</value>
-				<value>com.ask.dbpojo.ShopBillDetails</value>
-				<value>com.ask.dbpojo.ShopProductMap</value>
-				<value>com.ask.dbpojo.Shops</value>
-				<value>com.ask.dbpojo.States</value>
-				<value>com.ask.dbpojo.User</value>
-				<value>com.ask.dbpojo.UserType</value>
-				<value>com.ask.dbpojo.VendorDetails</value>
-				<value>com.ask.dbpojo.VendorProductDetails</value>
-				<value>com.ask.dbpojo.VendorProductItemDetails</value>
-				<value>com.ask.dbpojo.PurchaseHistory</value>
-				<value>com.ask.dbpojo.StockMaintanence</value>
-				<value>com.ask.dbpojo.Discount</value>
-				<value>com.ask.dbpojo.VendorBillDetails</value>
-				<value>com.ask.dbpojo.Miscellenous</value>
-				<value>com.ask.dbpojo.BillPaidHistory</value>
+				<value>com.ask.mtradus.dbpojo.Address</value>
+				<value>com.ask.mtradus.dbpojo.Area</value>
+				<value>com.ask.mtradus.dbpojo.BillPaidHistory</value>
+				<value>com.ask.mtradus.dbpojo.BillPaidStatus</value>
+				<value>com.ask.mtradus.dbpojo.ColorOption</value>
+				<value>com.ask.mtradus.dbpojo.Country</value>
+				<value>com.ask.mtradus.dbpojo.Discount</value>
+				<value>com.ask.mtradus.dbpojo.District</value>
+				<value>com.ask.mtradus.dbpojo.FlavourOption</value>
+				<value>com.ask.mtradus.dbpojo.ItemCostDetails</value>
+				<value>com.ask.mtradus.dbpojo.LitreOption</value>
+				<value>com.ask.mtradus.dbpojo.ProductCategoryDetails</value>
+				<value>com.ask.mtradus.dbpojo.ProductDetails</value>
+				<value>com.ask.mtradus.dbpojo.ProductItemDetails</value>
+				<value>com.ask.mtradus.dbpojo.ProductOptions</value>
+				<value>com.ask.mtradus.dbpojo.ShopBillDetails</value>
+				<value>com.ask.mtradus.dbpojo.ShopProductMap</value>
+				<value>com.ask.mtradus.dbpojo.Shops</value>
+				<value>com.ask.mtradus.dbpojo.SizeOption</value>
+				<value>com.ask.mtradus.dbpojo.States</value>
+				<value>com.ask.mtradus.dbpojo.StockMaintanence</value>
+				<value>com.ask.mtradus.dbpojo.User</value>
+				<value>com.ask.mtradus.dbpojo.UserRoles</value>
+				<value>com.ask.mtradus.dbpojo.VendorBill</value>
+				<value>com.ask.mtradus.dbpojo.VendorBillsDetails</value>
+				<value>com.ask.mtradus.dbpojo.VendorDetails</value>
+				<value>com.ask.mtradus.dbpojo.VendorPaymentHistory</value>
+				<value>com.ask.mtradus.dbpojo.WeightOption</value>
 			</list>
 		</property>
 		<property name="hibernateProperties">
@@ -61,15 +69,15 @@
 			<ref bean="sessionFactory" />
 		</property>
 	</bean>
-	
- <bean id="transactionManager"
-        class="org.springframework.orm.hibernate4.HibernateTransactionManager">
-        <property name="dataSource" ref="dataSource" />
-        <property name="sessionFactory" ref="sessionFactory" />
-    </bean>
-   
-    <tx:annotation-driven transaction-manager="transactionManager"/>
-    
+
+	<bean id="transactionManager"
+		class="org.springframework.orm.hibernate4.HibernateTransactionManager">
+		<property name="dataSource" ref="dataSource" />
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+
+	<tx:annotation-driven transaction-manager="transactionManager" />
+
 	<bean id="messageSource"
 		class="org.springframework.context.support.ResourceBundleMessageSource">
 		<property name="basenames">

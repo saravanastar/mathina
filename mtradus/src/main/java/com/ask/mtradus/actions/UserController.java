@@ -53,18 +53,6 @@ public class UserController {
 		this.test = test;
 	}
 
-	@RequestMapping(value = "/default", method = RequestMethod.GET)
-	public void welcomeUser(HttpSession session) {
-		if (DEFAULT_LOAD == 1)
-			System.out.println(userService.addDefaultData());
-		DEFAULT_LOAD++;
-		
-//		if (session.getAttribute(ApplicationConstants.LOGGED_IN) == null) {
-//			return "login";
-//		}
-		
-	}
-
 	@RequestMapping(value = "/register", method = RequestMethod.POST)
 	@ResponseBody
 	public boolean registerUser(@Valid @RequestBody UserPojo user) {
