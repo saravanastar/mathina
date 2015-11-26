@@ -5,6 +5,8 @@ import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
@@ -26,7 +28,7 @@ public class BillPaidHistory implements Serializable {
 	private static final long serialVersionUID = -8026443584284857737L;
 
 	@Id
-//	@GeneratedValue
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	int id;
 
 	@Column(name="BILL_ID",nullable=false)

@@ -9,6 +9,8 @@ import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -31,15 +33,15 @@ public class Shops implements Serializable{
 	private static final long serialVersionUID = 7432908889106089199L;
 
 	@Id
-//	@GeneratedValue
-//	@Column(name="SHOP_ID", nullable = false)
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	@Column(name="SHOP_ID", nullable = false)
 	int shopID;
 	
 	@Column(name="SHOP_NAME", nullable = false)
 	String shopName;
 	
 	@ManyToOne
-	Area area;
+	Address address;
 	
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name="USER_ID")
@@ -49,6 +51,16 @@ public class Shops implements Serializable{
 	@Temporal(TemporalType.DATE)
 	@Column(name = "CREATED_ON", nullable = false)
 	Date createdOn;
+
+
+	public Address getAddress() {
+		return address;
+	}
+
+
+	public void setAddress(Address address) {
+		this.address = address;
+	}
 
 
 	public int getShopID() {
@@ -68,16 +80,6 @@ public class Shops implements Serializable{
 
 	public void setShopName(String shopName) {
 		this.shopName = shopName;
-	}
-
-
-	public Area getArea() {
-		return area;
-	}
-
-
-	public void setArea(Area area) {
-		this.area = area;
 	}
 
 

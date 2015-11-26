@@ -6,14 +6,11 @@ package com.ask.mtradus.dbpojo;
 import java.io.Serializable;
 import java.util.Date;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -63,9 +60,9 @@ public class User implements Serializable {
 	@Column(name = "CREATED_BY")
 	private String createdBy;
 
-	@ManyToOne(cascade = CascadeType.DETACH)
+/*	@ManyToOne(cascade = CascadeType.DETACH)
 	@JoinColumn(name = "USER_TYPE_ID")
-	private UserType type;
+	private UserType type;*/
 
 	@Column(name = "SUPERVISOR_ID")
 	private int superVisorID;
@@ -157,14 +154,6 @@ public class User implements Serializable {
 
 	public void setCreatedBy(String createdBy) {
 		this.createdBy = createdBy;
-	}
-
-	public UserType getType() {
-		return type;
-	}
-
-	public void setType(UserType type) {
-		this.type = type;
 	}
 
 	public int getSuperVisorID() {

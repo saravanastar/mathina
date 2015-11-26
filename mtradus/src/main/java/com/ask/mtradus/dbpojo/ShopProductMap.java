@@ -4,6 +4,8 @@ import java.io.Serializable;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
@@ -22,12 +24,12 @@ public class ShopProductMap implements Serializable{
 	private static final long serialVersionUID = -7690860434271659434L;
 
 	@Id 
-//	@GeneratedValue
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	int id;
 	
 	@ManyToOne
 //	@JoinColumn(name="PRODUCT_ID")
-	VendorProductItemDetails vendorItemProduct;
+	ProductItemDetails vendorItemProduct;
 	
 	@ManyToOne
 //	@JoinColumn(name="SHOP_ID")
@@ -47,11 +49,11 @@ public class ShopProductMap implements Serializable{
 		this.id = id;
 	}
 
-	public VendorProductItemDetails getVendorItemProduct() {
+	public ProductItemDetails getVendorItemProduct() {
 		return vendorItemProduct;
 	}
 
-	public void setVendorItemProduct(VendorProductItemDetails vendorItemProduct) {
+	public void setVendorItemProduct(ProductItemDetails vendorItemProduct) {
 		this.vendorItemProduct = vendorItemProduct;
 	}
 

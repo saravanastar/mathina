@@ -31,7 +31,7 @@ public class Discount implements Serializable {
 	int id;
 	
 	@ManyToOne
-	VendorProductItemDetails itemDetails;
+	ProductItemDetails itemDetails;
 	
 	@Column(name="ITEM_ID")
 	int itemId;
@@ -44,6 +44,12 @@ public class Discount implements Serializable {
 	
 	@Column(name="DISCOUNT_COUNT")
 	String discountCount;
+	
+	@Column(name="amount")
+	double amount;
+	
+	@Column(name="percentage")
+	int percentage;
 	
 	@Column(name="LAST_UPDATED_BY")
 	String lastUpdatedBy;
@@ -60,11 +66,11 @@ public class Discount implements Serializable {
 		this.id = id;
 	}
 
-	public VendorProductItemDetails getItemDetails() {
+	public ProductItemDetails getItemDetails() {
 		return itemDetails;
 	}
 
-	public void setItemDetails(VendorProductItemDetails itemDetails) {
+	public void setItemDetails(ProductItemDetails itemDetails) {
 		this.itemDetails = itemDetails;
 	}
 
@@ -115,6 +121,21 @@ public class Discount implements Serializable {
 	public void setItemId(int itemId) {
 		this.itemId = itemId;
 	}
-	
+
+	public double getAmount() {
+		return amount;
+	}
+
+	public void setAmount(double amount) {
+		this.amount = amount;
+	}
+
+	public int getPercentage() {
+		return percentage;
+	}
+
+	public void setPercentage(int percentage) {
+		this.percentage = percentage;
+	}
 	
 }

@@ -9,6 +9,8 @@ import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
@@ -32,10 +34,11 @@ public class StockMaintanence implements Serializable {
 	private static final long serialVersionUID = 4126434190904665958L;
 	
 	@Id
+	@GeneratedValue (strategy = GenerationType.AUTO)
 	int id;
 	
 	@OneToOne(fetch = FetchType.LAZY)
-	VendorProductItemDetails itemDetails;
+	ProductItemDetails itemDetails;
 	
 	@OneToOne(fetch = FetchType.LAZY)
 	@NotFound(action=NotFoundAction.IGNORE)
@@ -65,11 +68,11 @@ public class StockMaintanence implements Serializable {
 		this.id = id;
 	}
 
-	public VendorProductItemDetails getItemDetails() {
+	public ProductItemDetails getItemDetails() {
 		return itemDetails;
 	}
 
-	public void setItemDetails(VendorProductItemDetails itemDetails) {
+	public void setItemDetails(ProductItemDetails itemDetails) {
 		this.itemDetails = itemDetails;
 	}
 

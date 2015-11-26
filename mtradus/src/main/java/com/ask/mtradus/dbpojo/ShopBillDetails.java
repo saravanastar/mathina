@@ -8,6 +8,8 @@ import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
@@ -28,7 +30,7 @@ public class ShopBillDetails implements Serializable{
 
 
 	@Id
-//	@GeneratedValue
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	int id;
 	
 	@Column(name="BILL_ID",nullable=false)
@@ -38,7 +40,7 @@ public class ShopBillDetails implements Serializable{
 	Shops shop;
 	
 	@ManyToOne
-	VendorProductItemDetails productItemDetails;
+	ProductItemDetails productItemDetails;
 	
 	@Temporal(TemporalType.DATE)
 	@Column(name = "DELIVERY_DATE", nullable = false)
@@ -81,11 +83,11 @@ public class ShopBillDetails implements Serializable{
 		this.shop = shop;
 	}
 
-	public VendorProductItemDetails getProductItemDetails() {
+	public ProductItemDetails getProductItemDetails() {
 		return productItemDetails;
 	}
 
-	public void setProductItemDetails(VendorProductItemDetails productItemDetails) {
+	public void setProductItemDetails(ProductItemDetails productItemDetails) {
 		this.productItemDetails = productItemDetails;
 	}
 
