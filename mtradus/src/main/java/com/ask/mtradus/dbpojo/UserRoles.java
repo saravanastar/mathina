@@ -29,8 +29,8 @@ public class UserRoles {
 	@Column(name="USER_ID")
 	private int userId;
 	
-	@Column(name="USER_TYPE_ID")
-	private UserType userType;
+	/*@Column(name="USER_TYPE_ID")
+	private UserType userType;*/
 	
 	@Temporal(TemporalType.DATE)
 	@Column(name = "CREATED_ON", nullable = false)
@@ -62,13 +62,13 @@ public class UserRoles {
 		this.userId = userId;
 	}
 
-	public UserType getUserType() {
+	/*public UserType getUserType() {
 		return userType;
 	}
 
 	public void setUserType(UserType userType) {
 		this.userType = userType;
-	}
+	}*/
 
 	public Date getCreatedOn() {
 		return createdOn;

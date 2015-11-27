@@ -1,7 +1,7 @@
 /**
  * 
  */
-package com.ask.mtradus.actions;
+package com.ask.mtradus.controller;
 
 import java.util.List;
 

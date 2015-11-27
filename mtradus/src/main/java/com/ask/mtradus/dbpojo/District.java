@@ -27,7 +27,7 @@ public class District implements Serializable{
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	int districtID;
+	int districtId;
 
 	@ManyToOne
 	States state;
@@ -46,12 +46,12 @@ public class District implements Serializable{
 		this.districtCode = districtCode;
 	}
 
-	public int getDistrictID() {
-		return districtID;
+	public int getDistrictId() {
+		return districtId;
 	}
 
-	public void setDistrictID(int districtID) {
-		this.districtID = districtID;
+	public void setDistrictId(int districtId) {
+		this.districtId = districtId;
 	}
 
 	public States getState() {

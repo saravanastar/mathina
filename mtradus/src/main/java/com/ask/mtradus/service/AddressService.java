@@ -120,7 +120,7 @@ public class AddressService {
 		if (countryId == null) {
 			throw new BusinessException();
 		}
-		country.setCountryID(Integer.parseInt(countryId));
+		country.setCountryId(Integer.parseInt(countryId));
 		addressDAO.addCountry(country);
 	}
 
@@ -140,7 +140,7 @@ public class AddressService {
 	 * @param state
 	 */
 	public void addStateDetails(States state) {
-		if (state.getStateID() != 0 && state.getCountry().getCountryID() == 0) {
+		if (state.getStateId() != 0 && state.getCountry().getCountryId() == 0) {
 			throw new BusinessException();
 		}
 		addressDAO.addState(state);
@@ -157,7 +157,7 @@ public class AddressService {
 		if (stateId == null) {
 			throw new BusinessException();
 		}
-		state.setStateID(Integer.parseInt(stateId));
+		state.setStateId(Integer.parseInt(stateId));
 		addressDAO.addState(state);
 	}
 	
@@ -168,17 +168,17 @@ public class AddressService {
 		addressDAO.removeStateDetails(stateId);
 	}
 	
-	public void removeDistrictDetails(String districtID) {
-		if (districtID == null) {
+	public void removeDistrictDetails(String districtId) {
+		if (districtId == null) {
 			throw new BusinessException();
 		}
-		addressDAO.removeDistrictDetails(districtID);
+		addressDAO.removeDistrictDetails(districtId);
 	}
 
 	public void addDistrictDetails(District district) {
 		// TODO Auto-generated method stub
 		
-		if (district.getState().getStateID() != 0 && district.getState().getCountry().getCountryID() == 0) {
+		if (district.getState().getStateId() != 0 && district.getState().getCountry().getCountryId() == 0) {
 			throw new BusinessException();
 		}
 		addressDAO.addDistrict(district);
@@ -195,7 +195,7 @@ public class AddressService {
 		if (districtId == null) {
 			throw new BusinessException();
 		}
-		district.setDistrictID(Integer.parseInt(districtId));
+		district.setDistrictId(Integer.parseInt(districtId));
 		addressDAO.addDistrict(district);
 		
 	}

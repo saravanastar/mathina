@@ -1,11 +1,10 @@
 /**
  * 
  */
-package com.ask.mtradus.actions;
+package com.ask.mtradus.controller;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,7 +22,7 @@ import com.ask.mtradus.service.UserService;
 import com.ask.mtradus.util.ApplicationConstants;
 
 /**
- * @author sarav
+ * @author ASK
  *
  */
 @Controller
@@ -33,7 +32,6 @@ public class UserController {
 	@Autowired
 	UserService userService;
 
-	private static int DEFAULT_LOAD = 1;
 
 	public UserService getUserService() {
 		return userService;
@@ -68,10 +66,10 @@ public class UserController {
 	 */
 	@RequestMapping(value = "/login", method = RequestMethod.GET)
 	@ResponseBody
-	public UserPojo loginGetUser(
+	public User loginGetUser(
 			HttpServletRequest request, HttpServletResponse response) {
 		
-		UserPojo user = (UserPojo) request.getSession().getAttribute(ApplicationConstants.LOGGED_IN_USER);
+		User user = (User) request.getSession().getAttribute(ApplicationConstants.LOGGED_IN_USER);
 		return user;
 
 	}
@@ -101,7 +99,7 @@ public class UserController {
 	 * @param response
 	 * @return
 	 */
-	@RequestMapping(value = "/logout.htm", method = RequestMethod.PUT)
+	@RequestMapping(value = "/logout", method = RequestMethod.PUT)
 	public ResponseEntity<?> logoutUser(@RequestBody UserPojo user,
 			HttpServletRequest request, HttpServletResponse response) {
 		System.out.println(user.getUserName());

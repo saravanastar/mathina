@@ -5,6 +5,7 @@ package com.ask.mtradus.dbpojo;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -38,7 +39,7 @@ public class ProductDetails implements Serializable {
 	ProductCategoryDetails productDetails;
 
 	@OneToMany
-	ProductItemDetails productItemDetails;
+	List<ProductItemDetails> productItemDetails;
 
 	@Column(name = "status")
 	private boolean status;
@@ -67,11 +68,11 @@ public class ProductDetails implements Serializable {
 		this.productDetails = productDetails;
 	}
 
-	public ProductItemDetails getProductItemDetails() {
+	public List<ProductItemDetails> getProductItemDetails() {
 		return productItemDetails;
 	}
 
-	public void setProductItemDetails(ProductItemDetails productItemDetails) {
+	public void setProductItemDetails(List<ProductItemDetails> productItemDetails) {
 		this.productItemDetails = productItemDetails;
 	}
 

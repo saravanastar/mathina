@@ -5,7 +5,6 @@ package com.ask.mtradus.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import com.ask.mtradus.dao.UserDAO;
 import com.ask.mtradus.dbpojo.User;

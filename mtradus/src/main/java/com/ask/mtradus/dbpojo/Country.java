@@ -11,7 +11,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "COUNTRY")
-public class Country implements Serializable, RootPojo {
+public class Country implements Serializable {
 
 	/**
 	 * 
@@ -20,7 +20,7 @@ public class Country implements Serializable, RootPojo {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private int countryID;
+	private int countryId;
 
 	@Column(name = "COUNTRY_NAME")
 	private String countryName;
@@ -28,24 +28,24 @@ public class Country implements Serializable, RootPojo {
 	@Column(name = "COUNTRY_CODE")
 	private String countryCode;
 
+	public int getCountryId() {
+		return countryId;
+	}
+
+	public void setCountryId(int countryId) {
+		this.countryId = countryId;
+	}
+
+	public String getCountryName() {
+		return countryName;
+	}
+
 	public String getCountryCode() {
 		return countryCode;
 	}
 
 	public void setCountryCode(String countryCode) {
 		this.countryCode = countryCode;
-	}
-
-	public int getCountryID() {
-		return countryID;
-	}
-
-	public void setCountryID(int countryID) {
-		this.countryID = countryID;
-	}
-
-	public String getCountryName() {
-		return countryName;
 	}
 
 	public void setCountryName(String countryName) {

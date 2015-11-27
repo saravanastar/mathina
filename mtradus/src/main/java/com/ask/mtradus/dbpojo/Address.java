@@ -22,7 +22,7 @@ import javax.persistence.TemporalType;
  */
 @Entity
 @Table(name = "ADDRESS")
-public class Address implements Serializable, RootPojo {
+public class Address implements Serializable {
 
 	/**
 	 * 
