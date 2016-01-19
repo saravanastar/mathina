@@ -6,6 +6,7 @@ package com.ask.mtradus.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -56,6 +57,7 @@ public class LocationController {
 
 	@RequestMapping(value = "/country", method = RequestMethod.POST)
 	@ResponseBody
+	@Secured("ROLE_USER")
 	public void addCountry(@RequestBody Country country) {
 		addressService.addCountryDetails(country);
 		System.out.println("country" + country);

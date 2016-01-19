@@ -14,6 +14,7 @@
 		<hibernate-version>4.3.10.Final</hibernate-version>
 		<servlet-api-version>3.0</servlet-api-version>
 		<mysql-version>5.1.36</mysql-version>
+		<springsecurity.version>3.2.5.RELEASE</springsecurity.version>
 	</properties>
 	<dependencies>
 		<dependency>
@@ -52,6 +53,17 @@
 			<artifactId>spring-orm</artifactId>
 			<version>${spring-version}</version>
 		</dependency>
+		
+		 <dependency>
+            <groupId>org.springframework.security</groupId>
+            <artifactId>spring-security-web</artifactId>
+            <version>${springsecurity.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.security</groupId>
+            <artifactId>spring-security-config</artifactId>
+            <version>${springsecurity.version}</version>
+        </dependency>
 
 		<!-- Hibernate -->
 		<dependency>
