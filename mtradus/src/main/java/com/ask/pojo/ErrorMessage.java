@@ -1,7 +1,7 @@
 /**
  * 
  */
-package com.ask.mtradus.pojo;
+package com.ask.pojo;
 
 import org.springframework.stereotype.Component;
 

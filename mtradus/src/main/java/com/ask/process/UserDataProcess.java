@@ -1,7 +1,7 @@
 /**
  * 
  */
-package com.ask.mtradus.process;
+package com.ask.process;
 
 import java.util.Date;
 
@@ -9,11 +9,11 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import com.ask.mtradus.dao.AddressDAO;
-import com.ask.mtradus.dbpojo.Address;
-import com.ask.mtradus.dbpojo.User;
-import com.ask.mtradus.pojo.UserPojo;
-import com.ask.mtradus.util.CommonObjectMethods;
+import com.ask.dao.AddressDAO;
+import com.ask.dbpojo.Address;
+import com.ask.dbpojo.User;
+import com.ask.pojo.UserPojo;
+import com.ask.util.CommonObjectMethods;
 
 /**
  * @author ASK

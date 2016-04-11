@@ -1,7 +1,7 @@
 /**
  * 
  */
-package com.ask.mtradus.exception;
+package com.ask.exception;
 
 /**
  * @author Gerard

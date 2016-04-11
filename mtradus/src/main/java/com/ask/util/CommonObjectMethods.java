@@ -1,7 +1,7 @@
 /**
  * 
  */
-package com.ask.mtradus.util;
+package com.ask.util;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -12,8 +12,8 @@ import java.util.List;
 import org.hibernate.Query;
 import org.hibernate.Session;
 
-import com.ask.mtradus.dbpojo.Discount;
-import com.ask.mtradus.dbpojo.StockMaintanence;
+import com.ask.dbpojo.Discount;
+import com.ask.dbpojo.StockMaintanence;
 
 /**
  * @author 298651

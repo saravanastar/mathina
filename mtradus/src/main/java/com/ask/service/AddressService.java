@@ -1,20 +1,20 @@
 /**
  * 
  */
-package com.ask.mtradus.service;
+package com.ask.service;
 
 import java.util.Date;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.ask.mtradus.constn.UrlDetailsContants;
-import com.ask.mtradus.dao.AddressDAO;
-import com.ask.mtradus.dbpojo.Address;
-import com.ask.mtradus.dbpojo.Country;
-import com.ask.mtradus.dbpojo.District;
-import com.ask.mtradus.dbpojo.States;
-import com.ask.mtradus.exception.BusinessException;
+import com.ask.constn.UrlDetailsContants;
+import com.ask.dao.AddressDAO;
+import com.ask.dbpojo.Address;
+import com.ask.dbpojo.Country;
+import com.ask.dbpojo.District;
+import com.ask.dbpojo.States;
+import com.ask.exception.BusinessException;
 
 /**
  * @author ASK

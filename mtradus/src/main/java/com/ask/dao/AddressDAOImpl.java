@@ -1,7 +1,7 @@
 /**
  * 
  */
-package com.ask.mtradus.dao;
+package com.ask.dao;
 
 import java.util.List;
 
@@ -14,11 +14,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.orm.hibernate4.HibernateTemplate;
 import org.springframework.stereotype.Repository;
 
-import com.ask.mtradus.dbpojo.Address;
-import com.ask.mtradus.dbpojo.Country;
-import com.ask.mtradus.dbpojo.District;
-import com.ask.mtradus.dbpojo.States;
-import com.ask.mtradus.exception.BusinessException;
+import com.ask.dbpojo.Address;
+import com.ask.dbpojo.Country;
+import com.ask.dbpojo.District;
+import com.ask.dbpojo.States;
+import com.ask.exception.BusinessException;
 
 /**
  * @author ASK
@@ -45,7 +45,7 @@ public class AddressDAOImpl implements AddressDAO {
 	 */
 	@SuppressWarnings("unchecked")
 	public List<Country> getCountries() {
-		session = null;
+//		session = null;
 		List<Country> countries = null;
 		try {
 			session = hibernateTemplate.getSessionFactory().openSession();
@@ -67,7 +67,7 @@ public class AddressDAOImpl implements AddressDAO {
 	 * @return
 	 */
 	public Country getCountryById(int id) {
-		session = null;
+//		session = null;
 		Country country = null;
 		try {
 			session = hibernateTemplate.getSessionFactory().openSession();
@@ -76,7 +76,7 @@ public class AddressDAOImpl implements AddressDAO {
 			query.setParameter("id", id);
 			country = (Country) query.uniqueResult();
 		} catch (Exception e) {
-
+			e.printStackTrace();
 		} finally {
 			if (session != null) {
 				session.close();
@@ -91,7 +91,6 @@ public class AddressDAOImpl implements AddressDAO {
 	 * @return
 	 */
 	public Country getCountryByName(String countryName) {
-		session = null;
 		Country country = null;
 		try {
 			session = hibernateTemplate.getSessionFactory().openSession();
@@ -100,7 +99,7 @@ public class AddressDAOImpl implements AddressDAO {
 			query.setParameter("countryName", countryName);
 			country = (Country) query.uniqueResult();
 		} catch (Exception e) {
-
+			e.printStackTrace();
 		} finally {
 			if (session != null) {
 				session.close();
@@ -115,13 +114,12 @@ public class AddressDAOImpl implements AddressDAO {
 	 */
 	@SuppressWarnings("unchecked")
 	public List<States> getStates() {
-		session = null;
 		List<States> states = null;
 		try {
 			session = hibernateTemplate.getSessionFactory().openSession();
 			states = (List<States>) session.createQuery("from States").list();
 		} catch (Exception e) {
-
+			e.printStackTrace();
 		} finally {
 			if (session != null) {
 				session.close();
@@ -136,7 +134,6 @@ public class AddressDAOImpl implements AddressDAO {
 	 * @return
 	 */
 	public States getStateById(int id) {
-		session = null;
 		States state = null;
 		try {
 			session = hibernateTemplate.getSessionFactory().openSession();
@@ -145,7 +142,7 @@ public class AddressDAOImpl implements AddressDAO {
 			query.setParameter("id", id);
 			state = (States) query.uniqueResult();
 		} catch (Exception e) {
-
+			e.printStackTrace();
 		} finally {
 			if (session != null) {
 				session.close();
@@ -160,7 +157,6 @@ public class AddressDAOImpl implements AddressDAO {
 	 * @return
 	 */
 	public States getStateByName(String stateName) {
-		session = null;
 		States state = null;
 		try {
 			session = hibernateTemplate.getSessionFactory().openSession();
@@ -169,7 +165,7 @@ public class AddressDAOImpl implements AddressDAO {
 			query.setParameter("stateName", stateName);
 			state = (States) query.uniqueResult();
 		} catch (Exception e) {
-
+			e.printStackTrace();
 		} finally {
 			if (session != null) {
 				session.close();
@@ -184,14 +180,13 @@ public class AddressDAOImpl implements AddressDAO {
 	 */
 	@SuppressWarnings("unchecked")
 	public List<District> getDistricts() {
-		session = null;
 		List<District> districts = null;
 		try {
 			session = hibernateTemplate.getSessionFactory().openSession();
 			districts = (List<District>) session.createQuery("from District")
 					.list();
 		} catch (Exception e) {
-
+			e.printStackTrace();
 		} finally {
 			if (session != null) {
 				session.close();
@@ -206,7 +201,6 @@ public class AddressDAOImpl implements AddressDAO {
 	 * @return
 	 */
 	public District getDistrictById(int id) {
-		session = null;
 		District district = null;
 		try {
 			session = hibernateTemplate.getSessionFactory().openSession();
@@ -215,7 +209,7 @@ public class AddressDAOImpl implements AddressDAO {
 			query.setParameter("id", id);
 			district = (District) query.uniqueResult();
 		} catch (Exception e) {
-
+			e.printStackTrace();
 		} finally {
 			if (session != null) {
 				session.close();
@@ -230,7 +224,6 @@ public class AddressDAOImpl implements AddressDAO {
 	 * @return
 	 */
 	public District getDistrictByName(String districtName) {
-		session = null;
 		District district = null;
 		try {
 			session = hibernateTemplate.getSessionFactory().openSession();
@@ -239,7 +232,7 @@ public class AddressDAOImpl implements AddressDAO {
 			query.setParameter("districtName", districtName);
 			district = (District) query.uniqueResult();
 		} catch (Exception e) {
-
+			e.printStackTrace();
 		} finally {
 			if (session != null) {
 				session.close();
@@ -334,7 +327,7 @@ public class AddressDAOImpl implements AddressDAO {
 			query.setParameter("id", addressId);
 			address = (Address) query.uniqueResult();
 		} catch (Exception e) {
-
+			e.printStackTrace();
 		} finally {
 			if (session != null) {
 				session.close();
@@ -353,7 +346,7 @@ public class AddressDAOImpl implements AddressDAO {
 			query.setInteger("countryID", Integer.parseInt(countryId));
 			query.executeUpdate();
 		} catch (Exception e) {
-
+			e.printStackTrace();
 		} finally {
 			if (session != null) {
 				session.close();
@@ -361,6 +354,7 @@ public class AddressDAOImpl implements AddressDAO {
 		}
 	}
 	
+	@Transactional
 	public void removeAddressDetails(String addressId) {
 		Session session = null;
 		try {
@@ -370,7 +364,7 @@ public class AddressDAOImpl implements AddressDAO {
 			query.setInteger("addressId", Integer.parseInt(addressId));
 			query.executeUpdate();
 		} catch (Exception e) {
-
+			e.printStackTrace();
 		} finally {
 			if (session != null) {
 				session.close();
@@ -391,7 +385,7 @@ public class AddressDAOImpl implements AddressDAO {
 			addressDetails = (List<Address>) session
 					.createQuery("from Address").list();
 		} catch (Exception e) {
-
+			e.printStackTrace();
 		} finally {
 			if (session != null) {
 				session.close();
@@ -415,7 +409,7 @@ public class AddressDAOImpl implements AddressDAO {
 			query.setParameter("id", id);
 			address = (Address) query.uniqueResult();
 		} catch (Exception e) {
-
+			e.printStackTrace();
 		} finally {
 			if (session != null) {
 				session.close();
@@ -439,7 +433,7 @@ public class AddressDAOImpl implements AddressDAO {
 			query.setParameter("areaName", areaName);
 			address = (Address) query.uniqueResult();
 		} catch (Exception e) {
-
+			e.printStackTrace();
 		} finally {
 			if (session != null) {
 				session.close();
@@ -459,7 +453,7 @@ public class AddressDAOImpl implements AddressDAO {
 			query.setInteger("stateId", Integer.parseInt(stateId));
 			query.executeUpdate();
 		} catch (Exception e) {
-
+			e.printStackTrace();
 		} finally {
 			if (session != null) {
 				session.close();
@@ -479,7 +473,7 @@ public class AddressDAOImpl implements AddressDAO {
 			query.setInteger("districtID", Integer.parseInt(districtID));
 			query.executeUpdate();
 		} catch (Exception e) {
-
+			e.printStackTrace();
 		} finally {
 			if (session != null) {
 				session.close();

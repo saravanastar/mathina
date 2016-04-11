@@ -1,7 +1,7 @@
 /**
  * 
  */
-package com.ask.mtradus.dbpojo;
+package com.ask.dbpojo;
 
 import java.util.Date;
 

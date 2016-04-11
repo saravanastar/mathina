@@ -5,4 +5,4 @@
  * @author ASK
  *
  */
-package com.ask.mtradus.security;
+package com.ask.security;

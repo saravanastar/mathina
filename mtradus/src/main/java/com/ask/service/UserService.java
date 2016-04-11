@@ -1,17 +1,17 @@
 /**
  * 
  */
-package com.ask.mtradus.service;
+package com.ask.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.ask.mtradus.dao.UserDAO;
-import com.ask.mtradus.dbpojo.User;
-import com.ask.mtradus.exception.BusinessException;
-import com.ask.mtradus.pojo.UserPojo;
-import com.ask.mtradus.process.UserDataProcess;
-import com.ask.mtradus.util.UserConstants;
+import com.ask.dao.UserDAO;
+import com.ask.dbpojo.User;
+import com.ask.exception.BusinessException;
+import com.ask.pojo.UserPojo;
+import com.ask.process.UserDataProcess;
+import com.ask.util.UserConstants;
 
 /**
  * @author ASK

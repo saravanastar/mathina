@@ -1,7 +1,7 @@
 /**
  * 
  */
-package com.ask.mtradus.util;
+package com.ask.util;
 
 import java.io.File;
 import java.io.FileInputStream;

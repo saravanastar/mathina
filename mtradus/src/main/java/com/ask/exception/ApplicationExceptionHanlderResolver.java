@@ -1,7 +1,7 @@
 /**
  * 
  */
-package com.ask.mtradus.exception;
+package com.ask.exception;
 
 import java.util.Locale;
 
@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
-import com.ask.mtradus.pojo.ErrorMessage;
+import com.ask.pojo.ErrorMessage;
 
 /**
  * @author ASK

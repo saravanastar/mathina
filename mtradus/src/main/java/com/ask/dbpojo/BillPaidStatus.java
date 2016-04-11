@@ -1,4 +1,4 @@
-package com.ask.mtradus.dbpojo;
+package com.ask.dbpojo;
 
 import java.io.Serializable;
 import java.util.Date;

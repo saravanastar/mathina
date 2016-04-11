@@ -1,14 +1,14 @@
 /**
  * 
  */
-package com.ask.mtradus.dao;
+package com.ask.dao;
 
 import java.util.List;
 
-import com.ask.mtradus.dbpojo.Address;
-import com.ask.mtradus.dbpojo.Country;
-import com.ask.mtradus.dbpojo.District;
-import com.ask.mtradus.dbpojo.States;
+import com.ask.dbpojo.Country;
+import com.ask.dbpojo.District;
+import com.ask.dbpojo.States;
+import com.ask.dbpojo.Address;
 
 /**
  * @author ASK

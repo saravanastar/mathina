@@ -1,7 +1,7 @@
 /**
  * 
  */
-package com.ask.mtradus.dbpojo;
+package com.ask.dbpojo;
 
 import java.io.Serializable;
 import java.util.Date;
@@ -44,8 +44,8 @@ public class ProductCategoryDetails implements Serializable{
 	@OneToMany
 	List<ProductItemDetails> productItemDetails;
 
-	@Column(name = "PRODUCT_NAME")
-	String productName;
+	@Column(name = "CATEGORY_NAME")
+	String categoryName;
 
 	
 	@Temporal(TemporalType.DATE)
@@ -73,13 +73,13 @@ public class ProductCategoryDetails implements Serializable{
 	}
 
 
-	public String getProductName() {
-		return productName;
+	public String getCategoryName() {
+		return categoryName;
 	}
 
 
-	public void setProductName(String productName) {
-		this.productName = productName;
+	public void setCategoryName(String categoryName) {
+		this.categoryName = categoryName;
 	}
 
 

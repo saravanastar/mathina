@@ -5,4 +5,4 @@
  * @author ASK
  *
  */
-package com.ask.mtradus;
+package com.ask;

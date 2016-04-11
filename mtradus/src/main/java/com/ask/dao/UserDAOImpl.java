@@ -1,7 +1,7 @@
 /**
  * 
  */
-package com.ask.mtradus.dao;
+package com.ask.dao;
 
 import org.hibernate.Query;
 import org.hibernate.Session;
@@ -10,9 +10,9 @@ import org.springframework.orm.hibernate4.HibernateTemplate;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.ask.mtradus.dbpojo.User;
-import com.ask.mtradus.exception.BusinessException;
-import com.ask.mtradus.pojo.UserPojo;
+import com.ask.dbpojo.User;
+import com.ask.exception.BusinessException;
+import com.ask.pojo.UserPojo;
 
 /**
  * @author 298651

@@ -1,7 +1,7 @@
 /**
  * 
  */
-package com.ask.mtradus.util;
+package com.ask.util;
 
 /**
  * @author 298651

@@ -1,7 +1,7 @@
 /**
  * 
  */
-package com.ask.mtradus.controller;
+package com.ask.controller;
 
 import java.util.List;
 
@@ -14,12 +14,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.ask.mtradus.constn.UrlDetailsContants;
-import com.ask.mtradus.dbpojo.Address;
-import com.ask.mtradus.dbpojo.Country;
-import com.ask.mtradus.dbpojo.District;
-import com.ask.mtradus.dbpojo.States;
-import com.ask.mtradus.service.AddressService;
+import com.ask.constn.UrlDetailsContants;
+import com.ask.dbpojo.Address;
+import com.ask.dbpojo.Country;
+import com.ask.dbpojo.District;
+import com.ask.dbpojo.States;
+import com.ask.service.AddressService;
 
 /**
  * @author ASK

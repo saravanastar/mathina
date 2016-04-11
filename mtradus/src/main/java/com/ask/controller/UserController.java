@@ -1,7 +1,7 @@
 /**
  * 
  */
-package com.ask.mtradus.controller;
+package com.ask.controller;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -16,10 +16,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.ask.mtradus.dbpojo.User;
-import com.ask.mtradus.pojo.UserPojo;
-import com.ask.mtradus.service.UserService;
-import com.ask.mtradus.util.ApplicationConstants;
+import com.ask.dbpojo.User;
+import com.ask.pojo.UserPojo;
+import com.ask.service.UserService;
+import com.ask.util.ApplicationConstants;
 
 /**
  * @author ASK

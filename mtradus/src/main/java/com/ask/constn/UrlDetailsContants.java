@@ -1,7 +1,7 @@
 /**
  * 
  */
-package com.ask.mtradus.constn;
+package com.ask.constn;
 
 /**
  * @author ASK

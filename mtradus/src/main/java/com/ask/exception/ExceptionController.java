@@ -1,7 +1,7 @@
 /**
  * 
  */
-package com.ask.mtradus.exception;
+package com.ask.exception;
 
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
-import com.ask.mtradus.pojo.ErrorMessage;
+import com.ask.pojo.ErrorMessage;
 
 /**
  * @author ASK

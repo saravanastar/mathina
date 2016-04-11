@@ -1,7 +1,7 @@
 /**
  * 
  */
-package com.ask.mtradus.pojo;
+package com.ask.pojo;
 
 import java.io.Serializable;
 import java.util.Date;

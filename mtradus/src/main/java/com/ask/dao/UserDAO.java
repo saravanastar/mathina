@@ -1,10 +1,10 @@
 /**
  * 
  */
-package com.ask.mtradus.dao;
+package com.ask.dao;
 
-import com.ask.mtradus.dbpojo.User;
-import com.ask.mtradus.pojo.UserPojo;
+import com.ask.dbpojo.User;
+import com.ask.pojo.UserPojo;
 
 /**
  * @author 298651

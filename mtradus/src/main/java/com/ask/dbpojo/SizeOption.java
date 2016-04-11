@@ -1,13 +1,14 @@
 /**
  * 
  */
-package com.ask.mtradus.dbpojo;
+package com.ask.dbpojo;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 /**
@@ -30,6 +31,9 @@ public class SizeOption {
 	
 	@Column(name= "DESCRIPTION")
 	private String description;
+	
+	@OneToOne
+	private ItemCostDetails itemCostDetails;
 
 	public int getId() {
 		return id;

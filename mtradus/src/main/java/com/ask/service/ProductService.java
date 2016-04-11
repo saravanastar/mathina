@@ -1,13 +1,13 @@
 /**
  * 
  */
-package com.ask.mtradus.service;
+package com.ask.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.ask.mtradus.dao.ProductDetailDAO;
-import com.ask.mtradus.dbpojo.VendorDetails;
+import com.ask.dao.ProductDetailDAO;
+import com.ask.dbpojo.VendorDetails;
 
 /**
  * @author ASK

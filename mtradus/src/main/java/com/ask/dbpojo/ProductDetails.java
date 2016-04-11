@@ -1,21 +1,26 @@
 /**
  * 
  */
-package com.ask.mtradus.dbpojo;
+package com.ask.dbpojo;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+/**
+ * @author ASK
+ *
+ */
 /**
  * @author ASK
  *
@@ -33,13 +38,16 @@ public class ProductDetails implements Serializable {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	int productId;
 
-	@ManyToOne
-	ProductCategoryDetails productDetails;
+	@OneToMany
+	List<ProductCategoryDetails> productCategoryDetails;
 
-	@Column(name = "description")
+	@Column(name = "PRODUCT_NAME")
+	private String productName;
+	
+	@Column(name = "DESCRIPTION")
 	private String description;
 
-	@Column(name = "status")
+	@Column(name = "STATUS")
 	private boolean status;
 
 	@Temporal(TemporalType.DATE)
@@ -58,12 +66,12 @@ public class ProductDetails implements Serializable {
 		this.productId = productId;
 	}
 
-	public ProductCategoryDetails getProductDetails() {
-		return productDetails;
+	public List<ProductCategoryDetails> getProductCategoryDetails() {
+		return productCategoryDetails;
 	}
 
-	public void setProductDetails(ProductCategoryDetails productDetails) {
-		this.productDetails = productDetails;
+	public void setProductCategoryDetails(List<ProductCategoryDetails> productCategoryDetails) {
+		this.productCategoryDetails = productCategoryDetails;
 	}
 
 	public boolean isStatus() {
@@ -97,4 +105,13 @@ public class ProductDetails implements Serializable {
 	public void setDescription(String description) {
 		this.description = description;
 	}
+
+	public String getProductName() {
+		return productName;
+	}
+
+	public void setProductName(String productName) {
+		this.productName = productName;
+	}
+	
 }

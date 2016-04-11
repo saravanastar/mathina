@@ -1,7 +1,7 @@
 /**
  * 
  */
-package com.ask.mtradus.controller;
+package com.ask.controller;
 
 import java.util.List;
 
@@ -13,11 +13,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.ask.mtradus.dbpojo.ProductCategoryDetails;
-import com.ask.mtradus.dbpojo.ProductDetails;
-import com.ask.mtradus.dbpojo.ProductItemDetails;
-import com.ask.mtradus.dbpojo.VendorDetails;
-import com.ask.mtradus.service.ProductService;
+import com.ask.dbpojo.ProductCategoryDetails;
+import com.ask.dbpojo.ProductDetails;
+import com.ask.dbpojo.ProductItemDetails;
+import com.ask.dbpojo.VendorDetails;
+import com.ask.service.ProductService;
 
 /**
  * @author ASK

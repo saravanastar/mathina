@@ -1,7 +1,7 @@
 /**
  * 
  */
-package com.ask.mtradus.util;
+package com.ask.util;
 
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;

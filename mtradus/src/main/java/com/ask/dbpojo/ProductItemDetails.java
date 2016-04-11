@@ -1,7 +1,7 @@
 /**
  * 
  */
-package com.ask.mtradus.dbpojo;
+package com.ask.dbpojo;
 
 import java.io.Serializable;
 import java.util.Date;
@@ -33,12 +33,12 @@ public class ProductItemDetails implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	int itemId;
+	
+	@Column(name = "ITEM_NAME")
+	private String itemName;
 
 	@ManyToOne
-	ProductOptions productOptions;
-
-	@OneToOne
-	private ItemCostDetails itemCostDetails;
+	ItemOptions productOptions;
 
 	@Column(name = "status")
 	private boolean status;
@@ -50,6 +50,16 @@ public class ProductItemDetails implements Serializable {
 	@Temporal(TemporalType.DATE)
 	@Column(name = "CREATED_ON", nullable = false)
 	Date cretedOn;
+	
+	
+
+	public String getItemName() {
+		return itemName;
+	}
+
+	public void setItemName(String itemName) {
+		this.itemName = itemName;
+	}
 
 	public int getItemId() {
 		return itemId;
@@ -59,11 +69,11 @@ public class ProductItemDetails implements Serializable {
 		this.itemId = itemId;
 	}
 
-	public ProductOptions getProductOptions() {
+	public ItemOptions getProductOptions() {
 		return productOptions;
 	}
 
-	public void setProductOptions(ProductOptions productOptions) {
+	public void setProductOptions(ItemOptions productOptions) {
 		this.productOptions = productOptions;
 	}
 

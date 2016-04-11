@@ -1,14 +1,14 @@
 /**
  * 
  */
-package com.ask.mtradus.dao;
+package com.ask.dao;
 
 import java.util.List;
 
-import com.ask.mtradus.dbpojo.ProductCategoryDetails;
-import com.ask.mtradus.dbpojo.ProductDetails;
-import com.ask.mtradus.dbpojo.ProductItemDetails;
-import com.ask.mtradus.dbpojo.VendorDetails;
+import com.ask.dbpojo.ProductCategoryDetails;
+import com.ask.dbpojo.ProductDetails;
+import com.ask.dbpojo.ProductItemDetails;
+import com.ask.dbpojo.VendorDetails;
 
 /**
  * @author ASK
