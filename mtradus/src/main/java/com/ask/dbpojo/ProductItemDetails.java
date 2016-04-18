@@ -12,7 +12,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -38,7 +37,7 @@ public class ProductItemDetails implements Serializable {
 	private String itemName;
 
 	@ManyToOne
-	ItemOptions productOptions;
+	ItemOptions itemOptions;
 
 	@Column(name = "status")
 	private boolean status;
@@ -69,20 +68,12 @@ public class ProductItemDetails implements Serializable {
 		this.itemId = itemId;
 	}
 
-	public ItemOptions getProductOptions() {
-		return productOptions;
+	public ItemOptions getItemOptions() {
+		return itemOptions;
 	}
 
-	public void setProductOptions(ItemOptions productOptions) {
-		this.productOptions = productOptions;
-	}
-
-	public ItemCostDetails getItemCostDetails() {
-		return itemCostDetails;
-	}
-
-	public void setItemCostDetails(ItemCostDetails itemCostDetails) {
-		this.itemCostDetails = itemCostDetails;
+	public void setItemOptions(ItemOptions itemOptions) {
+		this.itemOptions = itemOptions;
 	}
 
 	public boolean isStatus() {

@@ -28,14 +28,26 @@ public class ItemCostDetails {
 	@Column(name = "ITEM_QUANTITY")	
 	private int quantity;
 	
-	@Column(name = "BUYING_PRICE")
+	@Column(name = "ORIGINAL_PRICE")
 	private double manufacturePrice;
 	
 	@Column(name = "SELLING_PRICE")
 	private double sellingPrice;
 	
+	@Column(name = "CLEARNCE_PRICE")
+	private double clearancePrice;
+	
 	@Column(name = "DISCOUNT_DETAILS")
 	private Discount discount;
+	
+	
+	public double getClearancePrice() {
+		return clearancePrice;
+	}
+
+	public void setClearancePrice(double clearancePrice) {
+		this.clearancePrice = clearancePrice;
+	}
 
 	public int getId() {
 		return id;

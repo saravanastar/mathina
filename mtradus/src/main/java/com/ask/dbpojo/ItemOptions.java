@@ -3,6 +3,8 @@
  */
 package com.ask.dbpojo;
 
+import java.util.Date;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -10,6 +12,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 /**
  * @author ASK
@@ -27,22 +31,57 @@ public class ItemOptions {
 	private int optionId;
 	
 	@Column(name = "SIZE_OPTION")
-	private String sizeOption;
+	private SizeOption sizeOption;
 
 	@Column(name = "COLOR_OPTION")
-	private String colorOptions;
+	private ColorOption colorOptions;
 
 	@Column(name = "WEIGHT_OPTION")
-	private String weightOptions;
+	private WeightOption weightOptions;
 
 	@Column(name = "LITRE_OPTION")
-	private String litreOptions;
+	private LitreOption litreOptions;
 
 	@Column(name = "FLAVOUR_OPTION")
-	private String flavourOption;
+	private FlavourOption flavourOption;
 	
 	@OneToOne
 	private ItemCostDetails itemCostDetails;
+	
+	@Column(name = "STOCK_QUANTITY")
+	int quantity;
+	
+	@Temporal(TemporalType.DATE)
+	@Column(name = "LAST_UPDATED_ON")
+	Date lastUpdatedOn;
+	
+	@Column(name="LAST_UPDATED_BY")
+	String lastUpdatedBy;
+	
+	
+	public void setQuantity(int quantity) {
+		this.quantity = quantity;
+	}
+
+	public int getQuantity() {
+		return quantity;
+	}
+
+	public Date getLastUpdatedOn() {
+		return lastUpdatedOn;
+	}
+
+	public void setLastUpdatedOn(Date lastUpdatedOn) {
+		this.lastUpdatedOn = lastUpdatedOn;
+	}
+
+	public String getLastUpdatedBy() {
+		return lastUpdatedBy;
+	}
+
+	public void setLastUpdatedBy(String lastUpdatedBy) {
+		this.lastUpdatedBy = lastUpdatedBy;
+	}
 
 	public int getId() {
 		return id;
@@ -60,43 +99,43 @@ public class ItemOptions {
 		this.optionId = optionId;
 	}
 
-	public String getSizeOption() {
+	public SizeOption getSizeOption() {
 		return sizeOption;
 	}
 
-	public void setSizeOption(String sizeOption) {
+	public void setSizeOption(SizeOption sizeOption) {
 		this.sizeOption = sizeOption;
 	}
 
-	public String getColorOptions() {
+	public ColorOption getColorOptions() {
 		return colorOptions;
 	}
 
-	public void setColorOptions(String colorOptions) {
+	public void setColorOptions(ColorOption colorOptions) {
 		this.colorOptions = colorOptions;
 	}
 
-	public String getWeightOptions() {
+	public WeightOption getWeightOptions() {
 		return weightOptions;
 	}
 
-	public void setWeightOptions(String weightOptions) {
+	public void setWeightOptions(WeightOption weightOptions) {
 		this.weightOptions = weightOptions;
 	}
 
-	public String getLitreOptions() {
+	public LitreOption getLitreOptions() {
 		return litreOptions;
 	}
 
-	public void setLitreOptions(String litreOptions) {
+	public void setLitreOptions(LitreOption litreOptions) {
 		this.litreOptions = litreOptions;
 	}
 
-	public String getFlavourOption() {
+	public FlavourOption getFlavourOption() {
 		return flavourOption;
 	}
 
-	public void setFlavourOption(String flavourOption) {
+	public void setFlavourOption(FlavourOption flavourOption) {
 		this.flavourOption = flavourOption;
 	}
 
@@ -108,4 +147,5 @@ public class ItemOptions {
 		this.itemCostDetails = itemCostDetails;
 	}
 
+	
 }

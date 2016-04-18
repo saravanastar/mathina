@@ -21,7 +21,7 @@ import com.ask.pojo.VendorDetailsPojo;
  * @author ASK
  *
  */
-public class ProductDataService {
+public class ProductDataProcess {
 
 	/**
 	 * 
@@ -84,7 +84,7 @@ public class ProductDataService {
 
 			ItemDetailsPojo itemDetailsPojo = new ItemDetailsPojo();
 			BeanUtils.copyProperties(productItemDetail, itemDetailsPojo);
-			copyToResonseItemCostDetails(productItemDetail.getItemCostDetails());
+			copyToResonseItemCostDetails(productItemDetail.getItemOptions()());
 			itemDetailsPojos.add(itemDetailsPojo);
 		}
 

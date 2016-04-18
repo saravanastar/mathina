@@ -22,14 +22,16 @@ public class ItemDetailsPojo implements Serializable{
 	private boolean status;
 	private String expiredOn;
 	private String createdOn;
-	private ItemCostDetailsPojo itemCost;
+	private ItemOptionsPojo options;
 	
 	
-	public ItemCostDetailsPojo getItemCost() {
-		return itemCost;
+	
+	
+	public ItemOptionsPojo getOptions() {
+		return options;
 	}
-	public void setItemCost(ItemCostDetailsPojo itemCost) {
-		this.itemCost = itemCost;
+	public void setOptions(ItemOptionsPojo options) {
+		this.options = options;
 	}
 	public String getItemName() {
 		return itemName;
