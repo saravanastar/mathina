@@ -12,6 +12,7 @@ import org.springframework.stereotype.Component;
 import com.ask.dao.AddressDAO;
 import com.ask.dbpojo.Address;
 import com.ask.dbpojo.User;
+import com.ask.exception.BusinessException;
 import com.ask.pojo.UserPojo;
 import com.ask.util.CommonObjectMethods;
 
@@ -40,18 +41,22 @@ public class UserDataProcess {
 	 * @param dest
 	 * @return
 	 */
-	public User copyObject(UserPojo src, User dest) {
-		if (dest == null)
+	public User copyObject(UserPojo src, User dest) throws BusinessException {
+		try {
+		if (dest == null) {
 			dest = new User();
+		}
 		BeanUtils.copyProperties(src, dest);
-		dest.setDateOfBirth(CommonObjectMethods.convertStringToDate(src
-				.getDateofBirth()));
+		dest.setDateOfBirth(CommonObjectMethods.convertStringToDate(src.getDateofBirth()));
 		dest.setCreatedOn(new Date());
 		dest.setUpdatedOn(new Date());
 		Address address = copyAddressDetails(src);
 		dest.setAttempts(0);
 		dest.setStatus("ACTIVE");
 		dest.setAddress(address);
+		} catch (BusinessException businessException) {
+			throw new BusinessException(businessException.getMessageKey());
+		}
 		return dest;
 
 	}
@@ -66,6 +71,8 @@ public class UserDataProcess {
 		address.setAddressLine1(src.getAddress().getAddressLine1());
 		address.setAddressLine2(src.getAddress().getAddressLinee2());
 		address.setAreaName((src.getAddress().getArea()));
+		address.setCreatedOn(new Date());
+		address.setUpdatedOn(new Date());
 		return address;
 	}
 

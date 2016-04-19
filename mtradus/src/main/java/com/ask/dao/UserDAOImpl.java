@@ -3,6 +3,7 @@
  */
 package com.ask.dao;
 
+import org.hibernate.PropertyValueException;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +11,7 @@ import org.springframework.orm.hibernate4.HibernateTemplate;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.ask.constn.CommonConstants;
 import com.ask.dbpojo.User;
 import com.ask.exception.BusinessException;
 import com.ask.pojo.UserPojo;
@@ -70,12 +72,15 @@ public class UserDAOImpl implements UserDAO {
 	@Transactional
 	public boolean addUser(User user) {
 		boolean isUserAdded = false;
-		Session session = template.getSessionFactory().openSession();
+		Session session = template.getSessionFactory().getCurrentSession();
 		try {
+			session.save(user.getAddress());
 			session.save(user);
 			isUserAdded = true;
+		} catch(PropertyValueException propertyValueException){
+			throw new BusinessException(CommonConstants.BAD_REQUEST);
 		} catch(Exception e) {
-			throw new BusinessException();
+			throw new BusinessException(CommonConstants.INTERNAL_SERVER_ERROR);
 		}
 		// TODO Auto-generated method stub
 		return isUserAdded;

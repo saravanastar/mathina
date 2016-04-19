@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.ask.dbpojo.User;
+import com.ask.exception.BusinessException;
 import com.ask.pojo.UserPojo;
 import com.ask.service.UserService;
 import com.ask.util.ApplicationConstants;
@@ -53,7 +54,7 @@ public class UserController {
 
 	@RequestMapping(value = "/register", method = RequestMethod.POST)
 	@ResponseBody
-	public boolean registerUser(@Valid @RequestBody UserPojo user) {
+	public boolean registerUser(@Valid @RequestBody UserPojo user) throws BusinessException {
 		
 		boolean isUserAdded = userService.addUser(user);
 		return isUserAdded;

@@ -12,8 +12,10 @@ import java.util.List;
 import org.hibernate.Query;
 import org.hibernate.Session;
 
+import com.ask.constn.CommonConstants;
 import com.ask.dbpojo.Discount;
 import com.ask.dbpojo.StockMaintanence;
+import com.ask.exception.BusinessException;
 
 /**
  * @author 298651
@@ -117,14 +119,15 @@ public class CommonObjectMethods {
 		return map;
 	}
 	
-	public static Date convertStringToDate(String date){
+	public static Date convertStringToDate(String date) throws BusinessException {
 		 SimpleDateFormat formatter = new SimpleDateFormat("MM/dd/yyyy");
          Date dateFrom = null;
 		try {
 			dateFrom = formatter.parse(date);
 		} catch (ParseException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			throw new BusinessException(CommonConstants.INTERNAL_SERVER_ERROR);
+		} catch (NullPointerException nullPointerException) {
+			throw new BusinessException(CommonConstants.BAD_REQUEST);
 		}
          return dateFrom;
 

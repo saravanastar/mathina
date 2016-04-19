@@ -46,8 +46,8 @@ public class ApplicationExceptionHanlderResolver extends ResponseEntityException
 	protected ResponseEntity<Object> handleMethodArgumentNotValid(MethodArgumentNotValidException ex,
 			HttpHeaders headers, HttpStatus status, WebRequest request) {
 		ErrorMessage errorMessage = new ErrorMessage();
-		errorMessage.setErrorCode(errorCode.getMessage(CommonConstants.BAD_REUEST, null,Locale.US));
-		errorMessage.setErrorMessage(messageSource.getMessage(CommonConstants.BAD_REUEST, null,Locale.US));
+		errorMessage.setErrorCode(errorCode.getMessage(CommonConstants.BAD_REQUEST, null,Locale.US));
+		errorMessage.setErrorMessage(messageSource.getMessage(CommonConstants.BAD_REQUEST, null,Locale.US));
 		return new ResponseEntity<Object>(errorMessage, headers, HttpStatus.BAD_REQUEST);
 
 	}
@@ -57,7 +57,7 @@ public class ApplicationExceptionHanlderResolver extends ResponseEntityException
 		ErrorMessage errorMessage = new ErrorMessage();
 		if (ex instanceof BusinessException) {
 			BusinessException businessException = (BusinessException) ex;
-			errorMessage.setErrorCode(errorCode.getMessage(businessException.getMessageKey(), null,Locale.US));
+			errorMessage.setErrorCode(errorCode.getMessage(CommonConstants.BAD_REQUEST, null,Locale.US));
 			errorMessage.setErrorMessage(messageSource.getMessage(businessException.getMessageKey(), null,Locale.US));
 			status = HttpStatus.valueOf(Integer.parseInt(errorRequestStatus.getMessage(businessException.getMessageKey(), null,Locale.US)));
 		} else {

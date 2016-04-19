@@ -52,13 +52,18 @@ public class UserService {
 	 * @param userPojo
 	 * @return
 	 */
-	public boolean addUser(UserPojo userPojo) {
+	public boolean addUser(UserPojo userPojo) throws BusinessException {
 		boolean isUserAdded = false;
-		if (userDao.getUserDataByName(userPojo.getUserName()) != null) {
-			throw new BusinessException(UserConstants.USER_NOT_FOUND);
+		User user = null;
+		try {
+			if (userDao.getUserDataByName(userPojo.getUserName()) != null) {
+				throw new BusinessException(UserConstants.USER_NOT_FOUND);
+			}
+			user = userDataProcess.copyObject(userPojo, null);
+			isUserAdded = userDao.addUser(user);
+		} catch (BusinessException businessException) {
+			throw new BusinessException(businessException.getMessageKey());
 		}
-		User user = userDataProcess.copyObject(userPojo, null);
-		isUserAdded = userDao.addUser(user);
 		return isUserAdded;
 	}
 }
