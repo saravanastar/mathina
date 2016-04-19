@@ -97,8 +97,8 @@ public class ProductDetailDAOImpl implements ProductDetailDAO {
 	}
 	
 	@Transactional
-	public void addVendorData(VendorDetails vendorDetails) {
-		session = hibernateTemplate.getSessionFactory().getCurrentSession();
+	public void addVendorData(VendorDetails vendorDetails) throws Exception {
+		session = hibernateTemplate.getSessionFactory().openSession();
 		session.save(vendorDetails);
 	}
 

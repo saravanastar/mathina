@@ -17,6 +17,8 @@ import com.ask.dbpojo.ProductCategoryDetails;
 import com.ask.dbpojo.ProductDetails;
 import com.ask.dbpojo.ProductItemDetails;
 import com.ask.dbpojo.VendorDetails;
+import com.ask.exception.BusinessException;
+import com.ask.pojo.VendorDetailsPojo;
 import com.ask.service.ProductService;
 
 /**
@@ -36,6 +38,11 @@ public class ProductDetailsController {
 
 	public void setProductService(ProductService productService) {
 		this.productService = productService;
+	}
+	
+	@RequestMapping(value="/vendors", method = RequestMethod.POST)
+	public void addNewVendor(@RequestBody VendorDetailsPojo vendorDetailsPojo) throws BusinessException {
+		productService.addVendor(vendorDetailsPojo);
 	}
 
 	@RequestMapping(value = "/vendors", method = RequestMethod.GET)
@@ -70,13 +77,6 @@ public class ProductDetailsController {
 	@ResponseBody
 	public List<ProductDetails> listProduct() {
 		return null;
-
-	}
-
-	@RequestMapping(value = "/vendors", method = RequestMethod.POST)
-	@ResponseBody
-	public void addVendorData(@RequestBody VendorDetails vendorDetails) {
-		productService.addVendor(vendorDetails);
 
 	}
 

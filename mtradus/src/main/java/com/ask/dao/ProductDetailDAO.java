@@ -26,7 +26,7 @@ public interface ProductDetailDAO {
 
 	public List<ProductDetails> listProduct();
 
-	public void addVendorData(VendorDetails vendorDetails);
+	public void addVendorData(VendorDetails vendorDetails) throws Exception;
 
 	public void updateVendorDetails(int vendorId, VendorDetails vendorDetails);
 

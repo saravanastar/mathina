@@ -210,4 +210,11 @@ public class ProductDataProcess {
 		return flavourOptionsPojo;
 
 	}
+
+	public VendorDetails copyFromResponseVendorDetails(VendorDetailsPojo vendorDetailsPojo) {
+		// TODO Auto-generated method stub
+		VendorDetails vendorDetails = new VendorDetails();
+		BeanUtils.copyProperties(vendorDetailsPojo, vendorDetails);
+		return vendorDetails;
+	}
 }

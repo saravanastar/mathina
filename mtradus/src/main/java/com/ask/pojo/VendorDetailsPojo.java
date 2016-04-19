@@ -16,10 +16,37 @@ public class VendorDetailsPojo implements Serializable{
 	 * 
 	 */
 	private static final long serialVersionUID = -1976904805329490396L;
-	String vendorId;
-	String vendorName;
-	List<ProductDetailsPojo> productDetails;
+	private String vendorId;
+	private String vendorName;
+	private List<ProductDetailsPojo> productDetails;
+	private String imageLink;
+	private boolean active;
+
 	
+	/**
+	 * @return the imageLink
+	 */
+	public String getImageLink() {
+		return imageLink;
+	}
+	/**
+	 * @param imageLink the imageLink to set
+	 */
+	public void setImageLink(String imageLink) {
+		this.imageLink = imageLink;
+	}
+	/**
+	 * @return the active
+	 */
+	public boolean isActive() {
+		return active;
+	}
+	/**
+	 * @param active the active to set
+	 */
+	public void setActive(boolean active) {
+		this.active = active;
+	}
 	public String getVendorId() {
 		return vendorId;
 	}
