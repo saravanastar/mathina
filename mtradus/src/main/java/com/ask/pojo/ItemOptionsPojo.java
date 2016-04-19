@@ -21,36 +21,23 @@ public class ItemOptionsPojo implements Serializable {
 	private List<WeightOptionsPojo> weights;
 	private List<ColorOptionsPojo> colors;
 	private List<FlavourOptionsPojo> flavours;
-	private int quantity;
-	private double sellingPrice;
-	private double originalPrice;
-	private double clearnacePrice;
+	private ItemCostDetailsPojo price;
+
 	
 	
-	public int getQuantity() {
-		return quantity;
+	/**
+	 * @return the price
+	 */
+	public ItemCostDetailsPojo getPrice() {
+		return price;
 	}
-	public void setQuantity(int quantity) {
-		this.quantity = quantity;
+	/**
+	 * @param price the price to set
+	 */
+	public void setPrice(ItemCostDetailsPojo price) {
+		this.price = price;
 	}
-	public double getSellingPrice() {
-		return sellingPrice;
-	}
-	public void setSellingPrice(double sellingPrice) {
-		this.sellingPrice = sellingPrice;
-	}
-	public double getOriginalPrice() {
-		return originalPrice;
-	}
-	public void setOriginalPrice(double originalPrice) {
-		this.originalPrice = originalPrice;
-	}
-	public double getClearnacePrice() {
-		return clearnacePrice;
-	}
-	public void setClearnacePrice(double clearnacePrice) {
-		this.clearnacePrice = clearnacePrice;
-	}
+	
 	public List<SizeOptionsPojo> getSizes() {
 		return sizes;
 	}

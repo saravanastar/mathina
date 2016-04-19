@@ -37,10 +37,43 @@ public class ItemCostDetails {
 	@Column(name = "CLEARNCE_PRICE")
 	private double clearancePrice;
 	
+	@Column(name = "SALE_TAX")
+	private double salesTax;
+	
 	@Column(name = "DISCOUNT_DETAILS")
 	private Discount discount;
 	
+	@Column(name = "WHOLE_PRICE")
+	private double wholePrice;
 	
+	@Column(name = "WHOLE_QUANTITY")
+	private int wholeQuantity;
+	
+	
+	public double getWholePrice() {
+		return wholePrice;
+	}
+
+	public void setWholePrice(double wholePrice) {
+		this.wholePrice = wholePrice;
+	}
+
+	public int getWholeQuantity() {
+		return wholeQuantity;
+	}
+
+	public void setWholeQuantity(int wholeQuantity) {
+		this.wholeQuantity = wholeQuantity;
+	}
+
+	public double getSalesTax() {
+		return salesTax;
+	}
+
+	public void setSalesTax(double salesTax) {
+		this.salesTax = salesTax;
+	}
+
 	public double getClearancePrice() {
 		return clearancePrice;
 	}
