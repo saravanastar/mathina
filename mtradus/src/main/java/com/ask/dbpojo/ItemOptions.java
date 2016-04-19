@@ -10,6 +10,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
@@ -30,19 +31,19 @@ public class ItemOptions {
 	@Column(name = "OPTION_ID")
 	private int optionId;
 	
-	@Column(name = "SIZE_OPTION")
+	@ManyToOne
 	private SizeOption sizeOption;
-
-	@Column(name = "COLOR_OPTION")
+	
+	@ManyToOne
 	private ColorOption colorOptions;
 
-	@Column(name = "WEIGHT_OPTION")
+	@ManyToOne
 	private WeightOption weightOptions;
 
-	@Column(name = "LITRE_OPTION")
+	@ManyToOne
 	private LitreOption litreOptions;
 
-	@Column(name = "FLAVOUR_OPTION")
+	@ManyToOne
 	private FlavourOption flavourOption;
 	
 	@OneToOne

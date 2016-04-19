@@ -6,6 +6,7 @@ package com.ask.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.ask.constn.CommonConstants;
 import com.ask.dao.ProductDetailDAO;
 import com.ask.dbpojo.VendorDetails;
 import com.ask.exception.BusinessException;
@@ -56,7 +57,7 @@ public class ProductService {
 		VendorDetails vendorDetails = productDataProcess.copyFromResponseVendorDetails(vendorDetailsPojo);
 		productDetailDAO.addVendorData(vendorDetails);
 		} catch (Exception exception) {
-			throw new BusinessException("Vendor Business Error");
+			throw new BusinessException(CommonConstants.VENDOR_BUSINESS_ERROR);
 		}
 	}
 

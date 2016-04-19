@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
+import com.ask.constn.CommonConstants;
 import com.ask.pojo.ErrorMessage;
 
 /**
@@ -27,6 +28,12 @@ import com.ask.pojo.ErrorMessage;
 public class ApplicationExceptionHanlderResolver extends ResponseEntityExceptionHandler {
 	@Autowired
 	MessageSource messageSource;
+	
+	@Autowired
+	MessageSource errorRequestStatus;
+	
+	@Autowired
+	MessageSource errorCode;
 	
 	public MessageSource getMessageSource() {
 		return messageSource;
@@ -39,9 +46,9 @@ public class ApplicationExceptionHanlderResolver extends ResponseEntityException
 	protected ResponseEntity<Object> handleMethodArgumentNotValid(MethodArgumentNotValidException ex,
 			HttpHeaders headers, HttpStatus status, WebRequest request) {
 		ErrorMessage errorMessage = new ErrorMessage();
-		errorMessage.setErrorCode("invalidPayload");
-		errorMessage.setErrorMessage("its not the valid payload");
-		return new ResponseEntity<Object>(errorMessage, headers, status);
+		errorMessage.setErrorCode(errorCode.getMessage(CommonConstants.BAD_REUEST, null,Locale.US));
+		errorMessage.setErrorMessage(messageSource.getMessage(CommonConstants.BAD_REUEST, null,Locale.US));
+		return new ResponseEntity<Object>(errorMessage, headers, HttpStatus.BAD_REQUEST);
 
 	}
 
@@ -50,8 +57,13 @@ public class ApplicationExceptionHanlderResolver extends ResponseEntityException
 		ErrorMessage errorMessage = new ErrorMessage();
 		if (ex instanceof BusinessException) {
 			BusinessException businessException = (BusinessException) ex;
-			errorMessage.setErrorCode(businessException.getMessageKey());
-			errorMessage.setErrorMessage(this.messageSource.getMessage(businessException.getMessageKey(), null, Locale.US));
+			errorMessage.setErrorCode(errorCode.getMessage(businessException.getMessageKey(), null,Locale.US));
+			errorMessage.setErrorMessage(messageSource.getMessage(businessException.getMessageKey(), null,Locale.US));
+			status = HttpStatus.valueOf(Integer.parseInt(errorRequestStatus.getMessage(businessException.getMessageKey(), null,Locale.US)));
+		} else {
+			errorMessage.setErrorCode(errorCode.getMessage(CommonConstants.INTERNAL_SERVER_ERROR, null,Locale.US));
+			errorMessage.setErrorMessage(messageSource.getMessage(CommonConstants.INTERNAL_SERVER_ERROR, null,Locale.US));
+			status = HttpStatus.valueOf(Integer.parseInt(errorRequestStatus.getMessage(CommonConstants.INTERNAL_SERVER_ERROR, null,Locale.US)));
 		}
 		return new ResponseEntity<Object>(errorMessage, headers, status);
 	}

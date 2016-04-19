@@ -3,6 +3,7 @@
  */
 package com.ask.dao;
 
+import java.util.Date;
 import java.util.List;
 
 import org.hibernate.Query;
@@ -98,8 +99,9 @@ public class ProductDetailDAOImpl implements ProductDetailDAO {
 	
 	@Transactional
 	public void addVendorData(VendorDetails vendorDetails) throws Exception {
-		session = hibernateTemplate.getSessionFactory().openSession();
-		session.save(vendorDetails);
+		Session session = hibernateTemplate.getSessionFactory().openSession();
+		vendorDetails.setCreatedOn(new Date());
+		session.saveOrUpdate(vendorDetails);
 	}
 
 	@Transactional
@@ -112,7 +114,7 @@ public class ProductDetailDAOImpl implements ProductDetailDAO {
 	public void deleteVendorDetails(int vendorId) {
 		session = hibernateTemplate.getSessionFactory().getCurrentSession();
 		VendorDetails details = new VendorDetails();
-		details.setVendorId(vendorId);
+		details.setId(vendorId);
 		session.delete(details);
 	}
 

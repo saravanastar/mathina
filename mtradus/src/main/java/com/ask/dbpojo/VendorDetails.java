@@ -31,9 +31,8 @@ public class VendorDetails implements Serializable {
 	private static final long serialVersionUID = 7447539658702815472L;
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	@Column(name = "VENDOR_ID")
-	private int vendorId;
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private int id;
 
 	@Column(name = "VENDOR_NAME")
 	private String vendorName;
@@ -51,12 +50,19 @@ public class VendorDetails implements Serializable {
 	@Column(name = "CREATED_ON", nullable = false)
 	private Date createdOn;
 
-	public int getVendorId() {
-		return vendorId;
+	
+	/**
+	 * @return the id
+	 */
+	public int getId() {
+		return id;
 	}
 
-	public void setVendorId(int vendorId) {
-		this.vendorId = vendorId;
+	/**
+	 * @param id the id to set
+	 */
+	public void setId(int id) {
+		this.id = id;
 	}
 
 	public String getVendorName() {
