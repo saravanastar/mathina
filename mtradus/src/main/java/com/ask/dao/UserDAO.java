@@ -14,6 +14,8 @@ import com.ask.pojo.UserPojo;
 public interface UserDAO {
 	
 	public User getUserData(UserPojo pojo);
+	
+	public User getUserData(String userName,String password);
 
 	public User getUserDataByName(String userName);
 

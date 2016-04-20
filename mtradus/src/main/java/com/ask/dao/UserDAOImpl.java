@@ -51,6 +51,23 @@ public class UserDAOImpl implements UserDAO {
 		session.close();
 		return user;
 	}
+	/**
+	 * 
+	 * @param userName
+	 * @param password
+	 * @return
+	 */
+	@Transactional
+	public User getUserData(String userName, String password) {
+		Session session = template.getSessionFactory().getCurrentSession();
+		Query query = session.createQuery("from User where userName = :id and password=:password");
+		query.setParameter("id", userName);
+		query.setParameter("password", password);
+		User user = (User) query.uniqueResult();
+		// = (User) session.get(User.class, pojo.getUserName());
+		return user;
+	}
+	
 	
 	/**
 	 * return the User data by username.
@@ -74,6 +91,7 @@ public class UserDAOImpl implements UserDAO {
 		boolean isUserAdded = false;
 		Session session = template.getSessionFactory().getCurrentSession();
 		try {
+			session.save(user.getUserRole());
 			session.save(user.getAddress());
 			session.save(user);
 			isUserAdded = true;

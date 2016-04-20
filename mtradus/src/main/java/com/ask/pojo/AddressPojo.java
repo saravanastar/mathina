@@ -9,7 +9,7 @@ import java.io.Serializable;
  * @author sarav
  *
  */
-public class Address implements Serializable {
+public class AddressPojo implements Serializable {
 	
 	/**
 	 * 

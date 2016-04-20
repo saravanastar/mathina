@@ -26,8 +26,11 @@ public class UserRoles {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int id;
 	
-	@Column(name="USER_ID")
-	private int userId;
+	/*@Column(name="USER_ID")
+	private int userId;*/
+	
+	@Column(name = "ROLE_NAME")
+	private String roleName;
 	
 	/*@Column(name="USER_TYPE_ID")
 	private UserType userType;*/
@@ -46,63 +49,89 @@ public class UserRoles {
 	@Column(name = "UPDATED_BY")
 	private String updatedBy;
 
+	/**
+	 * @return the id
+	 */
 	public int getId() {
 		return id;
 	}
 
+	/**
+	 * @param id the id to set
+	 */
 	public void setId(int id) {
 		this.id = id;
 	}
 
-	public int getUserId() {
-		return userId;
+	/**
+	 * @return the roleName
+	 */
+	public String getRoleName() {
+		return roleName;
 	}
 
-	public void setUserId(int userId) {
-		this.userId = userId;
+	/**
+	 * @param roleName the roleName to set
+	 */
+	public void setRoleName(String roleName) {
+		this.roleName = roleName;
 	}
 
-	/*public UserType getUserType() {
-		return userType;
-	}
-
-	public void setUserType(UserType userType) {
-		this.userType = userType;
-	}*/
-
+	/**
+	 * @return the createdOn
+	 */
 	public Date getCreatedOn() {
 		return createdOn;
 	}
 
+	/**
+	 * @param createdOn the createdOn to set
+	 */
 	public void setCreatedOn(Date createdOn) {
 		this.createdOn = createdOn;
 	}
 
+	/**
+	 * @return the updatedOn
+	 */
 	public Date getUpdatedOn() {
 		return updatedOn;
 	}
 
+	/**
+	 * @param updatedOn the updatedOn to set
+	 */
 	public void setUpdatedOn(Date updatedOn) {
 		this.updatedOn = updatedOn;
 	}
 
+	/**
+	 * @return the createdBy
+	 */
 	public String getCreatedBy() {
 		return createdBy;
 	}
 
+	/**
+	 * @param createdBy the createdBy to set
+	 */
 	public void setCreatedBy(String createdBy) {
 		this.createdBy = createdBy;
 	}
 
+	/**
+	 * @return the updatedBy
+	 */
 	public String getUpdatedBy() {
 		return updatedBy;
 	}
 
+	/**
+	 * @param updatedBy the updatedBy to set
+	 */
 	public void setUpdatedBy(String updatedBy) {
 		this.updatedBy = updatedBy;
 	}
-	
-	
-	
+
 	
 }

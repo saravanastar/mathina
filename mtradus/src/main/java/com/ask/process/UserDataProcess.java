@@ -13,6 +13,7 @@ import com.ask.dao.AddressDAO;
 import com.ask.dbpojo.Address;
 import com.ask.dbpojo.User;
 import com.ask.exception.BusinessException;
+import com.ask.pojo.AddressPojo;
 import com.ask.pojo.UserPojo;
 import com.ask.util.CommonObjectMethods;
 
@@ -37,40 +38,40 @@ public class UserDataProcess {
 	/**
 	 * Copies request payload to the db object.
 	 * 
-	 * @param src
-	 * @param dest
+	 * @param userPojo
+	 * @param userPersistanceObject
 	 * @return
 	 */
-	public User copyObject(UserPojo src, User dest) throws BusinessException {
+	public User copyFromResponseUserData(UserPojo userPojo, User userPersistanceObject) throws BusinessException {
 		try {
-		if (dest == null) {
-			dest = new User();
-		}
-		BeanUtils.copyProperties(src, dest);
-		dest.setDateOfBirth(CommonObjectMethods.convertStringToDate(src.getDateofBirth()));
-		dest.setCreatedOn(new Date());
-		dest.setUpdatedOn(new Date());
-		Address address = copyAddressDetails(src);
-		dest.setAttempts(0);
-		dest.setStatus("ACTIVE");
-		dest.setAddress(address);
+			if (userPersistanceObject == null) {
+				userPersistanceObject = new User();
+			}
+			BeanUtils.copyProperties(userPojo, userPersistanceObject);
+			userPersistanceObject.setDateOfBirth(CommonObjectMethods.convertStringToDate(userPojo.getDateOfBirth()));
+//			userPersistanceObject.setCreatedOn(new Date());
+//			userPersistanceObject.setUpdatedOn(new Date());
+			Address address = copyFromResposneAddressDetails(userPojo);
+			userPersistanceObject.setAttempts(userPojo.getUserAttempts());
+			userPersistanceObject.setStatus(userPojo.getStatus());
+			userPersistanceObject.setAddress(address);
 		} catch (BusinessException businessException) {
 			throw new BusinessException(businessException.getMessageKey());
 		}
-		return dest;
+		return userPersistanceObject;
 
 	}
 
 	/**
 	 * 
-	 * @param src
+	 * @param userPojo
 	 * @return
 	 */
-	private Address copyAddressDetails(UserPojo src) {
+	private Address copyFromResposneAddressDetails(UserPojo userPojo) {
 		Address address = new Address();
-		address.setAddressLine1(src.getAddress().getAddressLine1());
-		address.setAddressLine2(src.getAddress().getAddressLinee2());
-		address.setAreaName((src.getAddress().getArea()));
+		address.setAddressLine1(userPojo.getAddress().getAddressLine1());
+		address.setAddressLine2(userPojo.getAddress().getAddressLinee2());
+		address.setAreaName((userPojo.getAddress().getArea()));
 		address.setCreatedOn(new Date());
 		address.setUpdatedOn(new Date());
 		return address;
@@ -79,12 +80,32 @@ public class UserDataProcess {
 	/**
 	 * 
 	 * @param src
-	 * @param dest
+	 * @param userPojo
 	 * @return
 	 */
-	public UserPojo copyObject(User src, UserPojo dest) {
-		return dest;
+	public UserPojo copyToResponseUserObject(User userPersistanceObject, UserPojo userPojo) {
+		try {
+			if (userPojo == null) {
+				userPojo = new UserPojo();
+			}
+			BeanUtils.copyProperties(userPersistanceObject, userPojo);
+			userPojo.setDateOfBirth(CommonObjectMethods.convertDateToString(userPersistanceObject.getDateOfBirth()));
+			userPojo.setUserAttempts(userPersistanceObject.getAttempts());
+			userPojo.setStatus(userPersistanceObject.getStatus());
+			userPojo.setAddress(copyToResponseAddressObject(userPersistanceObject));
+			userPojo.setUserRole(userPersistanceObject.getUserRole().getRoleName());
+		} catch (BusinessException businessException) {
+			throw new BusinessException(businessException.getMessageKey());
+		}
+		return userPojo;
 
+	}
+
+	public AddressPojo copyToResponseAddressObject(User userPersistanceObject) {
+		AddressPojo addressPojo = new AddressPojo();
+		Address address = userPersistanceObject.getAddress();
+		BeanUtils.copyProperties(address, addressPojo);
+		return addressPojo;
 	}
 
 }

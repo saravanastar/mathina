@@ -10,13 +10,14 @@ import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.annotation.Secured;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.ask.dbpojo.User;
 import com.ask.exception.BusinessException;
 import com.ask.pojo.UserPojo;
 import com.ask.service.UserService;
@@ -67,10 +68,12 @@ public class UserController {
 	 */
 	@RequestMapping(value = "/login", method = RequestMethod.GET)
 	@ResponseBody
-	public User loginGetUser(
+	@Secured("ROLE_USER")
+	public UserPojo loginGetUser(
 			HttpServletRequest request, HttpServletResponse response) {
 		
-		User user = (User) request.getSession().getAttribute(ApplicationConstants.LOGGED_IN_USER);
+		UserPojo user = (UserPojo) request.getSession().getAttribute(ApplicationConstants.LOGGED_IN_USER);
+		System.out.println(SecurityContextHolder.getContext().getAuthentication().getPrincipal());
 		return user;
 
 	}
@@ -86,9 +89,10 @@ public class UserController {
 	public void loginUser(@RequestBody UserPojo user,
 			HttpServletRequest request, HttpServletResponse response) {
 		System.out.println(user.getUserName());
-		User userHib = userService.getUser(user);
-		if (userHib != null && userHib.getUserName() != null) {
-			request.getSession().setAttribute(ApplicationConstants.LOGGED_IN_USER, userHib);
+		UserPojo userData = userService.getUser(user.getUserName(), user.getPassword());
+		if (userData != null && userData.getUserName() != null) {
+			SecurityContextHolder.getContext().setAuthentication(userService.getUserAuthentication(userData));
+			request.getSession().setAttribute(ApplicationConstants.LOGGED_IN_USER, userData);
 			request.getSession().setAttribute(ApplicationConstants.LOGGED_IN, true);
 		}
 	}
