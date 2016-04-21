@@ -11,7 +11,7 @@
 
 
 	<security:global-method-security secured-annotations="enabled"/>
-	<security:http auto-config="true" use-expressions="true" entry-point-ref="restAuthenticationEntryPoint" create-session="always">
+	<security:http auto-config="true" use-expressions="true" entry-point-ref="restAuthenticationEntryPoint" create-session="ifRequired">
 		<security:intercept-url pattern="/location/*" access="hasRole('ROLE_USER')" />
 		<security:intercept-url pattern="/user/*" access="permitAll" />
 	</security:http>

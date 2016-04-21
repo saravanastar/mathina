@@ -50,8 +50,8 @@ public class ProductDetailsController {
 
 	@RequestMapping(value = "/vendors", method = RequestMethod.GET)
 	@ResponseBody
-	public List<VendorDetails> listVendors() {
-		return null;
+	public List<VendorDetailsPojo> listVendors() throws BusinessException {
+		return productService.listAllVendorList();
 
 	}
 
