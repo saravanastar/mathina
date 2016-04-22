@@ -17,6 +17,8 @@ import com.ask.pojo.ErrorMessage;
  *
  */
 public class ExceptionController {
+	
+	private static final Logger log = Logger.getLogger(ExceptionController.class);
 	@Autowired
 	ErrorMessage errorMessage;
 
@@ -28,8 +30,7 @@ public class ExceptionController {
 		this.errorMessage = errorMessage;
 	}
 
-	private static final Logger log = Logger
-			.getLogger(ExceptionController.class);
+	
 
 	@ExceptionHandler(BusinessException.class)
 	@ResponseStatus(value=HttpStatus.BAD_REQUEST)

@@ -8,7 +8,6 @@ import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
-import org.springframework.stereotype.Service;
 
 import com.ask.constn.CommonConstants;
 import com.ask.exception.BusinessException;
@@ -19,7 +18,6 @@ import com.ask.service.UserService;
  * @author ASK
  *
  */
-@Service(value = "customAuthenticationProvider")
 public class CustomAuthenticationProvider implements AuthenticationProvider {
 
 	@Autowired

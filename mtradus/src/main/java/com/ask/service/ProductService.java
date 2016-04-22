@@ -6,6 +6,7 @@ package com.ask.service;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -13,6 +14,7 @@ import com.ask.constn.CommonConstants;
 import com.ask.dao.ProductDetailDAO;
 import com.ask.dbpojo.VendorDetails;
 import com.ask.exception.BusinessException;
+import com.ask.exception.ExceptionController;
 import com.ask.pojo.VendorDetailsPojo;
 import com.ask.process.ProductDataProcess;
 
@@ -22,6 +24,8 @@ import com.ask.process.ProductDataProcess;
  */
 @Service
 public class ProductService {
+	
+	private static final Logger log = Logger.getLogger(ProductService.class);
 
 	@Autowired
 	ProductDetailDAO productDetailDAO;
@@ -44,23 +48,40 @@ public class ProductService {
 		this.productDataProcess = productDataProcess;
 	}
 
+	/**
+	 * 
+	 * @return
+	 */
 	public ProductDetailDAO getProductDetailDAO() {
 		return productDetailDAO;
 	}
 
+	/**
+	 * 
+	 * @param productDetailDAO
+	 */
 	public void setProductDetailDAO(ProductDetailDAO productDetailDAO) {
 		this.productDetailDAO = productDetailDAO;
 	}
 
+	/**
+	 * 
+	 * @param vendorDetailsPojo
+	 */
 	public void addVendor(VendorDetailsPojo vendorDetailsPojo) {
 		try {
 			VendorDetails vendorDetails = productDataProcess.copyFromResponseVendorDetails(vendorDetailsPojo);
 			productDetailDAO.addVendorData(vendorDetails);
 		} catch (Exception exception) {
+			log.error(exception.getMessage());
 			throw new BusinessException(CommonConstants.VENDOR_BUSINESS_ERROR);
 		}
 	}
 
+	/**
+	 * 
+	 * @return
+	 */
 	public List<VendorDetailsPojo> listAllVendorList() {
 		// TODO Auto-generated method stub
 		List<VendorDetailsPojo> vendorDetailsPojos = new ArrayList<VendorDetailsPojo>();

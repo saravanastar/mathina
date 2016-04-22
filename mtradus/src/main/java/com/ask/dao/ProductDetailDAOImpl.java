@@ -1,6 +1,3 @@
-/**
- * 
- */
 package com.ask.dao;
 
 import java.util.Date;
@@ -19,6 +16,9 @@ import com.ask.dbpojo.ProductItemDetails;
 import com.ask.dbpojo.VendorDetails;
 
 /**
+ * 
+ * 
+ * 
  * @author ASK
  *
  */
@@ -36,7 +36,6 @@ public class ProductDetailDAOImpl implements ProductDetailDAO {
 		this.hibernateTemplate = hibernateTemplate;
 	}
 
-	
 	@Transactional
 	public List<VendorDetails> listVendors() {
 		Session session = hibernateTemplate.getSessionFactory().getCurrentSession();
@@ -75,7 +74,7 @@ public class ProductDetailDAOImpl implements ProductDetailDAO {
 		List<ProductDetails> productDetails = session.createQuery("from ProductDetails").list();
 		return productDetails;
 	}
-	
+
 	public ProductCategoryDetails getProductById(int productId) {
 		Session session = hibernateTemplate.getSessionFactory().getCurrentSession();
 		Query query = session.createQuery("from ProductCategoryDetails where productId=:productId");
@@ -83,14 +82,19 @@ public class ProductDetailDAOImpl implements ProductDetailDAO {
 		ProductCategoryDetails categoryDetails = (ProductCategoryDetails) query.uniqueResult();
 		return categoryDetails;
 	}
-	
+
 	public List<ProductDetails> listItems() {
 		Session session = hibernateTemplate.getSessionFactory().getCurrentSession();
 		@SuppressWarnings("unchecked")
 		List<ProductDetails> productDetails = session.createQuery("from ProductDetails").list();
 		return productDetails;
 	}
-	
+
+	/**
+	 * 
+	 * @param itemId
+	 * @return
+	 */
 	public ProductItemDetails getItemById(int itemId) {
 		Session session = hibernateTemplate.getSessionFactory().getCurrentSession();
 		Query query = session.createQuery("from ProductCategoryDetails where itemId=:itemId");
@@ -98,10 +102,10 @@ public class ProductDetailDAOImpl implements ProductDetailDAO {
 		ProductItemDetails itemDetails = (ProductItemDetails) query.uniqueResult();
 		return itemDetails;
 	}
-	
+
 	@Transactional
 	public void addVendorData(VendorDetails vendorDetails) throws Exception {
-		
+
 		Session session = hibernateTemplate.getSessionFactory().getCurrentSession();
 		vendorDetails.setCreatedOn(new Date());
 		session.saveOrUpdate(vendorDetails);
@@ -126,16 +130,17 @@ public class ProductDetailDAOImpl implements ProductDetailDAO {
 		session.save(categoryDetails);
 	}
 
-	public void updateCategoryDetails(int categoryId,
-			ProductCategoryDetails categoryDetails) {
+	public void updateCategoryDetails(int categoryId, ProductCategoryDetails categoryDetails) {
 		Session session = hibernateTemplate.getSessionFactory().getCurrentSession();
 		session.update(categoryDetails);
 	}
 
 	public void deleteCategoryDetails(ProductCategoryDetails categoryDetails) {
 		Session session = hibernateTemplate.getSessionFactory().getCurrentSession();
-		/*VendorDetails details = new VendorDetails();
-		details.setVendorId(vendorId);*/
+		/*
+		 * VendorDetails details = new VendorDetails();
+		 * details.setVendorId(vendorId);
+		 */
 		session.delete(categoryDetails);
 	}
 
@@ -161,8 +166,7 @@ public class ProductDetailDAOImpl implements ProductDetailDAO {
 		session.save(itemDetails);
 	}
 
-	public void updateProductItemDetails(int itemId,
-			ProductItemDetails itemDetails) {
+	public void updateProductItemDetails(int itemId, ProductItemDetails itemDetails) {
 		Session session = hibernateTemplate.getSessionFactory().getCurrentSession();
 		session.update(itemDetails);
 	}
