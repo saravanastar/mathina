@@ -44,10 +44,11 @@ public class ProductDetailDAOImpl implements ProductDetailDAO {
 		return vendorLst;
 	}
 
+	@Transactional
 	public VendorDetails getVendorById(int vendorId) {
 		Session session = hibernateTemplate.getSessionFactory().getCurrentSession();
-		Query query = session.createQuery("from VendorDetails where vendorId=:vendorId");
-		query.setInteger("vendorId", vendorId);
+		Query query = session.createQuery("from VendorDetails where id=:id");
+		query.setInteger("id", vendorId);
 		VendorDetails vendorDetails = (VendorDetails) query.uniqueResult();
 		return vendorDetails;
 

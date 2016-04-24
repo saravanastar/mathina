@@ -57,9 +57,8 @@ public class ProductDetailsController {
 
 	@RequestMapping(value = "/vendor/{vendorId}", method = RequestMethod.GET)
 	@ResponseBody
-	public VendorDetails getVendor(@PathVariable int vendorId) {
-		return null;
-
+	public VendorDetailsPojo getVendor(@PathVariable int vendorId) throws BusinessException {
+		return productService.listVendorById(vendorId);
 	}
 
 	@RequestMapping(value = "/categories", method = RequestMethod.GET)

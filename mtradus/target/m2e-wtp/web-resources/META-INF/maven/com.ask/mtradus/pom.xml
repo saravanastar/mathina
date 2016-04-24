@@ -15,6 +15,7 @@
 		<servlet-api-version>3.0</servlet-api-version>
 		<mysql-version>5.1.36</mysql-version>
 		<springsecurity.version>3.2.5.RELEASE</springsecurity.version>
+		<springhateoas.version>0.19.0.RELEASE</springhateoas.version>
 	</properties>
 	<dependencies>
 		<dependency>
@@ -64,6 +65,12 @@
             <artifactId>spring-security-config</artifactId>
             <version>${springsecurity.version}</version>
         </dependency>
+        <dependency>
+			<groupId>org.springframework.hateoas</groupId>
+			<artifactId>spring-hateoas</artifactId>
+			<version>${springhateoas.version}</version>
+		</dependency>
+        
 
 		<!-- Hibernate -->
 		<dependency>

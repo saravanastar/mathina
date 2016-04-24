@@ -43,9 +43,11 @@ public class ProductDataProcess {
 	 */
 	public VendorDetailsPojo copyToResponseVendor(VendorDetails sourceVendorDBDetails) {
 		VendorDetailsPojo detailsPojo = new VendorDetailsPojo();
-		BeanUtils.copyProperties(sourceVendorDBDetails, detailsPojo);
-		List<ProductDetails> productDetails = sourceVendorDBDetails.getProductDetails();
-		detailsPojo.setProductDetails(copyToResonseProductDetails(productDetails));
+//		BeanUtils.copyProperties(sourceVendorDBDetails, detailsPojo);
+		detailsPojo.setVendorId(sourceVendorDBDetails.getId());
+		detailsPojo.setVendorName(sourceVendorDBDetails.getVendorName());
+//		List<ProductDetails> productDetails = sourceVendorDBDetails.getProductDetails();
+//		detailsPojo.setProductDetails(copyToResonseProductDetails(productDetails));
 		return detailsPojo;
 	}
 

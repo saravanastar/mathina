@@ -6,17 +6,19 @@ package com.ask.pojo;
 import java.io.Serializable;
 import java.util.List;
 
+import org.springframework.hateoas.ResourceSupport;
+
 /**
  * @author ASK
  *
  */
-public class VendorDetailsPojo implements Serializable{
+public class VendorDetailsPojo extends ResourceSupport implements Serializable{
 	
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = -1976904805329490396L;
-	private int id;
+	private int vendorId;
 	private String vendorName;
 	private List<ProductDetailsPojo> productDetails;
 	private String imageLink;
@@ -47,17 +49,18 @@ public class VendorDetailsPojo implements Serializable{
 	public void setActive(boolean active) {
 		this.active = active;
 	}
+
 	/**
-	 * @return the id
+	 * @return the vendorId
 	 */
-	public int getId() {
-		return id;
+	public int getVendorId() {
+		return vendorId;
 	}
 	/**
-	 * @param id the id to set
+	 * @param vendorId the vendorId to set
 	 */
-	public void setId(int id) {
-		this.id = id;
+	public void setVendorId(int vendorId) {
+		this.vendorId = vendorId;
 	}
 	/**
 	 * @return the vendorName

@@ -111,7 +111,7 @@ public class UserService {
 
 	public Authentication getUserAuthentication(UserPojo user) {
 		// TODO Auto-generated method stub
-		List<GrantedAuthority> grantedAuths = new ArrayList<>();
+		List<GrantedAuthority> grantedAuths = new ArrayList<GrantedAuthority>();
 		grantedAuths.add(new SimpleGrantedAuthority(user.getUserRole()));
 		Authentication auth = new UsernamePasswordAuthenticationToken(user.getUserName(), user.getPassword(), grantedAuths);
 		return auth;

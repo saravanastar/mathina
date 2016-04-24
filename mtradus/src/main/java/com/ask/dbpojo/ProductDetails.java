@@ -9,6 +9,7 @@ import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -38,7 +39,7 @@ public class ProductDetails implements Serializable {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	int productId;
 
-	@OneToMany
+	@OneToMany(fetch = FetchType.LAZY)
 	List<ProductCategoryDetails> productCategoryDetails;
 
 	@Column(name = "PRODUCT_NAME")
