@@ -3,8 +3,10 @@ package com.ask.dao;
 import java.util.Date;
 import java.util.List;
 
+import org.apache.log4j.Logger;
 import org.hibernate.Query;
 import org.hibernate.Session;
+import org.hibernate.StaleStateException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.orm.hibernate4.HibernateTemplate;
 import org.springframework.stereotype.Repository;
@@ -24,6 +26,8 @@ import com.ask.dbpojo.VendorDetails;
  */
 @Repository
 public class ProductDetailDAOImpl implements ProductDetailDAO {
+	
+	private static final Logger log = Logger.getLogger(ProductDetailDAOImpl.class);
 
 	@Autowired
 	HibernateTemplate hibernateTemplate;
@@ -77,12 +81,13 @@ public class ProductDetailDAOImpl implements ProductDetailDAO {
 		return productDetails;
 	}
 
-	public ProductCategoryDetails getProductById(int productId) {
+	@Transactional
+	public ProductDetails getProductById(int productId) {
 		Session session = hibernateTemplate.getSessionFactory().getCurrentSession();
-		Query query = session.createQuery("from ProductCategoryDetails where productId=:productId");
+		Query query = session.createQuery("from ProductDetails where productId=:productId");
 		query.setInteger("productId", productId);
-		ProductCategoryDetails categoryDetails = (ProductCategoryDetails) query.uniqueResult();
-		return categoryDetails;
+		ProductDetails productDetails = (ProductDetails) query.uniqueResult();
+		return productDetails;
 	}
 
 	public List<ProductDetails> listItems() {
@@ -114,16 +119,14 @@ public class ProductDetailDAOImpl implements ProductDetailDAO {
 	}
 
 	@Transactional
-	public void updateVendorDetails(int vendorId, VendorDetails vendorDetails) {
+	public void updateVendorDetails(VendorDetails vendorDetails) {
 		Session session = hibernateTemplate.getSessionFactory().getCurrentSession();
 		session.update(vendorDetails);
 	}
 
 	@Transactional
-	public void deleteVendorDetails(int vendorId) {
+	public void deleteVendorDetails(VendorDetails details) {
 		Session session = hibernateTemplate.getSessionFactory().getCurrentSession();
-		VendorDetails details = new VendorDetails();
-		details.setId(vendorId);
 		session.delete(details);
 	}
 
@@ -152,16 +155,24 @@ public class ProductDetailDAOImpl implements ProductDetailDAO {
 		session.save(productDetails);
 	}
 
+	@Transactional
 	public void updateProductDetails(ProductDetails productDetails) {
 		Session session = hibernateTemplate.getSessionFactory().getCurrentSession();
+		try {
 		session.update(productDetails);
+		} catch (StaleStateException staleStateException) {
+			log.error(staleStateException.fillInStackTrace());
+		}
 	}
 
-	public void deleteProductDetails(int productId) {
+	/**
+	 * deleting the product Details.
+	 * 
+	 */
+	@Transactional
+	public void deleteProductDetails(ProductDetails productDetails) {
 		Session session = hibernateTemplate.getSessionFactory().getCurrentSession();
-		ProductDetails details = new ProductDetails();
-		details.setProductId(productId);
-		session.delete(details);
+		session.delete(productDetails);
 	}
 
 	public void addProductItemDetails(ProductItemDetails itemDetails) {

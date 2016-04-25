@@ -16,9 +16,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
 import com.ask.dbpojo.ProductCategoryDetails;
-import com.ask.dbpojo.ProductDetails;
 import com.ask.dbpojo.ProductItemDetails;
-import com.ask.dbpojo.VendorDetails;
 import com.ask.exception.BusinessException;
 import com.ask.pojo.ProductDetailsPojo;
 import com.ask.pojo.VendorDetailsPojo;
@@ -29,12 +27,12 @@ import com.ask.service.ProductService;
  *
  */
 @Controller
-@RequestMapping("/product")
+@RequestMapping("/data")
 public class ProductDetailsController {
-	
+
 	@Autowired
 	ProductService productService;
-	
+
 	public ProductService getProductService() {
 		return productService;
 	}
@@ -42,8 +40,8 @@ public class ProductDetailsController {
 	public void setProductService(ProductService productService) {
 		this.productService = productService;
 	}
-	
-	@RequestMapping(value="/vendors", method = RequestMethod.POST)
+
+	@RequestMapping(value = "/vendors", method = RequestMethod.POST)
 	@ResponseStatus(value = HttpStatus.OK)
 	public void addNewVendor(@RequestBody VendorDetailsPojo vendorDetailsPojo) throws BusinessException {
 		productService.addVendor(vendorDetailsPojo);
@@ -78,28 +76,26 @@ public class ProductDetailsController {
 
 	@RequestMapping(value = "/products", method = RequestMethod.GET)
 	@ResponseBody
-	public List<ProductDetails> listProduct() {
-		return null;
+	public List<ProductDetailsPojo> listProduct() {
+		return productService.listProduct();
 
 	}
 
 	@RequestMapping(value = "/vendors/{vendorId}", method = RequestMethod.PUT)
 	@ResponseBody
-	public void updateVendorDetails(@PathVariable int vendorId,
-			@RequestBody VendorDetails vendorDetails) {
-
+	public void updateVendorDetails(@PathVariable int vendorId, @RequestBody VendorDetailsPojo vendorDetails) {
+		productService.updateVendor(vendorDetails,vendorId);
 	}
 
 	@RequestMapping(value = "/vendors/{vendorId}", method = RequestMethod.DELETE)
 	@ResponseBody
 	public void deleteVendorDetails(@PathVariable int vendorId) {
-
+		productService.deleteVendorData(vendorId);
 	}
 
 	@RequestMapping(value = "/category", method = RequestMethod.POST)
 	@ResponseBody
-	public void addCategoryDetails(
-			@RequestBody ProductCategoryDetails categoryDetails) {
+	public void addCategoryDetails(@RequestBody ProductCategoryDetails categoryDetails) {
 
 	}
 
@@ -112,8 +108,7 @@ public class ProductDetailsController {
 
 	@RequestMapping(value = "/category/{categoryId}", method = RequestMethod.DELETE)
 	@ResponseBody
-	public void deleteCategoryDetails(
-			@RequestBody ProductCategoryDetails categoryDetails) {
+	public void deleteCategoryDetails(@RequestBody ProductCategoryDetails categoryDetails) {
 
 	}
 
@@ -126,28 +121,27 @@ public class ProductDetailsController {
 
 	@RequestMapping(value = "/product/{productId}", method = RequestMethod.PUT)
 	@ResponseBody
-	public void updateProductDetails(
-			@PathVariable @RequestBody ProductDetails productDetails) {
+	public void updateProductDetails(@PathVariable int productId, @RequestBody ProductDetailsPojo productDetails) {
+		productService.updateProductDetails(productId, productDetails);
 
 	}
 
 	@RequestMapping(value = "/product/{productId}", method = RequestMethod.DELETE)
 	@ResponseBody
 	public void deleteProductDetails(@PathVariable int productId) {
+		productService.deleteProductDetails(productId);
 
 	}
 
 	@RequestMapping(value = "/item}", method = RequestMethod.POST)
 	@ResponseBody
-	public void addProductItemDetails(
-			@RequestBody ProductItemDetails itemDetails) {
+	public void addProductItemDetails(@RequestBody ProductItemDetails itemDetails) {
 
 	}
 
 	@RequestMapping(value = "/item/{itemId}", method = RequestMethod.PUT)
 	@ResponseBody
-	public void updateProductItemDetails(@PathVariable int itemId,
-			@RequestBody ProductItemDetails itemDetails) {
+	public void updateProductItemDetails(@PathVariable int itemId, @RequestBody ProductItemDetails itemDetails) {
 
 	}
 

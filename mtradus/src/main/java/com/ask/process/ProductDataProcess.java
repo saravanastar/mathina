@@ -84,10 +84,13 @@ public class ProductDataProcess {
 	 * @param productDetail
 	 * @return
 	 */
-	public ProductDetails productDetailBasicCopyResponse(ProductDetailsPojo productDetailPojo) {
-		ProductDetails productDetail = new ProductDetails();
+	public ProductDetails productDetailBasicCopyResponse(ProductDetailsPojo productDetailPojo, ProductDetails productDetail) {
+		if (productDetail == null) {
+		 productDetail = new ProductDetails();
+		}
 		productDetail.setProductId(productDetailPojo.getProductId());
 		productDetail.setProductName(productDetailPojo.getProductName());
+		productDetail.setVendorId(productDetailPojo.getVendorId());
 		BeanUtils.copyProperties(productDetailPojo, productDetail);
 		return productDetail;
 	}
@@ -235,9 +238,10 @@ public class ProductDataProcess {
 
 	}
 
-	public VendorDetails copyFromResponseVendorDetails(VendorDetailsPojo vendorDetailsPojo) {
-		// TODO Auto-generated method stub
-		VendorDetails vendorDetails = new VendorDetails();
+	public VendorDetails copyFromResponseVendorDetails(VendorDetailsPojo vendorDetailsPojo,VendorDetails vendorDetails) {
+		if (vendorDetails == null) {
+		 vendorDetails = new VendorDetails();
+		}
 		BeanUtils.copyProperties(vendorDetailsPojo, vendorDetails);
 		return vendorDetails;
 	}

@@ -39,7 +39,7 @@ public class ProductDetails implements Serializable {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	int productId;
 	
-	@Column(name = "VENDOR_ID")
+	@Column(name = "VENDOR_ID", nullable = false)
 	int vendorId;
 
 	@OneToMany(fetch = FetchType.LAZY)

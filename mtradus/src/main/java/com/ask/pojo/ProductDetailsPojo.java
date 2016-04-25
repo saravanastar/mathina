@@ -32,8 +32,6 @@ public class ProductDetailsPojo implements Serializable {
 
 	private Date expiredOn;
 
-	private Date cretedOn;
-
 	private String imageLink;
 
 	/**
@@ -138,21 +136,6 @@ public class ProductDetailsPojo implements Serializable {
 	 */
 	public void setExpiredOn(Date expiredOn) {
 		this.expiredOn = expiredOn;
-	}
-
-	/**
-	 * @return the cretedOn
-	 */
-	public Date getCretedOn() {
-		return cretedOn;
-	}
-
-	/**
-	 * @param cretedOn
-	 *            the cretedOn to set
-	 */
-	public void setCretedOn(Date cretedOn) {
-		this.cretedOn = cretedOn;
 	}
 
 	/**

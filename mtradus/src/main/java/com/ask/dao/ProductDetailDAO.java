@@ -28,9 +28,9 @@ public interface ProductDetailDAO {
 
 	public void addVendorData(VendorDetails vendorDetails) throws Exception;
 
-	public void updateVendorDetails(int vendorId, VendorDetails vendorDetails);
+	public void updateVendorDetails(VendorDetails vendorDetails);
 
-	public void deleteVendorDetails(int vendorId);
+	public void deleteVendorDetails(VendorDetails vendorDetails);
 
 	public void addCategoryDetails(ProductCategoryDetails categoryDetails);
 
@@ -43,7 +43,7 @@ public interface ProductDetailDAO {
 
 	public void updateProductDetails(ProductDetails productDetails);
 
-	public void deleteProductDetails(int productId);
+	public void deleteProductDetails(ProductDetails productDetails);
 
 	public void addProductItemDetails(ProductItemDetails itemDetails);
 
@@ -51,4 +51,6 @@ public interface ProductDetailDAO {
 			ProductItemDetails itemDetails);
 
 	public void deleteProductItemDetails(int itemId);
+
+	public ProductDetails getProductById(int productId);
 }
