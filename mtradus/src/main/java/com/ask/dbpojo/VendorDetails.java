@@ -13,6 +13,7 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
@@ -32,13 +33,14 @@ public class VendorDetails implements Serializable {
 	private static final long serialVersionUID = 7447539658702815472L;
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int id;
 
 	@Column(name = "VENDOR_NAME")
 	private String vendorName;
 
 	@OneToMany(fetch = FetchType.LAZY)
+	@JoinColumn(name = "vendorId")
 	private List<ProductDetails> productDetails;
 
 	@Column(name = "IMAGE_LINK")

@@ -69,6 +69,7 @@ public class ProductDetailDAOImpl implements ProductDetailDAO {
 		return categoryDetails;
 	}
 
+	@Transactional
 	public List<ProductDetails> listProduct() {
 		Session session = hibernateTemplate.getSessionFactory().getCurrentSession();
 		@SuppressWarnings("unchecked")
@@ -145,6 +146,7 @@ public class ProductDetailDAOImpl implements ProductDetailDAO {
 		session.delete(categoryDetails);
 	}
 
+	@Transactional
 	public void addProductDetails(ProductDetails productDetails) {
 		Session session = hibernateTemplate.getSessionFactory().getCurrentSession();
 		session.save(productDetails);

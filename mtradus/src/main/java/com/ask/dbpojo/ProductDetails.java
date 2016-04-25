@@ -38,6 +38,9 @@ public class ProductDetails implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	int productId;
+	
+	@Column(name = "VENDOR_ID")
+	int vendorId;
 
 	@OneToMany(fetch = FetchType.LAZY)
 	List<ProductCategoryDetails> productCategoryDetails;
@@ -52,12 +55,15 @@ public class ProductDetails implements Serializable {
 	private boolean status;
 
 	@Temporal(TemporalType.DATE)
-	@Column(name = "EXPIRED_ON", nullable = false)
-	Date expiredOn;
+	@Column(name = "EXPIRED_ON",nullable = true)
+	private Date expiredOn;
 
 	@Temporal(TemporalType.DATE)
 	@Column(name = "CREATED_ON", nullable = false)
-	Date cretedOn;
+	private Date cretedOn;
+	
+	@Column(name = "imageLink")
+	private String imageLink;
 
 	public int getProductId() {
 		return productId;
@@ -67,12 +73,36 @@ public class ProductDetails implements Serializable {
 		this.productId = productId;
 	}
 
+	public int getVendorId() {
+		return vendorId;
+	}
+
+	public void setVendorId(int vendorId) {
+		this.vendorId = vendorId;
+	}
+
 	public List<ProductCategoryDetails> getProductCategoryDetails() {
 		return productCategoryDetails;
 	}
 
 	public void setProductCategoryDetails(List<ProductCategoryDetails> productCategoryDetails) {
 		this.productCategoryDetails = productCategoryDetails;
+	}
+
+	public String getProductName() {
+		return productName;
+	}
+
+	public void setProductName(String productName) {
+		this.productName = productName;
+	}
+
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
 	}
 
 	public boolean isStatus() {
@@ -99,20 +129,12 @@ public class ProductDetails implements Serializable {
 		this.cretedOn = cretedOn;
 	}
 
-	public String getDescription() {
-		return description;
+	public String getImageLink() {
+		return imageLink;
 	}
 
-	public void setDescription(String description) {
-		this.description = description;
-	}
-
-	public String getProductName() {
-		return productName;
-	}
-
-	public void setProductName(String productName) {
-		this.productName = productName;
+	public void setImageLink(String imageLink) {
+		this.imageLink = imageLink;
 	}
 	
 }

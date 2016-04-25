@@ -59,15 +59,37 @@ public class ProductDataProcess {
 	public List<ProductDetailsPojo> copyToResonseProductDetails(List<ProductDetails> productDetails) {
 		List<ProductDetailsPojo> productDetailsPojos = new ArrayList<ProductDetailsPojo>();
 		for (ProductDetails productDetail : productDetails) {
-			ProductDetailsPojo productDetailsPojo = new ProductDetailsPojo();
-			productDetailsPojo.setId(productDetail.getProductId());
-			productDetailsPojo.setName(productDetail.getProductName());
+			ProductDetailsPojo productDetailsPojo = productDetailBasicCopyDB(productDetail);
 			productDetailsPojo
-					.setCategoryDetails(copyToResonseProductCategoryDetails(productDetail.getProductCategoryDetails()));
+					.setProductCategoryDetails(copyToResonseProductCategoryDetails(productDetail.getProductCategoryDetails()));
 			productDetailsPojos.add(productDetailsPojo);
 		}
 
 		return productDetailsPojos;
+	}
+
+	/**
+	 * @param productDetail
+	 * @return
+	 */
+	private ProductDetailsPojo productDetailBasicCopyDB(ProductDetails productDetail) {
+		ProductDetailsPojo productDetailsPojo = new ProductDetailsPojo();
+		productDetailsPojo.setProductId(productDetail.getProductId());
+		productDetailsPojo.setProductName(productDetail.getProductName());
+		BeanUtils.copyProperties(productDetail, productDetailsPojo);
+		return productDetailsPojo;
+	}
+	
+	/**
+	 * @param productDetail
+	 * @return
+	 */
+	public ProductDetails productDetailBasicCopyResponse(ProductDetailsPojo productDetailPojo) {
+		ProductDetails productDetail = new ProductDetails();
+		productDetail.setProductId(productDetailPojo.getProductId());
+		productDetail.setProductName(productDetailPojo.getProductName());
+		BeanUtils.copyProperties(productDetailPojo, productDetail);
+		return productDetail;
 	}
 
 	/**

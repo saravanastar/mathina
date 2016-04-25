@@ -3,9 +3,11 @@
  */
 package com.ask.service;
 
-import java.util.ArrayList;
-import static org.springframework.hateoas.mvc.ControllerLinkBuilder.*;
+import static org.springframework.hateoas.mvc.ControllerLinkBuilder.linkTo;
+import static org.springframework.hateoas.mvc.ControllerLinkBuilder.methodOn;
 
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import org.apache.log4j.Logger;
@@ -16,8 +18,10 @@ import org.springframework.stereotype.Service;
 import com.ask.constn.CommonConstants;
 import com.ask.controller.ProductDetailsController;
 import com.ask.dao.ProductDetailDAO;
+import com.ask.dbpojo.ProductDetails;
 import com.ask.dbpojo.VendorDetails;
 import com.ask.exception.BusinessException;
+import com.ask.pojo.ProductDetailsPojo;
 import com.ask.pojo.VendorDetailsPojo;
 import com.ask.process.ProductDataProcess;
 
@@ -27,7 +31,7 @@ import com.ask.process.ProductDataProcess;
  */
 @Service
 public class ProductService {
-	
+
 	private static final Logger log = Logger.getLogger(ProductService.class);
 
 	@Autowired
@@ -91,7 +95,8 @@ public class ProductService {
 		List<VendorDetails> vendorDetails = productDetailDAO.listVendors();
 		for (VendorDetails vendorDetail : vendorDetails) {
 			VendorDetailsPojo detailsPojo = productDataProcess.copyToResponseVendor(vendorDetail);
-			Link detail = linkTo(ProductDetailsController.class).slash("vendor").slash(detailsPojo.getVendorId()).withSelfRel();
+			Link detail = linkTo(methodOn(ProductDetailsController.class).getVendor(detailsPojo.getVendorId()))
+					.withSelfRel();
 			detailsPojo.add(detail);
 			vendorDetailsPojos.add(detailsPojo);
 
@@ -103,6 +108,20 @@ public class ProductService {
 		VendorDetails vendorDetail = productDetailDAO.getVendorById(vendorId);
 		VendorDetailsPojo detailsPojo = productDataProcess.copyToResponseVendor(vendorDetail);
 		return detailsPojo;
+	}
+
+	public List<ProductDetailsPojo> listProduct() {
+		// TODO Auto-generated method stub
+		List<ProductDetails> productDetails = productDetailDAO.listProduct();
+		return productDataProcess.copyToResonseProductDetails(productDetails);
+	}
+
+	public void addProductDetails(ProductDetailsPojo productDetails) {
+		// TODO Auto-generated method stub
+		ProductDetails productDetail = productDataProcess.productDetailBasicCopyResponse(productDetails);
+		productDetail.setCretedOn(new Date());
+		productDetailDAO.addProductDetails(productDetail);
+		
 	}
 
 }

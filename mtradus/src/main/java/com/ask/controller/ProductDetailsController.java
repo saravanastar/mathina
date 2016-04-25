@@ -20,6 +20,7 @@ import com.ask.dbpojo.ProductDetails;
 import com.ask.dbpojo.ProductItemDetails;
 import com.ask.dbpojo.VendorDetails;
 import com.ask.exception.BusinessException;
+import com.ask.pojo.ProductDetailsPojo;
 import com.ask.pojo.VendorDetailsPojo;
 import com.ask.service.ProductService;
 
@@ -118,7 +119,8 @@ public class ProductDetailsController {
 
 	@RequestMapping(value = "/product", method = RequestMethod.POST)
 	@ResponseBody
-	public void addProductDetails(@RequestBody ProductDetails productDetails) {
+	public void addProductDetails(@RequestBody ProductDetailsPojo productDetails) {
+		productService.addProductDetails(productDetails);
 
 	}
 
