@@ -72,7 +72,7 @@ public class ProductDataProcess {
 	 * @param productDetail
 	 * @return
 	 */
-	private ProductDetailsPojo productDetailBasicCopyDB(ProductDetails productDetail) {
+	public ProductDetailsPojo productDetailBasicCopyDB(ProductDetails productDetail) {
 		ProductDetailsPojo productDetailsPojo = new ProductDetailsPojo();
 		productDetailsPojo.setProductId(productDetail.getProductId());
 		productDetailsPojo.setProductName(productDetail.getProductName());

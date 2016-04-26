@@ -121,18 +121,18 @@ public class ProductService {
 		ProductDetails productDetail = productDataProcess.productDetailBasicCopyResponse(productDetails, null);
 		productDetail.setCretedOn(new Date());
 		productDetail.setExpiredOn(new Date());
-		if(productDetailDAO.getVendorById(productDetails.getVendorId()) == null) {
+		if (productDetailDAO.getVendorById(productDetails.getVendorId()) == null) {
 			log.error("VEndor Details not exists to add the product");
 			throw new BusinessException(CommonConstants.BAD_REQUEST);
 		}
 		productDetailDAO.addProductDetails(productDetail);
-		
+
 	}
 
 	public void updateVendor(VendorDetailsPojo vendorDetailsPojo, int vendorId) {
 		try {
 			VendorDetails vendor = productDetailDAO.getVendorById(vendorId);
-			if (vendor == null ) {
+			if (vendor == null) {
 				log.error("Vendor Data not found for the Id");
 				throw new BusinessException(CommonConstants.BAD_REQUEST);
 			}
@@ -142,41 +142,42 @@ public class ProductService {
 			log.error(exception.getMessage());
 			throw new BusinessException(CommonConstants.VENDOR_BUSINESS_ERROR);
 		}
-		
+
 	}
 
 	public void deleteVendorData(int vendorId) {
 		VendorDetails vendorDetails = productDetailDAO.getVendorById(vendorId);
-		if (vendorDetails == null ) {
+		if (vendorDetails == null) {
 			log.error("Vendor Data not found for the Id");
 			throw new BusinessException(CommonConstants.BAD_REQUEST);
 		}
 		productDetailDAO.deleteVendorDetails(vendorDetails);
-		
+
 	}
 
 	public void updateProductDetails(int productId, ProductDetailsPojo productDetailsPojo) {
 		try {
 			ProductDetails productDetail = productDetailDAO.getProductById(productId);
-			if (productDetail == null ) {
+			if (productDetail == null) {
 				log.error("Vendor Data not found for the Id");
 				throw new BusinessException(CommonConstants.BAD_REQUEST);
 			}
 			productDetailsPojo.setProductId(productId);
-			ProductDetails productToUpdate = productDataProcess.productDetailBasicCopyResponse(productDetailsPojo, productDetail);
+			ProductDetails productToUpdate = productDataProcess.productDetailBasicCopyResponse(productDetailsPojo,
+					productDetail);
 			productDetailDAO.updateProductDetails(productToUpdate);
 		} catch (Exception exception) {
 			log.error(exception.getMessage());
 			throw new BusinessException(CommonConstants.VENDOR_BUSINESS_ERROR);
 		}
-		
+
 	}
 
 	public void deleteProductDetails(int productId) {
 		// TODO Auto-generated method stub
 		try {
 			ProductDetails productDetail = productDetailDAO.getProductById(productId);
-			if (productDetail == null ) {
+			if (productDetail == null) {
 				log.error("Product Data not found for the Id");
 				throw new BusinessException(CommonConstants.BAD_REQUEST);
 			}
@@ -185,7 +186,23 @@ public class ProductService {
 			log.error(exception.getMessage());
 			throw new BusinessException(CommonConstants.VENDOR_BUSINESS_ERROR);
 		}
-		
+
+	}
+
+	public ProductDetailsPojo getProductDetails(int productId) {
+		ProductDetailsPojo productDetailPojo = null;
+		try {
+			ProductDetails productDetail = productDetailDAO.getProductById(productId);
+			if (productDetail == null) {
+				log.error("Product Data not found for the Id");
+				throw new BusinessException(CommonConstants.BAD_REQUEST);
+			}
+			productDetailPojo = productDataProcess.productDetailBasicCopyDB(productDetail);
+		} catch (Exception exception) {
+			log.error(exception.getMessage());
+			throw new BusinessException(CommonConstants.VENDOR_BUSINESS_ERROR);
+		}
+		return productDetailPojo;
 	}
 
 }

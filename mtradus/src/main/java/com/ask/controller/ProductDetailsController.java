@@ -125,7 +125,13 @@ public class ProductDetailsController {
 		productService.updateProductDetails(productId, productDetails);
 
 	}
-
+	
+	@RequestMapping(value = "/product/{productId}", method = RequestMethod.GET)
+	@ResponseBody
+	public ProductDetailsPojo getProductDetails(@PathVariable int productId) {
+		return productService.getProductDetails(productId);
+	}
+	
 	@RequestMapping(value = "/product/{productId}", method = RequestMethod.DELETE)
 	@ResponseBody
 	public void deleteProductDetails(@PathVariable int productId) {
