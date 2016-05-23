@@ -130,6 +130,10 @@ public class ProductDetailDAOImpl implements ProductDetailDAO {
 		session.delete(details);
 	}
 
+	/**
+	 * 
+	 */
+	@Transactional
 	public void addCategoryDetails(ProductCategoryDetails categoryDetails) {
 		Session session = hibernateTemplate.getSessionFactory().getCurrentSession();
 		session.save(categoryDetails);

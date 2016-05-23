@@ -18,9 +18,11 @@ import org.springframework.stereotype.Service;
 import com.ask.constn.CommonConstants;
 import com.ask.controller.ProductDetailsController;
 import com.ask.dao.ProductDetailDAO;
+import com.ask.dbpojo.ProductCategoryDetails;
 import com.ask.dbpojo.ProductDetails;
 import com.ask.dbpojo.VendorDetails;
 import com.ask.exception.BusinessException;
+import com.ask.pojo.ProductCategoryDetailsPojo;
 import com.ask.pojo.ProductDetailsPojo;
 import com.ask.pojo.VendorDetailsPojo;
 import com.ask.process.ProductDataProcess;
@@ -203,6 +205,17 @@ public class ProductService {
 			throw new BusinessException(CommonConstants.VENDOR_BUSINESS_ERROR);
 		}
 		return productDetailPojo;
+	}
+
+	public void addCategoryDetails(ProductCategoryDetailsPojo categoryDetailsPojo) {
+		// TODO Auto-generated method stub
+		if (categoryDetailsPojo != null && categoryDetailsPojo.getProductId() == 0) {
+			log.info("Product id must be there to add the category details");
+			throw new BusinessException(CommonConstants.BAD_REQUEST);
+		}
+		ProductCategoryDetails productCategoryDetails = productDataProcess.productCategoryDetailsBasicCopyToDB(categoryDetailsPojo, null);
+		productCategoryDetails.setCretedOn(new Date());
+		productDetailDAO.addCategoryDetails(productCategoryDetails);
 	}
 
 }

@@ -43,11 +43,12 @@ public class ProductDataProcess {
 	 */
 	public VendorDetailsPojo copyToResponseVendor(VendorDetails sourceVendorDBDetails) {
 		VendorDetailsPojo detailsPojo = new VendorDetailsPojo();
-//		BeanUtils.copyProperties(sourceVendorDBDetails, detailsPojo);
+		// BeanUtils.copyProperties(sourceVendorDBDetails, detailsPojo);
 		detailsPojo.setVendorId(sourceVendorDBDetails.getId());
 		detailsPojo.setVendorName(sourceVendorDBDetails.getVendorName());
-//		List<ProductDetails> productDetails = sourceVendorDBDetails.getProductDetails();
-//		detailsPojo.setProductDetails(copyToResonseProductDetails(productDetails));
+		// List<ProductDetails> productDetails =
+		// sourceVendorDBDetails.getProductDetails();
+		// detailsPojo.setProductDetails(copyToResonseProductDetails(productDetails));
 		return detailsPojo;
 	}
 
@@ -60,8 +61,8 @@ public class ProductDataProcess {
 		List<ProductDetailsPojo> productDetailsPojos = new ArrayList<ProductDetailsPojo>();
 		for (ProductDetails productDetail : productDetails) {
 			ProductDetailsPojo productDetailsPojo = productDetailBasicCopyDB(productDetail);
-			productDetailsPojo
-					.setProductCategoryDetails(copyToResonseProductCategoryDetails(productDetail.getProductCategoryDetails()));
+			productDetailsPojo.setProductCategoryDetails(
+					copyToResonseProductCategoryDetails(productDetail.getProductCategoryDetails()));
 			productDetailsPojos.add(productDetailsPojo);
 		}
 
@@ -79,20 +80,34 @@ public class ProductDataProcess {
 		BeanUtils.copyProperties(productDetail, productDetailsPojo);
 		return productDetailsPojo;
 	}
-	
+
 	/**
 	 * @param productDetail
 	 * @return
 	 */
-	public ProductDetails productDetailBasicCopyResponse(ProductDetailsPojo productDetailPojo, ProductDetails productDetail) {
+	public ProductDetails productDetailBasicCopyResponse(ProductDetailsPojo productDetailPojo,
+			ProductDetails productDetail) {
 		if (productDetail == null) {
-		 productDetail = new ProductDetails();
+			productDetail = new ProductDetails();
 		}
 		productDetail.setProductId(productDetailPojo.getProductId());
 		productDetail.setProductName(productDetailPojo.getProductName());
 		productDetail.setVendorId(productDetailPojo.getVendorId());
 		BeanUtils.copyProperties(productDetailPojo, productDetail);
 		return productDetail;
+	}
+
+	
+	public ProductCategoryDetails productCategoryDetailsBasicCopyToDB(ProductCategoryDetailsPojo categoryDetailsPojo,
+			ProductCategoryDetails categoryDetails) {
+		if (categoryDetails == null) {
+			categoryDetails = new ProductCategoryDetails();
+		}
+		categoryDetails.setCategoryId(categoryDetailsPojo.getCategoryId());
+		categoryDetails.setCategoryName(categoryDetailsPojo.getCategoryName());
+		categoryDetails.setProductId(categoryDetailsPojo.getProductId());
+		BeanUtils.copyProperties(categoryDetailsPojo, categoryDetails);
+		return categoryDetails;
 	}
 
 	/**
@@ -105,8 +120,8 @@ public class ProductDataProcess {
 		List<ProductCategoryDetailsPojo> categoryDetailsPojos = new ArrayList<ProductCategoryDetailsPojo>();
 		for (ProductCategoryDetails productCategoryDetails : categoryDetails) {
 			ProductCategoryDetailsPojo categoryDetailsPojo = new ProductCategoryDetailsPojo();
-			categoryDetailsPojo.setId(productCategoryDetails.getCategoryId());
-			categoryDetailsPojo.setName(productCategoryDetails.getCategoryName());
+			categoryDetailsPojo.setCategoryId(productCategoryDetails.getCategoryId());
+			categoryDetailsPojo.setCategoryName(productCategoryDetails.getCategoryName());
 			List<ProductItemDetails> itemDetails = productCategoryDetails.getProductItemDetails();
 			categoryDetailsPojo.setItems(copyToResonseProductItemDetails(itemDetails));
 			categoryDetailsPojos.add(categoryDetailsPojo);
@@ -123,7 +138,6 @@ public class ProductDataProcess {
 	public List<ItemDetailsPojo> copyToResonseProductItemDetails(List<ProductItemDetails> productItemDetails) {
 		List<ItemDetailsPojo> itemDetailsPojos = new ArrayList<ItemDetailsPojo>();
 		for (ProductItemDetails productItemDetail : productItemDetails) {
-
 			ItemDetailsPojo itemDetailsPojo = new ItemDetailsPojo();
 			BeanUtils.copyProperties(productItemDetail, itemDetailsPojo);
 			itemDetailsPojo.setOptions(copyToResonseItemDetailsData(productItemDetail.getItemOptions()));
@@ -238,9 +252,10 @@ public class ProductDataProcess {
 
 	}
 
-	public VendorDetails copyFromResponseVendorDetails(VendorDetailsPojo vendorDetailsPojo,VendorDetails vendorDetails) {
+	public VendorDetails copyFromResponseVendorDetails(VendorDetailsPojo vendorDetailsPojo,
+			VendorDetails vendorDetails) {
 		if (vendorDetails == null) {
-		 vendorDetails = new VendorDetails();
+			vendorDetails = new VendorDetails();
 		}
 		BeanUtils.copyProperties(vendorDetailsPojo, vendorDetails);
 		return vendorDetails;

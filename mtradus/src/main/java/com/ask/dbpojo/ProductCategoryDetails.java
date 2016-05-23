@@ -36,6 +36,9 @@ public class ProductCategoryDetails implements Serializable{
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "CAT_ID")
 	int categoryId;
+	
+	@Column(name = "PRODUCT_ID", nullable = false)
+	int productId;
 
 	@ManyToOne
 	@JoinColumn(name = "VENDOR_ID")
@@ -51,6 +54,26 @@ public class ProductCategoryDetails implements Serializable{
 	@Temporal(TemporalType.DATE)
 	@Column(name = "CREATED_ON", nullable = false)
 	Date cretedOn;
+
+	@Column(name = "IMAGE_LINK")
+	private String imageLink;
+	
+	
+
+	/**
+	 * @return the imageLink
+	 */
+	public String getImageLink() {
+		return imageLink;
+	}
+
+
+	/**
+	 * @param imageLink the imageLink to set
+	 */
+	public void setImageLink(String imageLink) {
+		this.imageLink = imageLink;
+	}
 
 
 	public int getCategoryId() {
@@ -101,4 +124,22 @@ public class ProductCategoryDetails implements Serializable{
 	public void setProductItemDetails(List<ProductItemDetails> productItemDetails) {
 		this.productItemDetails = productItemDetails;
 	}
+
+
+	/**
+	 * @return the productId
+	 */
+	public int getProductId() {
+		return productId;
+	}
+
+
+	/**
+	 * @param productId the productId to set
+	 */
+	public void setProductId(int productId) {
+		this.productId = productId;
+	}
+	
+	
 }

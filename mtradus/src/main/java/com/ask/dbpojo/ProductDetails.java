@@ -13,6 +13,7 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
@@ -43,6 +44,7 @@ public class ProductDetails implements Serializable {
 	int vendorId;
 
 	@OneToMany(fetch = FetchType.LAZY)
+	@JoinColumn(name = "productId")
 	List<ProductCategoryDetails> productCategoryDetails;
 
 	@Column(name = "PRODUCT_NAME")

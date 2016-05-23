@@ -19,8 +19,6 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
-import org.hibernate.annotations.CascadeType;
-
 /**
  * @author 298651
  * 
