@@ -191,7 +191,13 @@ public class ProductService {
 
 	}
 
-	public ProductDetailsPojo getProductDetails(int productId) {
+	/**
+	 * get product Details by Product Id.
+	 * 
+	 * @param productId
+	 * @return
+	 */
+	public ProductDetailsPojo getProductDetail(int productId) {
 		ProductDetailsPojo productDetailPojo = null;
 		try {
 			ProductDetails productDetail = productDetailDAO.getProductById(productId);
@@ -207,15 +213,111 @@ public class ProductService {
 		return productDetailPojo;
 	}
 
+	/**
+	 * Add the category Details.
+	 * 
+	 * @param categoryDetailsPojo
+	 */
 	public void addCategoryDetails(ProductCategoryDetailsPojo categoryDetailsPojo) {
 		// TODO Auto-generated method stub
 		if (categoryDetailsPojo != null && categoryDetailsPojo.getProductId() == 0) {
 			log.info("Product id must be there to add the category details");
 			throw new BusinessException(CommonConstants.BAD_REQUEST);
 		}
-		ProductCategoryDetails productCategoryDetails = productDataProcess.productCategoryDetailsBasicCopyToDB(categoryDetailsPojo, null);
+		ProductCategoryDetails productCategoryDetails = productDataProcess
+				.productCategoryDetailsBasicCopyToDB(categoryDetailsPojo, null);
 		productCategoryDetails.setCretedOn(new Date());
 		productDetailDAO.addCategoryDetails(productCategoryDetails);
+	}
+
+	/**
+	 * Get all categories listed.
+	 * 
+	 * @return
+	 */
+	public List<ProductCategoryDetailsPojo> listCategories() {
+		List<ProductCategoryDetailsPojo> categoryDetailsPojos = new ArrayList<ProductCategoryDetailsPojo>();
+		List<ProductCategoryDetails> categoryDetails = productDetailDAO.listCategories();
+		for (ProductCategoryDetails categoryDetail : categoryDetails) {
+			ProductCategoryDetailsPojo detailsPojo = productDataProcess
+					.productCategoryDetailsBasicCopyToResponse(categoryDetail, null);
+			Link detailCategoryId = linkTo(
+					methodOn(ProductDetailsController.class).getCategoryByCategoryId(detailsPojo.getCategoryId()))
+							.withSelfRel();
+			Link detailProductId = linkTo(
+					methodOn(ProductDetailsController.class).getProductDetail(detailsPojo.getProductId()))
+							.withSelfRel();
+			detailsPojo.add(detailCategoryId);
+			detailsPojo.add(detailProductId);
+			categoryDetailsPojos.add(detailsPojo);
+
+		}
+		return categoryDetailsPojos;
+	}
+	
+	/**
+	 * Get the category details by Category Id.
+	 * @param categoryId
+	 * @return
+	 */
+	public ProductCategoryDetailsPojo getCategoryByCategoryId(int categoryId) {
+		// TODO Auto-generated method stub
+		ProductCategoryDetails categoryDetail = productDetailDAO.getCategoryById(categoryId);
+		ProductCategoryDetailsPojo detailsPojo = productDataProcess
+				.productCategoryDetailsBasicCopyToResponse(categoryDetail, null);
+		Link detailCategoryId = linkTo(
+				methodOn(ProductDetailsController.class).getCategoryByCategoryId(detailsPojo.getCategoryId()))
+						.withSelfRel();
+		Link detailProductId = linkTo(
+				methodOn(ProductDetailsController.class).getProductDetail(detailsPojo.getProductId())).withRel("");
+		detailsPojo.add(detailCategoryId);
+		detailsPojo.add(detailProductId);
+		return detailsPojo;
+	}
+
+	/**
+	 * Get the category details by Product Id.
+	 * @param categoryId
+	 * @return
+	 */
+	public ProductCategoryDetailsPojo getCategoryByProductId(int productId) {
+		ProductCategoryDetails categoryDetail = productDetailDAO.getCategoryByProductId(productId);
+		ProductCategoryDetailsPojo detailsPojo = productDataProcess
+				.productCategoryDetailsBasicCopyToResponse(categoryDetail, null);
+		Link detailCategoryId = linkTo(
+				methodOn(ProductDetailsController.class).getCategoryByCategoryId(detailsPojo.getCategoryId()))
+						.withSelfRel();
+		Link detailProductId = linkTo(
+				methodOn(ProductDetailsController.class).getProductDetail(detailsPojo.getProductId())).withSelfRel();
+		detailsPojo.add(detailCategoryId);
+		detailsPojo.add(detailProductId);
+		return detailsPojo;
+	}
+
+	/**
+	 * update category Details by categoryId.
+	 * @param categoryId
+	 * @param categoryDetailsPojo
+	 */
+	public void updateCategoryDetails(int categoryId, ProductCategoryDetailsPojo categoryDetailsPojo) {
+		
+		ProductCategoryDetails productCategoryDetails = productDetailDAO.getCategoryById(categoryId);
+		productCategoryDetails = productDataProcess
+				.productCategoryDetailsBasicCopyToDB(categoryDetailsPojo, productCategoryDetails);
+		productDetailDAO.updateCategoryDetails(categoryId, productCategoryDetails);
+		
+		
+	}
+
+	/**
+	 * Deleting the category by categoy Id.
+	 * @param categoryId
+	 */
+	public void deleteCategoyDetail(int categoryId) {
+		// TODO Auto-generated method stub
+		ProductCategoryDetails productCategoryDetails = productDetailDAO.getCategoryById(categoryId);
+		productDetailDAO.deleteCategoryDetails(productCategoryDetails);
+		
 	}
 
 }

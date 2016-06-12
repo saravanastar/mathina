@@ -72,7 +72,15 @@ public class ProductDetailDAOImpl implements ProductDetailDAO {
 		ProductCategoryDetails categoryDetails = (ProductCategoryDetails) query.uniqueResult();
 		return categoryDetails;
 	}
-
+	
+	public ProductCategoryDetails getCategoryByProductId(int productId) {
+		Session session = hibernateTemplate.getSessionFactory().getCurrentSession();
+		Query query = session.createQuery("from ProductCategoryDetails where productId=:productId");
+		query.setInteger("productId", productId);
+		ProductCategoryDetails categoryDetails = (ProductCategoryDetails) query.uniqueResult();
+		return categoryDetails;
+	}
+	
 	@Transactional
 	public List<ProductDetails> listProduct() {
 		Session session = hibernateTemplate.getSessionFactory().getCurrentSession();

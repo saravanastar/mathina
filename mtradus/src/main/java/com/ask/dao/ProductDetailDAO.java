@@ -23,6 +23,8 @@ public interface ProductDetailDAO {
 	public List<ProductCategoryDetails> listCategories();
 
 	public ProductCategoryDetails getCategoryById(int categoryId);
+	
+	public ProductCategoryDetails getCategoryByProductId(int productId);
 
 	public List<ProductDetails> listProduct();
 

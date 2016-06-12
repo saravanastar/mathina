@@ -7,11 +7,13 @@ import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 
+import org.springframework.hateoas.ResourceSupport;
+
 /**
  * @author ASK
  *
  */
-public class ProductCategoryDetailsPojo implements Serializable {
+public class ProductCategoryDetailsPojo extends ResourceSupport implements Serializable {
 
 	/**
 	 * 

@@ -63,16 +63,21 @@ public class ProductDetailsController {
 
 	@RequestMapping(value = "/categories", method = RequestMethod.GET)
 	@ResponseBody
-	public List<ProductCategoryDetails> listCategories() {
-		return null;
+	public List<ProductCategoryDetailsPojo> listCategories() {
+		return productService.listCategories();
 
 	}
 
 	@RequestMapping(value = "/category/{categoryId}", method = RequestMethod.GET)
 	@ResponseBody
-	public ProductCategoryDetails getCategory(@PathVariable int categoryId) {
-		return null;
+	public ProductCategoryDetailsPojo getCategoryByCategoryId(@PathVariable int categoryId) {
+		return productService.getCategoryByCategoryId(categoryId);
+	}
 
+	@RequestMapping(value = "/category/{productId}", method = RequestMethod.GET)
+	@ResponseBody
+	public ProductCategoryDetailsPojo getCategoryByProductId(@PathVariable int productId) {
+		return productService.getCategoryByProductId(productId);
 	}
 
 	@RequestMapping(value = "/products", method = RequestMethod.GET)
@@ -85,7 +90,7 @@ public class ProductDetailsController {
 	@RequestMapping(value = "/vendors/{vendorId}", method = RequestMethod.PUT)
 	@ResponseBody
 	public void updateVendorDetails(@PathVariable int vendorId, @RequestBody VendorDetailsPojo vendorDetails) {
-		productService.updateVendor(vendorDetails,vendorId);
+		productService.updateVendor(vendorDetails, vendorId);
 	}
 
 	@RequestMapping(value = "/vendors/{vendorId}", method = RequestMethod.DELETE)
@@ -103,14 +108,15 @@ public class ProductDetailsController {
 	@RequestMapping(value = "/category/{categoryId}", method = RequestMethod.PUT)
 	@ResponseBody
 	public void updateCategoryDetails(@PathVariable int categoryId,
-			@RequestBody ProductCategoryDetails categoryDetails) {
+			@RequestBody ProductCategoryDetailsPojo categoryDetails) {
+		productService.updateCategoryDetails(categoryId, categoryDetails);
 
 	}
 
 	@RequestMapping(value = "/category/{categoryId}", method = RequestMethod.DELETE)
 	@ResponseBody
-	public void deleteCategoryDetails(@RequestBody ProductCategoryDetails categoryDetails) {
-
+	public void deleteCategoryDetails(@PathVariable int categoryId) {
+		productService.deleteCategoyDetail(categoryId);
 	}
 
 	@RequestMapping(value = "/product", method = RequestMethod.POST)
@@ -126,13 +132,13 @@ public class ProductDetailsController {
 		productService.updateProductDetails(productId, productDetails);
 
 	}
-	
+
 	@RequestMapping(value = "/product/{productId}", method = RequestMethod.GET)
 	@ResponseBody
-	public ProductDetailsPojo getProductDetails(@PathVariable int productId) {
-		return productService.getProductDetails(productId);
+	public ProductDetailsPojo getProductDetail(@PathVariable int productId) {
+		return productService.getProductDetail(productId);
 	}
-	
+
 	@RequestMapping(value = "/product/{productId}", method = RequestMethod.DELETE)
 	@ResponseBody
 	public void deleteProductDetails(@PathVariable int productId) {

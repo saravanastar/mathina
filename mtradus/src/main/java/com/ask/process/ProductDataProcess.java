@@ -97,7 +97,6 @@ public class ProductDataProcess {
 		return productDetail;
 	}
 
-	
 	public ProductCategoryDetails productCategoryDetailsBasicCopyToDB(ProductCategoryDetailsPojo categoryDetailsPojo,
 			ProductCategoryDetails categoryDetails) {
 		if (categoryDetails == null) {
@@ -108,6 +107,25 @@ public class ProductDataProcess {
 		categoryDetails.setProductId(categoryDetailsPojo.getProductId());
 		BeanUtils.copyProperties(categoryDetailsPojo, categoryDetails);
 		return categoryDetails;
+	}
+
+	/**
+	 * copy the data from DB to Response.
+	 * @param categoryDetails
+	 * @param categoryDetailsPojo
+	 * @return
+	 */
+	public ProductCategoryDetailsPojo productCategoryDetailsBasicCopyToResponse(ProductCategoryDetails categoryDetails,
+			ProductCategoryDetailsPojo categoryDetailsPojo) {
+		if (categoryDetailsPojo == null) {
+			categoryDetailsPojo = new ProductCategoryDetailsPojo();
+		}
+		categoryDetailsPojo.setCategoryId(categoryDetails.getCategoryId());
+		
+		categoryDetailsPojo.setCategoryName(categoryDetails.getCategoryName());
+		categoryDetailsPojo.setProductId(categoryDetails.getProductId());
+		BeanUtils.copyProperties(categoryDetails, categoryDetailsPojo);
+		return categoryDetailsPojo;
 	}
 
 	/**
