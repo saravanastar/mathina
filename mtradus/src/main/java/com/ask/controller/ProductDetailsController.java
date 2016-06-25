@@ -15,9 +15,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
-import com.ask.dbpojo.ProductCategoryDetails;
 import com.ask.dbpojo.ProductItemDetails;
 import com.ask.exception.BusinessException;
+import com.ask.pojo.ItemDetailsPojo;
 import com.ask.pojo.ProductCategoryDetailsPojo;
 import com.ask.pojo.ProductDetailsPojo;
 import com.ask.pojo.VendorDetailsPojo;
@@ -148,7 +148,7 @@ public class ProductDetailsController {
 
 	@RequestMapping(value = "/item}", method = RequestMethod.POST)
 	@ResponseBody
-	public void addProductItemDetails(@RequestBody ProductItemDetails itemDetails) {
+	public void addProductItemDetails(@RequestBody ItemDetailsPojo itemDetails) {
 
 	}
 

@@ -9,7 +9,7 @@ import java.io.Serializable;
  * @author ASK
  *
  */
-public class WeightOptionsPojo implements Serializable {
+public class WeightOptionsPojo implements Serializable, OptionsPojoResonse {
 
 	/**
 	 * 

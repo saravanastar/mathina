@@ -34,7 +34,10 @@ public class ProductItemDetails implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	int itemId;
-	
+
+	@Column(name = "CATEGORY_ID")
+	int categoryId;
+
 	@Column(name = "ITEM_NAME")
 	private String itemName;
 
@@ -52,56 +55,110 @@ public class ProductItemDetails implements Serializable {
 	@Temporal(TemporalType.DATE)
 	@Column(name = "CREATED_ON", nullable = false)
 	Date cretedOn;
-	
-	
 
-	public String getItemName() {
-		return itemName;
+	/**
+	 * @return the categoryId
+	 */
+	public int getCategoryId() {
+		return categoryId;
 	}
 
-	public void setItemName(String itemName) {
-		this.itemName = itemName;
+	/**
+	 * @param categoryId
+	 *            the categoryId to set
+	 */
+	public void setCategoryId(int categoryId) {
+		this.categoryId = categoryId;
 	}
 
+	/**
+	 * @return the itemId
+	 */
 	public int getItemId() {
 		return itemId;
 	}
 
+	/**
+	 * @param itemId
+	 *            the itemId to set
+	 */
 	public void setItemId(int itemId) {
 		this.itemId = itemId;
 	}
 
-	public boolean isStatus() {
-		return status;
+	/**
+	 * @return the itemName
+	 */
+	public String getItemName() {
+		return itemName;
 	}
 
-	public void setStatus(boolean status) {
-		this.status = status;
+	/**
+	 * @param itemName
+	 *            the itemName to set
+	 */
+	public void setItemName(String itemName) {
+		this.itemName = itemName;
 	}
 
-	public Date getExpiredOn() {
-		return expiredOn;
-	}
-
-	public void setExpiredOn(Date expiredOn) {
-		this.expiredOn = expiredOn;
-	}
-
-	public Date getCretedOn() {
-		return cretedOn;
-	}
-
-	public void setCretedOn(Date cretedOn) {
-		this.cretedOn = cretedOn;
-	}
-
+	/**
+	 * @return the itemOptions
+	 */
 	public List<ItemOptions> getItemOptions() {
 		return itemOptions;
 	}
 
+	/**
+	 * @param itemOptions
+	 *            the itemOptions to set
+	 */
 	public void setItemOptions(List<ItemOptions> itemOptions) {
 		this.itemOptions = itemOptions;
 	}
-	
-	
+
+	/**
+	 * @return the status
+	 */
+	public boolean isStatus() {
+		return status;
+	}
+
+	/**
+	 * @param status
+	 *            the status to set
+	 */
+	public void setStatus(boolean status) {
+		this.status = status;
+	}
+
+	/**
+	 * @return the expiredOn
+	 */
+	public Date getExpiredOn() {
+		return expiredOn;
+	}
+
+	/**
+	 * @param expiredOn
+	 *            the expiredOn to set
+	 */
+	public void setExpiredOn(Date expiredOn) {
+		this.expiredOn = expiredOn;
+	}
+
+	/**
+	 * @return the cretedOn
+	 */
+	public Date getCretedOn() {
+		return cretedOn;
+	}
+
+	/**
+	 * @param cretedOn
+	 *            the cretedOn to set
+	 */
+	public void setCretedOn(Date cretedOn) {
+		this.cretedOn = cretedOn;
+	}
+
 }
