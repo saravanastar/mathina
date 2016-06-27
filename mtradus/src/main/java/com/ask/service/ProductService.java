@@ -22,6 +22,7 @@ import com.ask.dbpojo.ProductCategoryDetails;
 import com.ask.dbpojo.ProductDetails;
 import com.ask.dbpojo.VendorDetails;
 import com.ask.exception.BusinessException;
+import com.ask.pojo.ItemDetailsPojo;
 import com.ask.pojo.ProductCategoryDetailsPojo;
 import com.ask.pojo.ProductDetailsPojo;
 import com.ask.pojo.VendorDetailsPojo;
@@ -314,9 +315,14 @@ public class ProductService {
 	 * @param categoryId
 	 */
 	public void deleteCategoyDetail(int categoryId) {
-		// TODO Auto-generated method stub
 		ProductCategoryDetails productCategoryDetails = productDetailDAO.getCategoryById(categoryId);
 		productDetailDAO.deleteCategoryDetails(productCategoryDetails);
+		
+	}
+
+	public void addProductItem(ItemDetailsPojo itemDetails) {
+//		productDataProcess.productCategoryDetailsBasicCopyToResponse(categoryDetails, categoryDetailsPojo)
+//		productDetailDAO.addProductItemDetails(itemDetails);
 		
 	}
 

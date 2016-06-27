@@ -149,6 +149,7 @@ public class ProductDetailsController {
 	@RequestMapping(value = "/item}", method = RequestMethod.POST)
 	@ResponseBody
 	public void addProductItemDetails(@RequestBody ItemDetailsPojo itemDetails) {
+		productService.addProductItem(itemDetails);
 
 	}
 

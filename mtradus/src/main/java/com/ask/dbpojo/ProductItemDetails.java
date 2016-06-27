@@ -13,7 +13,9 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -41,20 +43,29 @@ public class ProductItemDetails implements Serializable {
 	@Column(name = "ITEM_NAME")
 	private String itemName;
 
-	@OneToMany
+	@ManyToOne
 	@JoinColumn(name = "optionId")
-	List<ItemOptions> itemOptions;
+	ItemOptions itemOptions;
 
 	@Column(name = "status")
 	private boolean status;
+	
+	@OneToOne
+	private ItemCostDetails itemCostDetails;
+	
+	@Column(name = "STOCK_QUANTITY")
+	private int totalQuantity;
+	
 
 	@Temporal(TemporalType.DATE)
 	@Column(name = "EXPIRED_ON", nullable = false)
-	Date expiredOn;
+	private Date expiredOn;
 
 	@Temporal(TemporalType.DATE)
 	@Column(name = "CREATED_ON", nullable = false)
-	Date cretedOn;
+	private Date cretedOn;
+	
+	
 
 	/**
 	 * @return the categoryId
@@ -104,16 +115,43 @@ public class ProductItemDetails implements Serializable {
 	/**
 	 * @return the itemOptions
 	 */
-	public List<ItemOptions> getItemOptions() {
+	public ItemOptions getItemOptions() {
 		return itemOptions;
 	}
 
 	/**
-	 * @param itemOptions
-	 *            the itemOptions to set
+	 * @param itemOptions the itemOptions to set
 	 */
-	public void setItemOptions(List<ItemOptions> itemOptions) {
+	public void setItemOptions(ItemOptions itemOptions) {
 		this.itemOptions = itemOptions;
+	}
+
+	/**
+	 * @return the itemCostDetails
+	 */
+	public ItemCostDetails getItemCostDetails() {
+		return itemCostDetails;
+	}
+
+	/**
+	 * @param itemCostDetails the itemCostDetails to set
+	 */
+	public void setItemCostDetails(ItemCostDetails itemCostDetails) {
+		this.itemCostDetails = itemCostDetails;
+	}
+
+	/**
+	 * @return the totalQuantity
+	 */
+	public int getTotalQuantity() {
+		return totalQuantity;
+	}
+
+	/**
+	 * @param totalQuantity the totalQuantity to set
+	 */
+	public void setTotalQuantity(int totalQuantity) {
+		this.totalQuantity = totalQuantity;
 	}
 
 	/**

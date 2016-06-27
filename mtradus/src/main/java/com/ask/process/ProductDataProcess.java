@@ -97,6 +97,13 @@ public class ProductDataProcess {
 		return productDetail;
 	}
 
+	/**
+	 * Copy data from response to DB.
+	 * 
+	 * @param categoryDetailsPojo
+	 * @param categoryDetails
+	 * @return
+	 */
 	public ProductCategoryDetails productCategoryDetailsBasicCopyToDB(ProductCategoryDetailsPojo categoryDetailsPojo,
 			ProductCategoryDetails categoryDetails) {
 		if (categoryDetails == null) {
@@ -110,7 +117,25 @@ public class ProductDataProcess {
 	}
 
 	/**
+	 * 
+	 * @param itemDetailsPojo
+	 * @param productItemDetails
+	 * @return
+	 */
+	public ProductItemDetails itemDetailsCopyToDB(ItemDetailsPojo itemDetailsPojo,
+			ProductItemDetails productItemDetails) {
+		if (productItemDetails == null) {
+			productItemDetails = new ProductItemDetails();
+		}
+		BeanUtils.copyProperties(itemDetailsPojo, productItemDetails);
+//		copyToResonseColorOptions(colorOption)
+		return productItemDetails;
+
+	}
+
+	/**
 	 * copy the data from DB to Response.
+	 * 
 	 * @param categoryDetails
 	 * @param categoryDetailsPojo
 	 * @return
@@ -121,7 +146,7 @@ public class ProductDataProcess {
 			categoryDetailsPojo = new ProductCategoryDetailsPojo();
 		}
 		categoryDetailsPojo.setCategoryId(categoryDetails.getCategoryId());
-		
+
 		categoryDetailsPojo.setCategoryName(categoryDetails.getCategoryName());
 		categoryDetailsPojo.setProductId(categoryDetails.getProductId());
 		BeanUtils.copyProperties(categoryDetails, categoryDetailsPojo);
@@ -159,6 +184,7 @@ public class ProductDataProcess {
 			ItemDetailsPojo itemDetailsPojo = new ItemDetailsPojo();
 			BeanUtils.copyProperties(productItemDetail, itemDetailsPojo);
 			itemDetailsPojo.setOptions(copyToResonseItemDetailsData(productItemDetail.getItemOptions()));
+			itemDetailsPojo.setPrice(copyToResponseCostDetails(productItemDetail.getItemCostDetails()));
 			itemDetailsPojos.add(itemDetailsPojo);
 		}
 
@@ -167,10 +193,10 @@ public class ProductDataProcess {
 
 	/**
 	 * 
-	 * @param itemOptions
+	 * @param itemOption
 	 * @return
 	 */
-	public ItemOptionsPojo copyToResonseItemDetailsData(List<ItemOptions> itemOptions) {
+	public ItemOptionsPojo copyToResonseItemDetailsData(ItemOptions itemOption) {
 
 		List<ColorOptionsPojo> colorOptionsPojos = new ArrayList<ColorOptionsPojo>();
 		List<WeightOptionsPojo> weightOptionsPojos = new ArrayList<WeightOptionsPojo>();
@@ -179,8 +205,6 @@ public class ProductDataProcess {
 
 		ItemOptionsPojo itemOptionsPojo = new ItemOptionsPojo();
 
-		for (ItemOptions itemOption : itemOptions) {
-			ItemCostDetailsPojo costDetailsPojo = new ItemCostDetailsPojo();
 			if (itemOption.getColorOptions() != null) {
 				ColorOptionsPojo colorOption = copyToResonseColorOptions(itemOption.getColorOptions());
 				colorOptionsPojos.add(colorOption);
@@ -198,9 +222,6 @@ public class ProductDataProcess {
 				flavourOptionsPojos.add(flavourOptionsPojo);
 			}
 
-			costDetailsPojo = copyToResponseCostDetails(itemOption.getItemCostDetails());
-			itemOptionsPojo.setPrice(costDetailsPojo);
-		}
 
 		itemOptionsPojo.setColors(colorOptionsPojos);
 		itemOptionsPojo.setFlavours(flavourOptionsPojos);
