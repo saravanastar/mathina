@@ -35,7 +35,7 @@ public class Shops implements Serializable{
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name="SHOP_ID", nullable = false)
-	int shopID;
+	int id;
 	
 	@Column(name="SHOP_NAME", nullable = false)
 	String shopName;
@@ -53,56 +53,83 @@ public class Shops implements Serializable{
 	Date createdOn;
 
 
-	public Address getAddress() {
-		return address;
+	/**
+	 * @return the id
+	 */
+	public int getId() {
+		return id;
 	}
 
 
-	public void setAddress(Address address) {
-		this.address = address;
+	/**
+	 * @param id the id to set
+	 */
+	public void setId(int id) {
+		this.id = id;
 	}
 
 
-	public int getShopID() {
-		return shopID;
-	}
-
-
-	public void setShopID(int shopID) {
-		this.shopID = shopID;
-	}
-
-
+	/**
+	 * @return the shopName
+	 */
 	public String getShopName() {
 		return shopName;
 	}
 
 
+	/**
+	 * @param shopName the shopName to set
+	 */
 	public void setShopName(String shopName) {
 		this.shopName = shopName;
 	}
 
 
+	/**
+	 * @return the address
+	 */
+	public Address getAddress() {
+		return address;
+	}
+
+
+	/**
+	 * @param address the address to set
+	 */
+	public void setAddress(Address address) {
+		this.address = address;
+	}
+
+
+	/**
+	 * @return the user
+	 */
 	public User getUser() {
 		return user;
 	}
 
 
+	/**
+	 * @param user the user to set
+	 */
 	public void setUser(User user) {
 		this.user = user;
 	}
 
 
+	/**
+	 * @return the createdOn
+	 */
 	public Date getCreatedOn() {
 		return createdOn;
 	}
 
 
+	/**
+	 * @param createdOn the createdOn to set
+	 */
 	public void setCreatedOn(Date createdOn) {
 		this.createdOn = createdOn;
 	}
 
-	
-	
-	
 }
