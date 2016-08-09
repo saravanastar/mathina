@@ -3,12 +3,12 @@
  */
 package com.ask.controller;
 
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -86,15 +86,24 @@ public class UserController {
 	 */
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
 	@ResponseBody
-	public void loginUser(@RequestBody UserPojo user,
+	public ResponseEntity<?> loginUser(@RequestBody UserPojo user,
 			HttpServletRequest request, HttpServletResponse response) {
 		System.out.println(user.getUserName());
+		boolean loggedInStatus = false;
 		UserPojo userData = userService.getUser(user.getUserName(), user.getPassword());
 		if (userData != null && userData.getUserName() != null) {
 			SecurityContextHolder.getContext().setAuthentication(userService.getUserAuthentication(userData));
 			request.getSession().setAttribute(ApplicationConstants.LOGGED_IN_USER, userData);
 			request.getSession().setAttribute(ApplicationConstants.LOGGED_IN, true);
+			loggedInStatus = true;
 		}
+		/*HttpHeaders headers = new HttpHeaders();
+		headers.add(HttpHeaders.SET_COOKIE, "loggedInStatus="+loggedInStatus);*/
+		Cookie cookie = new Cookie("loggedInStatus",String.valueOf(loggedInStatus));
+		cookie.setPath(request.getContextPath());
+		cookie.setSecure(false);
+		response.addCookie(cookie);
+		return ResponseEntity.ok().build();
 	}
 
 	/**
@@ -111,6 +120,12 @@ public class UserController {
 		request.getSession().removeAttribute(ApplicationConstants.LOGGED_IN_USER);
 		request.getSession().removeAttribute(ApplicationConstants.LOGGED_IN);
 		request.getSession().invalidate();
-		return new ResponseEntity<Object>(HttpStatus.OK);
+//		return new ResponseEntity<Object>(HttpStatus.OK);
+		Cookie cookie = new Cookie("loggedInStatus","false");
+		cookie.setPath(request.getContextPath());
+		cookie.setSecure(false);
+		cookie.setMaxAge(0);
+		response.addCookie(cookie);
+		return ResponseEntity.ok().build();
 	}
 }

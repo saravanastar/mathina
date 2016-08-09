@@ -11,10 +11,13 @@
 
 	<filter-mapping>
 		<filter-name>springSecurityFilterChain</filter-name>
-		<url-pattern>/*</url-pattern>
+		<url-pattern>/service/*</url-pattern>
 	</filter-mapping>
 	<listener>
 		<listener-class>org.springframework.web.context.request.RequestContextListener</listener-class>
+	</listener>
+	<listener>
+		<listener-class>com.ask.security.SessionEventListener</listener-class>
 	</listener>
 	<servlet>
 		<servlet-name>appServlet</servlet-name>
@@ -28,8 +31,12 @@
 
 	<servlet-mapping>
 		<servlet-name>appServlet</servlet-name>
-		<url-pattern>/</url-pattern>
+		<url-pattern>/service/*</url-pattern>
 	</servlet-mapping>
+	
+	<session-config>
+        <session-timeout>20</session-timeout>
+	</session-config>
 
 
 </web-app>

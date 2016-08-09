@@ -118,4 +118,10 @@
 			</list>
 		</property>
 	</bean>
+	
+	<mvc:interceptors>
+		<bean class="com.ask.security.RequestHandlerInterceptor"></bean>
+	</mvc:interceptors>
+	
+	
 </beans>
