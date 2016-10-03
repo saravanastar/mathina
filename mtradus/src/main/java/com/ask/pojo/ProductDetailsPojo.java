@@ -42,8 +42,7 @@ public class ProductDetailsPojo implements Serializable {
 	}
 
 	/**
-	 * @param productId
-	 *            the productId to set
+	 * @param productId the productId to set
 	 */
 	public void setProductId(int productId) {
 		this.productId = productId;
@@ -57,8 +56,7 @@ public class ProductDetailsPojo implements Serializable {
 	}
 
 	/**
-	 * @param vendorId
-	 *            the vendorId to set
+	 * @param vendorId the vendorId to set
 	 */
 	public void setVendorId(int vendorId) {
 		this.vendorId = vendorId;
@@ -86,8 +84,7 @@ public class ProductDetailsPojo implements Serializable {
 	}
 
 	/**
-	 * @param productName
-	 *            the productName to set
+	 * @param productName the productName to set
 	 */
 	public void setProductName(String productName) {
 		this.productName = productName;
@@ -101,8 +98,7 @@ public class ProductDetailsPojo implements Serializable {
 	}
 
 	/**
-	 * @param description
-	 *            the description to set
+	 * @param description the description to set
 	 */
 	public void setDescription(String description) {
 		this.description = description;
@@ -116,8 +112,7 @@ public class ProductDetailsPojo implements Serializable {
 	}
 
 	/**
-	 * @param status
-	 *            the status to set
+	 * @param status the status to set
 	 */
 	public void setStatus(boolean status) {
 		this.status = status;
@@ -131,8 +126,7 @@ public class ProductDetailsPojo implements Serializable {
 	}
 
 	/**
-	 * @param expiredOn
-	 *            the expiredOn to set
+	 * @param expiredOn the expiredOn to set
 	 */
 	public void setExpiredOn(Date expiredOn) {
 		this.expiredOn = expiredOn;
@@ -146,10 +140,12 @@ public class ProductDetailsPojo implements Serializable {
 	}
 
 	/**
-	 * @param imageLink
-	 *            the imageLink to set
+	 * @param imageLink the imageLink to set
 	 */
 	public void setImageLink(String imageLink) {
 		this.imageLink = imageLink;
 	}
+
+	
+	
 }

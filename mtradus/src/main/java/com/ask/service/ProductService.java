@@ -80,6 +80,10 @@ public class ProductService {
 	 */
 	public void addVendor(VendorDetailsPojo vendorDetailsPojo) {
 		try {
+			VendorDetails checkExistingVendor = productDetailDAO.getVendorByName(vendorDetailsPojo.getVendorName());
+			if (checkExistingVendor != null) {
+				throw new BusinessException(CommonConstants.BAD_REQUEST);
+			}
 			VendorDetails vendorDetails = productDataProcess.copyFromResponseVendorDetails(vendorDetailsPojo, null);
 			productDetailDAO.addVendorData(vendorDetails);
 		} catch (Exception exception) {
@@ -281,18 +285,23 @@ public class ProductService {
 	 * @param categoryId
 	 * @return
 	 */
-	public ProductCategoryDetailsPojo getCategoryByProductId(int productId) {
-		ProductCategoryDetails categoryDetail = productDetailDAO.getCategoryByProductId(productId);
-		ProductCategoryDetailsPojo detailsPojo = productDataProcess
-				.productCategoryDetailsBasicCopyToResponse(categoryDetail, null);
-		Link detailCategoryId = linkTo(
-				methodOn(ProductDetailsController.class).getCategoryByCategoryId(detailsPojo.getCategoryId()))
-						.withSelfRel();
-		Link detailProductId = linkTo(
-				methodOn(ProductDetailsController.class).getProductDetail(detailsPojo.getProductId())).withSelfRel();
-		detailsPojo.add(detailCategoryId);
-		detailsPojo.add(detailProductId);
-		return detailsPojo;
+	public List<ProductCategoryDetailsPojo> getCategoryByProductId(int productId) {
+		List<ProductCategoryDetails> categoryDetails = productDetailDAO.getCategoryByProductId(productId);
+		List<ProductCategoryDetailsPojo> responseCategory = new ArrayList<ProductCategoryDetailsPojo>();
+		for (ProductCategoryDetails categoryDetail : categoryDetails) {
+			ProductCategoryDetailsPojo detailsPojo = productDataProcess
+					.productCategoryDetailsBasicCopyToResponse(categoryDetail, null);
+			Link detailCategoryId = linkTo(
+					methodOn(ProductDetailsController.class).getCategoryByCategoryId(detailsPojo.getCategoryId()))
+							.withSelfRel();
+			Link detailProductId = linkTo(
+					methodOn(ProductDetailsController.class).getProductDetail(detailsPojo.getProductId())).withSelfRel();
+			detailsPojo.add(detailCategoryId);
+			detailsPojo.add(detailProductId);
+			responseCategory.add(detailsPojo);
+		}
+		
+		return responseCategory;
 	}
 
 	/**

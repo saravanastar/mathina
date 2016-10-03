@@ -7,6 +7,7 @@ import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -39,8 +40,7 @@ public class VendorDetails implements Serializable {
 	@Column(name = "VENDOR_NAME")
 	private String vendorName;
 
-	@OneToMany(fetch = FetchType.LAZY)
-	@JoinColumn(name = "vendorId")
+	@OneToMany(mappedBy="vendorId")
 	private List<ProductDetails> productDetails;
 
 	@Column(name = "IMAGE_LINK")

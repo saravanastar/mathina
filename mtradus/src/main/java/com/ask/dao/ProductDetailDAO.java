@@ -24,7 +24,7 @@ public interface ProductDetailDAO {
 
 	public ProductCategoryDetails getCategoryById(int categoryId);
 	
-	public ProductCategoryDetails getCategoryByProductId(int productId);
+	public List<ProductCategoryDetails> getCategoryByProductId(int productId);
 
 	public List<ProductDetails> listProduct();
 
@@ -55,4 +55,6 @@ public interface ProductDetailDAO {
 	public void deleteProductItemDetails(int itemId);
 
 	public ProductDetails getProductById(int productId);
+
+	public VendorDetails getVendorByName(String vendorName);
 }

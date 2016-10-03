@@ -42,7 +42,7 @@ public class ProductDetailsController {
 		this.productService = productService;
 	}
 
-	@RequestMapping(value = "/vendors", method = RequestMethod.POST)
+	@RequestMapping(value = "/vendor", method = RequestMethod.POST)
 	@ResponseStatus(value = HttpStatus.OK)
 	public void addNewVendor(@RequestBody VendorDetailsPojo vendorDetailsPojo) throws BusinessException {
 		productService.addVendor(vendorDetailsPojo);
@@ -74,9 +74,9 @@ public class ProductDetailsController {
 		return productService.getCategoryByCategoryId(categoryId);
 	}
 
-	@RequestMapping(value = "/category/{productId}", method = RequestMethod.GET)
+	@RequestMapping(value = "/category/product/{productId}", method = RequestMethod.GET)
 	@ResponseBody
-	public ProductCategoryDetailsPojo getCategoryByProductId(@PathVariable int productId) {
+	public List<ProductCategoryDetailsPojo> getCategoryByProductId(@PathVariable int productId) {
 		return productService.getCategoryByProductId(productId);
 	}
 
@@ -87,13 +87,13 @@ public class ProductDetailsController {
 
 	}
 
-	@RequestMapping(value = "/vendors/{vendorId}", method = RequestMethod.PUT)
+	@RequestMapping(value = "/vendor/{vendorId}", method = RequestMethod.PUT)
 	@ResponseBody
 	public void updateVendorDetails(@PathVariable int vendorId, @RequestBody VendorDetailsPojo vendorDetails) {
 		productService.updateVendor(vendorDetails, vendorId);
 	}
 
-	@RequestMapping(value = "/vendors/{vendorId}", method = RequestMethod.DELETE)
+	@RequestMapping(value = "/vendor/{vendorId}", method = RequestMethod.DELETE)
 	@ResponseBody
 	public void deleteVendorDetails(@PathVariable int vendorId) {
 		productService.deleteVendorData(vendorId);

@@ -8,7 +8,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 /**
@@ -32,19 +31,6 @@ public class ColorOption {
 	@Column(name="COLOR_CODE")
 	private String colorCode;
 	
-	@OneToOne
-	private ItemCostDetails itemCostDetails;
-	
-	
-
-	public ItemCostDetails getItemCostDetails() {
-		return itemCostDetails;
-	}
-
-	public void setItemCostDetails(ItemCostDetails itemCostDetails) {
-		this.itemCostDetails = itemCostDetails;
-	}
-
 	public int getId() {
 		return id;
 	}

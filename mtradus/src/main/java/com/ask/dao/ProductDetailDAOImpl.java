@@ -57,6 +57,16 @@ public class ProductDetailDAOImpl implements ProductDetailDAO {
 		return vendorDetails;
 
 	}
+	
+	@Transactional
+	public VendorDetails getVendorByName(String vendorName) {
+		Session session = hibernateTemplate.getSessionFactory().getCurrentSession();
+		Query query = session.createQuery("from VendorDetails where vendorName=:vendorName");
+		query.setString("vendorName", vendorName);
+		VendorDetails vendorDetails = (VendorDetails) query.uniqueResult();
+		return vendorDetails;
+
+	}
 
 	public List<ProductCategoryDetails> listCategories() {
 		Session session = hibernateTemplate.getSessionFactory().getCurrentSession();
@@ -73,11 +83,12 @@ public class ProductDetailDAOImpl implements ProductDetailDAO {
 		return categoryDetails;
 	}
 	
-	public ProductCategoryDetails getCategoryByProductId(int productId) {
+	@Transactional
+	public List<ProductCategoryDetails> getCategoryByProductId(int productId) {
 		Session session = hibernateTemplate.getSessionFactory().getCurrentSession();
 		Query query = session.createQuery("from ProductCategoryDetails where productId=:productId");
 		query.setInteger("productId", productId);
-		ProductCategoryDetails categoryDetails = (ProductCategoryDetails) query.uniqueResult();
+		List<ProductCategoryDetails> categoryDetails = (List<ProductCategoryDetails>) query.list();
 		return categoryDetails;
 	}
 	

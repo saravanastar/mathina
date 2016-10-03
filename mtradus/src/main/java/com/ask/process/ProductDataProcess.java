@@ -46,9 +46,11 @@ public class ProductDataProcess {
 		// BeanUtils.copyProperties(sourceVendorDBDetails, detailsPojo);
 		detailsPojo.setVendorId(sourceVendorDBDetails.getId());
 		detailsPojo.setVendorName(sourceVendorDBDetails.getVendorName());
-		// List<ProductDetails> productDetails =
-		// sourceVendorDBDetails.getProductDetails();
-		// detailsPojo.setProductDetails(copyToResonseProductDetails(productDetails));
+		detailsPojo.setActive(sourceVendorDBDetails.isActive());
+//		detailsPojo.setProductDetails(sourceVendorDBDetails.getProductDetails())
+		 List<ProductDetails> productDetails =
+		 sourceVendorDBDetails.getProductDetails();
+		detailsPojo.setProductDetails(copyToResonseProductDetails(productDetails));
 		return detailsPojo;
 	}
 
@@ -93,6 +95,7 @@ public class ProductDataProcess {
 		productDetail.setProductId(productDetailPojo.getProductId());
 		productDetail.setProductName(productDetailPojo.getProductName());
 		productDetail.setVendorId(productDetailPojo.getVendorId());
+		productDetail.setStatus(productDetailPojo.isStatus());
 		BeanUtils.copyProperties(productDetailPojo, productDetail);
 		return productDetail;
 	}
