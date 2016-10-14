@@ -146,7 +146,7 @@ public class ProductDetailsController {
 
 	}
 
-	@RequestMapping(value = "/item}", method = RequestMethod.POST)
+	@RequestMapping(value = "/item", method = RequestMethod.POST)
 	@ResponseBody
 	public void addProductItemDetails(@RequestBody ItemDetailsPojo itemDetails) {
 		productService.addProductItem(itemDetails);
@@ -162,6 +162,13 @@ public class ProductDetailsController {
 	@RequestMapping(value = "/item/{itemId}", method = RequestMethod.DELETE)
 	@ResponseBody
 	public void deleteProductItemDetails(@PathVariable int itemId) {
+
+	}
+	
+	@RequestMapping(value = "/item/category/{categoryId}", method = RequestMethod.POST)
+	@ResponseBody
+	public List<ProductItemDetails> getAllItemByCategoryId(@PathVariable int categoryId) {
+		return productService.getItemByCategoryId(categoryId);
 
 	}
 }

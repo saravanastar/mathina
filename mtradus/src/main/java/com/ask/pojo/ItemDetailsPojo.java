@@ -24,8 +24,7 @@ public class ItemDetailsPojo implements Serializable{
 	private String expiredOn;
 	private String createdOn;
 	private ItemOptionsPojo options;
-	private ItemCostDetailsPojo price;
-	private int totalQuantity;
+
 	
 	
 	
@@ -125,30 +124,6 @@ public class ItemDetailsPojo implements Serializable{
 	 */
 	public void setOptions(ItemOptionsPojo options) {
 		this.options = options;
-	}
-	/**
-	 * @return the price
-	 */
-	public ItemCostDetailsPojo getPrice() {
-		return price;
-	}
-	/**
-	 * @param price the price to set
-	 */
-	public void setPrice(ItemCostDetailsPojo price) {
-		this.price = price;
-	}
-	/**
-	 * @return the totalQuantity
-	 */
-	public int getTotalQuantity() {
-		return totalQuantity;
-	}
-	/**
-	 * @param totalQuantity the totalQuantity to set
-	 */
-	public void setTotalQuantity(int totalQuantity) {
-		this.totalQuantity = totalQuantity;
 	}
 	
 	

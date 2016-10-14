@@ -21,6 +21,35 @@ public class ItemOptionsPojo implements Serializable {
 	private List<WeightOptionsPojo> weights;
 	private List<ColorOptionsPojo> colors;
 	private List<FlavourOptionsPojo> flavours;
+	private ItemCostDetailsPojo price;
+	private int totalQuantity;
+	
+	
+	
+	/**
+	 * @return the price
+	 */
+	public ItemCostDetailsPojo getPrice() {
+		return price;
+	}
+	/**
+	 * @param price the price to set
+	 */
+	public void setPrice(ItemCostDetailsPojo price) {
+		this.price = price;
+	}
+	/**
+	 * @return the totalQuantity
+	 */
+	public int getTotalQuantity() {
+		return totalQuantity;
+	}
+	/**
+	 * @param totalQuantity the totalQuantity to set
+	 */
+	public void setTotalQuantity(int totalQuantity) {
+		this.totalQuantity = totalQuantity;
+	}
 	/**
 	 * @return the sizes
 	 */

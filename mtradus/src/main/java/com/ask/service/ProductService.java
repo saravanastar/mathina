@@ -20,6 +20,7 @@ import com.ask.controller.ProductDetailsController;
 import com.ask.dao.ProductDetailDAO;
 import com.ask.dbpojo.ProductCategoryDetails;
 import com.ask.dbpojo.ProductDetails;
+import com.ask.dbpojo.ProductItemDetails;
 import com.ask.dbpojo.VendorDetails;
 import com.ask.exception.BusinessException;
 import com.ask.pojo.ItemDetailsPojo;
@@ -111,18 +112,31 @@ public class ProductService {
 		return vendorDetailsPojos;
 	}
 
+	/**
+	 * 
+	 * @param vendorId
+	 * @return
+	 */
 	public VendorDetailsPojo listVendorById(int vendorId) {
 		VendorDetails vendorDetail = productDetailDAO.getVendorById(vendorId);
 		VendorDetailsPojo detailsPojo = productDataProcess.copyToResponseVendor(vendorDetail);
 		return detailsPojo;
 	}
 
+	/**
+	 * 
+	 * @return
+	 */
 	public List<ProductDetailsPojo> listProduct() {
 		// TODO Auto-generated method stub
 		List<ProductDetails> productDetails = productDetailDAO.listProduct();
 		return productDataProcess.copyToResonseProductDetails(productDetails);
 	}
 
+	/**
+	 * 
+	 * @param productDetails
+	 */
 	public void addProductDetails(ProductDetailsPojo productDetails) {
 		// TODO Auto-generated method stub
 		ProductDetails productDetail = productDataProcess.productDetailBasicCopyResponse(productDetails, null);
@@ -135,7 +149,12 @@ public class ProductService {
 		productDetailDAO.addProductDetails(productDetail);
 
 	}
-
+	
+	/**
+	 * 
+	 * @param vendorDetailsPojo
+	 * @param vendorId
+	 */
 	public void updateVendor(VendorDetailsPojo vendorDetailsPojo, int vendorId) {
 		try {
 			VendorDetails vendor = productDetailDAO.getVendorById(vendorId);
@@ -152,6 +171,10 @@ public class ProductService {
 
 	}
 
+	/**
+	 * 
+	 * @param vendorId
+	 */
 	public void deleteVendorData(int vendorId) {
 		VendorDetails vendorDetails = productDetailDAO.getVendorById(vendorId);
 		if (vendorDetails == null) {
@@ -312,8 +335,9 @@ public class ProductService {
 	public void updateCategoryDetails(int categoryId, ProductCategoryDetailsPojo categoryDetailsPojo) {
 		
 		ProductCategoryDetails productCategoryDetails = productDetailDAO.getCategoryById(categoryId);
-		productCategoryDetails = productDataProcess
-				.productCategoryDetailsBasicCopyToDB(categoryDetailsPojo, productCategoryDetails);
+//		productCategoryDetails = productDataProcess
+//				.productCategoryDetailsBasicCopyToDB(categoryDetailsPojo, productCategoryDetails);
+		productCategoryDetails.setCategoryName(categoryDetailsPojo.getCategoryName());
 		productDetailDAO.updateCategoryDetails(categoryId, productCategoryDetails);
 		
 		
@@ -333,6 +357,11 @@ public class ProductService {
 //		productDataProcess.productCategoryDetailsBasicCopyToResponse(categoryDetails, categoryDetailsPojo)
 //		productDetailDAO.addProductItemDetails(itemDetails);
 		
+	}
+
+	public List<ProductItemDetails> getItemByCategoryId(int categoryId) {
+		List<ProductItemDetails> productItemDetails = productDetailDAO.getItemByCategoryId(categoryId);
+		return null;
 	}
 
 }

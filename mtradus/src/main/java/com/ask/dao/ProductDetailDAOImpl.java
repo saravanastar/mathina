@@ -75,6 +75,7 @@ public class ProductDetailDAOImpl implements ProductDetailDAO {
 		return cateList;
 	}
 
+	@Transactional
 	public ProductCategoryDetails getCategoryById(int categoryId) {
 		Session session = hibernateTemplate.getSessionFactory().getCurrentSession();
 		Query query = session.createQuery("from ProductCategoryDetails where categoryId=:categoryId");
@@ -129,6 +130,18 @@ public class ProductDetailDAOImpl implements ProductDetailDAO {
 		return itemDetails;
 	}
 
+	/**
+	 * 
+	 */
+	@Transactional
+	public List<ProductItemDetails> getItemByCategoryId(int categoryId) {
+		Session session = hibernateTemplate.getSessionFactory().getCurrentSession();
+		Query query = session.createQuery("from ProductCategoryDetails where categoryId=:categoryId");
+		query.setInteger("categoryId", categoryId);
+		List<ProductItemDetails> itemDetails = (List<ProductItemDetails>) query.list();
+		return itemDetails;
+	}
+	
 	@Transactional
 	public void addVendorData(VendorDetails vendorDetails) throws Exception {
 
@@ -158,6 +171,7 @@ public class ProductDetailDAOImpl implements ProductDetailDAO {
 		session.save(categoryDetails);
 	}
 
+	@Transactional
 	public void updateCategoryDetails(int categoryId, ProductCategoryDetails categoryDetails) {
 		Session session = hibernateTemplate.getSessionFactory().getCurrentSession();
 		session.update(categoryDetails);

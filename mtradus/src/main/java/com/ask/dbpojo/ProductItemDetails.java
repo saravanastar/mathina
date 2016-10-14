@@ -5,7 +5,6 @@ package com.ask.dbpojo;
 
 import java.io.Serializable;
 import java.util.Date;
-import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -14,8 +13,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -50,11 +47,9 @@ public class ProductItemDetails implements Serializable {
 	@Column(name = "status")
 	private boolean status;
 	
-	@OneToOne
-	private ItemCostDetails itemCostDetails;
 	
-	@Column(name = "STOCK_QUANTITY")
-	private int totalQuantity;
+	
+	
 	
 
 	@Temporal(TemporalType.DATE)
@@ -126,33 +121,7 @@ public class ProductItemDetails implements Serializable {
 		this.itemOptions = itemOptions;
 	}
 
-	/**
-	 * @return the itemCostDetails
-	 */
-	public ItemCostDetails getItemCostDetails() {
-		return itemCostDetails;
-	}
 
-	/**
-	 * @param itemCostDetails the itemCostDetails to set
-	 */
-	public void setItemCostDetails(ItemCostDetails itemCostDetails) {
-		this.itemCostDetails = itemCostDetails;
-	}
-
-	/**
-	 * @return the totalQuantity
-	 */
-	public int getTotalQuantity() {
-		return totalQuantity;
-	}
-
-	/**
-	 * @param totalQuantity the totalQuantity to set
-	 */
-	public void setTotalQuantity(int totalQuantity) {
-		this.totalQuantity = totalQuantity;
-	}
 
 	/**
 	 * @return the status

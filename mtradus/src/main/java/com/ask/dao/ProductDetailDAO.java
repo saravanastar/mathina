@@ -57,4 +57,6 @@ public interface ProductDetailDAO {
 	public ProductDetails getProductById(int productId);
 
 	public VendorDetails getVendorByName(String vendorName);
+
+	public List<ProductItemDetails> getItemByCategoryId(int categoryId);
 }

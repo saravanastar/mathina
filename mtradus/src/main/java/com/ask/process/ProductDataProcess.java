@@ -115,7 +115,7 @@ public class ProductDataProcess {
 		categoryDetails.setCategoryId(categoryDetailsPojo.getCategoryId());
 		categoryDetails.setCategoryName(categoryDetailsPojo.getCategoryName());
 		categoryDetails.setProductId(categoryDetailsPojo.getProductId());
-		BeanUtils.copyProperties(categoryDetailsPojo, categoryDetails);
+//		BeanUtils.copyProperties(categoryDetailsPojo, categoryDetails);
 		return categoryDetails;
 	}
 

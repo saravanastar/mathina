@@ -46,6 +46,12 @@ public class ItemOptions {
 	@ManyToOne
 	private FlavourOption flavourOption;
 	
+	@OneToOne
+	private ItemCostDetails itemCostDetails;
+	
+	@Column(name = "STOCK_QUANTITY")
+	private int totalQuantity;
+	
 	@Temporal(TemporalType.DATE)
 	@Column(name = "LAST_UPDATED_ON")
 	Date lastUpdatedOn;
